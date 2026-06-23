@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuiz Sains Darjah 4 – Kemahiran Saintifik</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f0fdf4;
+            color: #1e293b;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 880px; margin: 0 auto; }
+        .page-header {
+            background: white;
+            padding: 28px 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin-bottom: 26px;
+        }
+        h1 { color: #14532d; margin: 0 0 6px 0; font-size: 1.65em; }
+        .subtitle { color: #475569; margin: 0 0 14px 0; font-size: 0.97em; }
+        .concept-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+        .badge {
+            background: #dcfce7; color: #15803d; padding: 3px 11px;
+            border-radius: 20px; font-size: 0.8em; font-weight: 600;
+            border: 1px solid #86efac;
+        }
+        .score-banner {
+            display: none;
+            background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px;
+            padding: 22px; text-align: center; margin-bottom: 26px;
+            font-size: 1.2em; font-weight: bold; color: #065f46;
+        }
+        .experiment-block {
+            border-radius: 10px; margin-bottom: 6px;
+            overflow: hidden; border: 2px solid #e2e8f0;
+        }
+        .experiment-header {
+            padding: 13px 20px; color: white; font-weight: 700;
+            font-size: 1em; display: flex; justify-content: space-between; align-items: center;
+        }
+        .q-range {
+            font-size: 0.82em; font-weight: 500; opacity: 0.88;
+            background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;
+            white-space: nowrap; margin-left: 12px;
+        }
+        .experiment-body { background: white; padding: 16px 20px 10px 20px; }
+        .scenario-text { color: #374151; margin: 0 0 14px 0; font-size: 0.96em; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.91em; margin-bottom: 4px; }
+        .data-table th { padding: 9px 14px; text-align: left; font-weight: 700; border: 1px solid #d1d5db; color: white; }
+        .data-table td { padding: 8px 14px; border: 1px solid #e5e7eb; }
+        .data-table tr:nth-child(even) td { background: #f9fafb; }
+        .question-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 8px;
+            padding: 18px 22px; margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            border-left-width: 4px;
+        }
+        .question-tag {
+            display: inline-block; font-size: 0.71em; font-weight: 700;
+            padding: 2px 9px; border-radius: 4px; margin-bottom: 8px;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .question-text { font-weight: 600; font-size: 1em; color: #0f172a; margin-bottom: 13px; }
+        .options-list { list-style: none; padding: 0; margin: 0; }
+        .option-item {
+            padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 6px;
+            margin-bottom: 8px; cursor: pointer; transition: all 0.15s ease;
+            background: #f8fafc; font-size: 0.96em;
+        }
+        .option-item:hover { background: #f1f5f9; border-color: #94a3b8; }
+        .option-item.selected { background: #2563eb; color: white; border-color: #1d4ed8; font-weight: 500; }
+        .rationale {
+            margin-top: 11px; padding: 11px 15px; border-radius: 6px;
+            display: none; font-size: 0.91em; line-height: 1.5;
+        }
+        .correct-fb { background: #d1fae5; border: 1px solid #10b981; color: #065f46; }
+        .incorrect-fb { background: #fee2e2; border: 1px solid #ef4444; color: #991b1b; }
+        .action-btn {
+            background-color: #15803d; color: white; border: none;
+            padding: 14px 32px; font-size: 1.05em; font-weight: 700;
+            border-radius: 8px; cursor: pointer; transition: background 0.2s;
+            display: block; margin: 30px auto 10px auto;
+        }
+        .action-btn:hover { background-color: #166534; }
+        .reset-btn {
+            background: white; color: #15803d; border: 2px solid #15803d;
+            padding: 10px 24px; font-size: 0.97em; font-weight: 600;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s;
+            display: none; margin: 0 auto 30px auto;
+        }
+        .reset-btn:hover { background: #f0fdf4; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .page-header { padding: 18px; }
+            h1 { font-size: 1.3em; }
+            .experiment-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Kuiz Sains Darjah 4 – Kemahiran Saintifik</h1>
+        <p class="subtitle">Baca setiap eksperimen dengan teliti, kemudian jawab soalan-soalan yang berkaitan. Klik <strong>Semak Jawapan</strong> apabila selesai.</p>
+        <div class="concept-badges">
+            <span class="badge">Pembolehubah Dimanipulasi</span>
+            <span class="badge">Pembolehubah Bergerak Balas</span>
+            <span class="badge">Pembolehubah Dimalarkan</span>
+            <span class="badge">Hipotesis</span>
+            <span class="badge">Inferens</span>
+            <span class="badge">Kesimpulan</span>
+        </div>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="quizContainer"></div>
+
+    <button class="action-btn" id="submitBtn" onclick="gradeQuiz()">Semak Jawapan &amp; Lihat Markah</button>
+    <button class="reset-btn" id="resetBtn" onclick="resetQuiz()">Cuba Semula</button>
+</div>
+
+<script>
+const sections = [
+  {
+    id: 1,
+    color: "#16a34a",
+    title: "Bahagian 1 — Bahan Pengalir dan Bukan Pengalir Elektrik",
+    scenario: "Murid-murid menjalankan penyiasatan untuk mengkaji sama ada jenis bahan mempengaruhi sama ada mentol menyala atau tidak. Setiap bahan disambungkan ke dalam litar elektrik yang sama, dan keputusan dicatatkan dalam jadual.",
+    tableHeaders: ["Bahan", "Keadaan Mentol"],
+    tableRows: [
+      ["Plat Besi", "Menyala"],
+      ["Rod Kaca", "Tidak Menyala"],
+      ["Wayar Tembaga", "Menyala"],
+      ["Pembaris Plastik", "Tidak Menyala"],
+      ["Paku Besi", "Menyala"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan ini?",
+        options: [
+          { text: "Keadaan mentol (menyala atau tidak menyala)", correct: false, rationale: "Ini adalah pembolehubah bergerak balas — ia berubah kerana perubahan jenis bahan yang diuji." },
+          { text: "Jenis bahan yang diuji dalam litar elektrik", correct: true, rationale: "Betul! Pembolehubah dimanipulasi adalah perkara yang kita ubah dengan sengaja, iaitu jenis bahan yang disambungkan dalam litar." },
+          { text: "Panjang wayar dalam litar elektrik", correct: false, rationale: "Panjang wayar tidak diubah dalam penyiasatan ini — ia adalah pembolehubah yang dimalarkan." },
+          { text: "Bilangan mentol dalam litar", correct: false, rationale: "Bilangan mentol tidak berubah — hanya satu mentol digunakan sepanjang penyiasatan." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan ini?",
+        options: [
+          { text: "Jenis bahan yang disambungkan", correct: false, rationale: "Ini adalah pembolehubah dimanipulasi — kita yang mengubahnya dengan sengaja." },
+          { text: "Bilangan bahan yang diuji", correct: false, rationale: "Bilangan bahan bukan hasil yang kita ukur dalam penyiasatan ini." },
+          { text: "Keadaan mentol (menyala atau tidak menyala)", correct: true, rationale: "Betul! Pembolehubah bergerak balas adalah sesuatu yang berubah akibat perubahan pembolehubah dimanipulasi. Keadaan mentol berubah mengikut jenis bahan yang diuji." },
+          { text: "Jenis litar elektrik yang digunakan", correct: false, rationale: "Jenis litar tidak diubah dan tidak diukur dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang boleh dibuat tentang plat besi dan wayar tembaga?",
+        options: [
+          { text: "Plat besi dan wayar tembaga adalah bahan bukan pengalir elektrik", correct: false, rationale: "Tidak betul. Mentol menyala apabila bahan-bahan ini digunakan, menunjukkan mereka mengalirkan elektrik." },
+          { text: "Plat besi dan wayar tembaga adalah bahan pengalir elektrik", correct: true, rationale: "Betul! Kedua-dua bahan ini menyebabkan mentol menyala, menunjukkan mereka boleh mengalirkan elektrik melalui litar." },
+          { text: "Plat besi dan wayar tembaga adalah bahan lut sinar", correct: false, rationale: "Lut sinar adalah sifat berkaitan cahaya, bukan elektrik. Soalan ini adalah tentang pengaliran elektrik." },
+          { text: "Plat besi dan wayar tembaga tidak boleh digunakan dalam litar elektrik", correct: false, rationale: "Sebaliknya, kedua-dua bahan ini boleh digunakan dalam litar elektrik kerana ia mengalirkan elektrik." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang paling sesuai untuk penyiasatan ini?",
+        options: [
+          { text: "Semua bahan boleh mengalirkan elektrik", correct: false, rationale: "Ini tidak betul. Rod kaca dan pembaris plastik tidak mengalirkan elektrik dalam penyiasatan ini." },
+          { text: "Jika bahan adalah logam, maka mentol akan menyala", correct: true, rationale: "Betul! Hipotesis ini disokong oleh keputusan — logam seperti besi dan tembaga mengalirkan elektrik." },
+          { text: "Semakin besar bahan, semakin terang mentol menyala", correct: false, rationale: "Penyiasatan ini mengkaji jenis bahan, bukan saiz bahan." },
+          { text: "Jika bahan adalah kaca, mentol akan menyala dengan terang", correct: false, rationale: "Tidak betul. Rod kaca tidak menyebabkan mentol menyala dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Kesimpulan", tagColor: "#0e7490", tagBg: "#cffafe",
+        question: "Apakah kesimpulan yang paling sesuai untuk penyiasatan ini?",
+        options: [
+          { text: "Semua bahan mengalirkan elektrik dengan cara yang sama", correct: false, rationale: "Ini tidak betul. Bahan logam mengalirkan elektrik tetapi bahan bukan logam tidak." },
+          { text: "Bahan logam mengalirkan elektrik, manakala bahan bukan logam seperti kaca dan plastik tidak mengalirkan elektrik", correct: true, rationale: "Betul! Ini adalah kesimpulan yang tepat berdasarkan keputusan penyiasatan." },
+          { text: "Hanya rod kaca sahaja yang tidak boleh mengalirkan elektrik", correct: false, rationale: "Pembaris plastik juga tidak mengalirkan elektrik dalam penyiasatan ini." },
+          { text: "Jenis bahan tidak mempengaruhi sama ada mentol menyala atau tidak", correct: false, rationale: "Ini bertentangan dengan keputusan — jenis bahan memang mempengaruhi keadaan mentol." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    color: "#0284c7",
+    title: "Bahagian 2 — Bilangan Bateri dan Kecerahan Mentol",
+    scenario: "Ain ingin mengkaji sama ada bilangan bateri mempengaruhi kecerahan mentol. Beliau menyambungkan 1, 2, dan 3 bateri dalam litar yang sama dan mencatatkan kecerahan mentol bagi setiap keadaan.",
+    tableHeaders: ["Bilangan Bateri", "Kecerahan Mentol"],
+    tableRows: [
+      ["1 bateri", "Redup"],
+      ["2 bateri", "Sederhana"],
+      ["3 bateri", "Terang"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan Ain?",
+        options: [
+          { text: "Kecerahan mentol", correct: false, rationale: "Kecerahan mentol adalah pembolehubah bergerak balas — ia berubah akibat perubahan bilangan bateri." },
+          { text: "Bilangan bateri dalam litar", correct: true, rationale: "Betul! Ain dengan sengaja mengubah bilangan bateri, jadi itulah pembolehubah dimanipulasi." },
+          { text: "Jenis mentol yang digunakan", correct: false, rationale: "Jenis mentol tidak diubah — Ain menggunakan mentol yang sama sepanjang penyiasatan." },
+          { text: "Tempoh masa penyiasatan", correct: false, rationale: "Masa tidak diubah sebagai bahagian penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan Ain?",
+        options: [
+          { text: "Bilangan bateri", correct: false, rationale: "Bilangan bateri adalah pembolehubah dimanipulasi — Ain yang mengubahnya." },
+          { text: "Jenis wayar yang digunakan", correct: false, rationale: "Jenis wayar tidak diukur sebagai hasil dalam penyiasatan ini." },
+          { text: "Kecerahan mentol", correct: true, rationale: "Betul! Kecerahan mentol berubah mengikut bilangan bateri yang digunakan — ini adalah pembolehubah bergerak balas." },
+          { text: "Saiz litar elektrik", correct: false, rationale: "Saiz litar tidak berubah dan tidak diukur dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang paling sesuai untuk penyiasatan Ain?",
+        options: [
+          { text: "Semakin sedikit bilangan bateri, semakin terang mentol menyala", correct: false, rationale: "Ini bertentangan dengan keputusan penyiasatan. Lebih banyak bateri menghasilkan mentol yang lebih terang." },
+          { text: "Semakin banyak bilangan bateri, semakin terang mentol menyala", correct: true, rationale: "Betul! Hipotesis ini disokong oleh keputusan — 3 bateri menghasilkan mentol paling terang." },
+          { text: "Bilangan bateri tidak mempengaruhi kecerahan mentol", correct: false, rationale: "Tidak betul berdasarkan keputusan — kecerahan mentol memang berubah dengan bilangan bateri." },
+          { text: "Mentol akan padam jika bilangan bateri melebihi dua", correct: false, rationale: "Tidak betul — 3 bateri menghasilkan mentol yang paling terang, bukan padam." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang boleh dibuat apabila hanya 1 bateri digunakan?",
+        options: [
+          { text: "Satu bateri menghasilkan tenaga elektrik yang banyak", correct: false, rationale: "Sebaliknya, 1 bateri menghasilkan tenaga yang sedikit berbanding 2 atau 3 bateri." },
+          { text: "Satu bateri menghasilkan tenaga yang tidak cukup untuk menerangkan mentol dengan terang", correct: true, rationale: "Betul! Dengan hanya 1 bateri, mentol hanya menyala dengan redup, menunjukkan tenaga elektrik yang kurang." },
+          { text: "Satu bateri akan menyebabkan mentol rosak", correct: false, rationale: "Tiada maklumat dalam jadual yang menunjukkan mentol rosak. Mentol hanya menyala dengan redup." },
+          { text: "Satu bateri adalah bilangan yang paling sesuai untuk mentol", correct: false, rationale: "Berdasarkan jadual, 3 bateri menghasilkan mentol yang paling terang." }
+        ]
+      },
+      {
+        tag: "Kesimpulan", tagColor: "#0e7490", tagBg: "#cffafe",
+        question: "Apakah kesimpulan yang paling sesuai untuk penyiasatan Ain?",
+        options: [
+          { text: "Bilangan bateri tidak mempengaruhi kecerahan mentol", correct: false, rationale: "Ini bertentangan dengan keputusan penyiasatan." },
+          { text: "Bilangan bateri mempengaruhi kecerahan mentol — semakin banyak bateri, semakin terang mentol", correct: true, rationale: "Betul! Kesimpulan ini tepat berdasarkan data yang dikumpulkan oleh Ain." },
+          { text: "Satu bateri sudah cukup untuk menghasilkan mentol yang sangat terang", correct: false, rationale: "Data menunjukkan bahawa 1 bateri hanya menghasilkan mentol yang redup." },
+          { text: "Mentol tidak boleh menyala dengan lebih daripada satu bateri", correct: false, rationale: "Tidak betul — mentol menyala lebih terang apabila lebih banyak bateri digunakan." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    color: "#7c3aed",
+    title: "Bahagian 3 — Sifat Cahaya: Lut Sinar, Lut Cahaya dan Legap",
+    scenario: "Murid-murid meletakkan pelbagai jenis bahan di hadapan suluh (sumber cahaya) dan memerhati bayangan yang terbentuk pada dinding. Jarak suluh dari dinding dan cara bahan dipegang adalah sama bagi setiap ujian.",
+    tableHeaders: ["Bahan", "Bayangan yang Terbentuk"],
+    tableRows: [
+      ["Kaca jernih", "Tiada bayangan (cahaya lulus sepenuhnya)"],
+      ["Kertas surih", "Bayangan kabur (cahaya lulus sebahagian)"],
+      ["Papan kayu", "Bayangan gelap dan jelas"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan sifat cahaya ini?",
+        options: [
+          { text: "Kecerahan bayangan yang terbentuk", correct: false, rationale: "Kecerahan bayangan adalah pembolehubah bergerak balas — ia berubah mengikut jenis bahan yang diuji." },
+          { text: "Jenis bahan yang diletakkan di hadapan suluh", correct: true, rationale: "Betul! Murid-murid mengubah jenis bahan untuk setiap ujian — itulah pembolehubah dimanipulasi." },
+          { text: "Jenis suluh (sumber cahaya) yang digunakan", correct: false, rationale: "Suluh yang sama digunakan sepanjang penyiasatan — ini adalah pembolehubah dimalarkan." },
+          { text: "Jarak antara suluh dengan dinding", correct: false, rationale: "Jarak kekal sama untuk semua ujian — ini adalah pembolehubah dimalarkan." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan sifat cahaya ini?",
+        options: [
+          { text: "Jenis bahan yang diuji", correct: false, rationale: "Ini adalah pembolehubah dimanipulasi — murid-murid yang mengubahnya." },
+          { text: "Kedudukan suluh", correct: false, rationale: "Kedudukan suluh tidak diubah dalam penyiasatan ini." },
+          { text: "Bayangan yang terbentuk pada dinding", correct: true, rationale: "Betul! Bayangan berubah mengikut jenis bahan yang diuji — ini adalah pembolehubah bergerak balas." },
+          { text: "Bilangan bahan yang diuji", correct: false, rationale: "Bilangan bahan tidak diukur sebagai hasil penyiasatan." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Dimalarkan", tagColor: "#be185d", tagBg: "#fce7f3",
+        question: "Dalam penyiasatan ini, apakah pembolehubah yang perlu dimalarkan (tidak diubah) supaya penyiasatan adalah adil?",
+        options: [
+          { text: "Jenis bahan yang diuji", correct: false, rationale: "Jenis bahan adalah pembolehubah dimanipulasi — ia memang perlu berubah untuk tujuan penyiasatan." },
+          { text: "Jenis suluh dan jarak suluh dari dinding", correct: true, rationale: "Betul! Suluh dan kedudukannya perlu kekal sama untuk semua ujian supaya keputusan adalah adil dan boleh dipercayai." },
+          { text: "Bayangan yang terbentuk pada dinding", correct: false, rationale: "Bayangan adalah pembolehubah bergerak balas — ia akan berubah mengikut bahan yang diuji." },
+          { text: "Warna bahan yang diuji", correct: false, rationale: "Warna bukan fokus penyiasatan ini. Yang penting adalah sifat bahan — lut sinar, lut cahaya, atau legap." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang boleh dibuat tentang kaca jernih?",
+        options: [
+          { text: "Kaca jernih adalah bahan legap kerana ia membentuk bayangan gelap", correct: false, rationale: "Tidak betul. Kaca jernih tidak membentuk bayangan — cahaya lulus sepenuhnya melaluinya." },
+          { text: "Kaca jernih adalah bahan lut sinar kerana cahaya lulus sepenuhnya", correct: true, rationale: "Betul! Bahan lut sinar membenarkan cahaya lulus sepenuhnya — itulah sebabnya tiada bayangan terbentuk." },
+          { text: "Kaca jernih adalah bahan lut cahaya kerana bayangan kabur terbentuk", correct: false, rationale: "Bayangan kabur terbentuk untuk kertas surih, bukan kaca jernih. Kaca jernih langsung tidak membentuk bayangan." },
+          { text: "Kaca jernih menyerap semua cahaya yang mengenainya", correct: false, rationale: "Sebaliknya, kaca jernih membiarkan semua cahaya lulus melaluinya tanpa diserap." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang sesuai untuk penyiasatan sifat cahaya ini?",
+        options: [
+          { text: "Jika bahan adalah legap, maka tiada bayangan terbentuk", correct: false, rationale: "Ini terbalik! Bahan legap menghalang cahaya sepenuhnya — bayangan gelap yang jelas akan terbentuk." },
+          { text: "Jika bahan adalah lut sinar, maka tiada bayangan terbentuk", correct: true, rationale: "Betul! Bahan lut sinar membiarkan cahaya lulus sepenuhnya — jadi tiada bayangan terbentuk." },
+          { text: "Jika bahan adalah lut cahaya, maka bayangan gelap yang jelas terbentuk", correct: false, rationale: "Bahan lut cahaya hanya membiarkan sebahagian cahaya lulus, jadi bayangan kabur (bukan gelap jelas) yang terbentuk." },
+          { text: "Semua bahan membentuk bayangan yang sama bentuknya", correct: false, rationale: "Tidak betul. Bayangan berbeza bergantung pada sifat bahan — lut sinar, lut cahaya, atau legap." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    color: "#ea580c",
+    title: "Bahagian 4 — Tumbuhan dan Keperluan Cahaya Matahari",
+    scenario: "Murid-murid menanam tiga batang pokok yang sama jenis dan saiz di tiga tempat berbeza. Setiap pokok menerima jumlah air dan baja yang sama. Pertumbuhan pokok diperhatikan selepas dua minggu.",
+    tableHeaders: ["Keadaan Cahaya", "Keadaan Pokok Selepas 2 Minggu"],
+    tableRows: [
+      ["Tempat terang (banyak cahaya matahari)", "Sihat, hijau, dan tegak"],
+      ["Tempat teduh separa", "Sedikit kuning dan lemah"],
+      ["Tempat gelap (tiada cahaya matahari)", "Layu, kuning, dan kurus"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan tumbuhan ini?",
+        options: [
+          { text: "Pertumbuhan dan keadaan pokok", correct: false, rationale: "Ini adalah pembolehubah bergerak balas — ia berubah akibat perubahan jumlah cahaya." },
+          { text: "Jumlah air yang diberikan kepada setiap pokok", correct: false, rationale: "Jumlah air adalah sama untuk semua pokok — ia adalah pembolehubah yang dimalarkan." },
+          { text: "Jumlah cahaya matahari yang diterima oleh pokok", correct: true, rationale: "Betul! Murid-murid mengubah jumlah cahaya matahari yang diterima setiap pokok — itulah pembolehubah dimanipulasi." },
+          { text: "Jenis pokok yang ditanam", correct: false, rationale: "Jenis pokok yang sama digunakan untuk semua keadaan — ia adalah pembolehubah dimalarkan." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Dimalarkan", tagColor: "#be185d", tagBg: "#fce7f3",
+        question: "Apakah pembolehubah yang dimalarkan (tidak berubah) dalam penyiasatan tumbuhan ini?",
+        options: [
+          { text: "Jumlah cahaya matahari yang diterima setiap pokok", correct: false, rationale: "Jumlah cahaya adalah pembolehubah dimanipulasi — ia memang berbeza bagi setiap pokok." },
+          { text: "Jumlah air dan jenis pokok yang digunakan", correct: true, rationale: "Betul! Jumlah air dan jenis pokok kekal sama untuk semua pokok supaya penyiasatan adalah adil. Hanya cahaya yang berbeza." },
+          { text: "Keadaan pokok selepas dua minggu", correct: false, rationale: "Keadaan pokok adalah pembolehubah bergerak balas — ia berubah mengikut jumlah cahaya yang diterima." },
+          { text: "Tempat di mana pokok ditanam", correct: false, rationale: "Tempat penanaman berbeza bagi setiap pokok — itulah cara murid-murid mengubah jumlah cahaya." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan tumbuhan ini?",
+        options: [
+          { text: "Jumlah cahaya matahari", correct: false, rationale: "Cahaya matahari adalah pembolehubah dimanipulasi — murid-murid yang mengubahnya." },
+          { text: "Jenis baja yang digunakan", correct: false, rationale: "Baja tidak diubah dalam penyiasatan ini — ia adalah pembolehubah dimalarkan." },
+          { text: "Pertumbuhan dan keadaan pokok selepas dua minggu", correct: true, rationale: "Betul! Keadaan pokok berubah mengikut jumlah cahaya matahari yang diterima — ini adalah pembolehubah bergerak balas." },
+          { text: "Tempat pokok ditanam", correct: false, rationale: "Tempat penanaman adalah cara murid-murid mengawal cahaya, bukan hasil yang diukur." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang paling sesuai untuk penyiasatan tumbuhan ini?",
+        options: [
+          { text: "Pokok tidak memerlukan cahaya matahari untuk membesar", correct: false, rationale: "Ini tidak betul. Pokok memerlukan cahaya matahari untuk proses fotosintesis bagi menghasilkan makanan." },
+          { text: "Semakin banyak cahaya matahari yang diterima, semakin sihat pertumbuhan pokok", correct: true, rationale: "Betul! Hipotesis ini disokong oleh data — pokok di tempat terang tumbuh paling sihat." },
+          { text: "Pokok di tempat gelap akan tumbuh lebih cepat daripada pokok di tempat terang", correct: false, rationale: "Tidak betul. Pokok di tempat gelap layu dan kuning kerana tidak cukup cahaya untuk fotosintesis." },
+          { text: "Cahaya matahari merosakkan daun pokok dan menyebabkannya layu", correct: false, rationale: "Ini tidak betul. Cahaya matahari adalah keperluan penting untuk pokok membuat makanan melalui fotosintesis." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang paling sesuai tentang pokok di tempat gelap?",
+        options: [
+          { text: "Pokok di tempat gelap mendapat terlalu banyak cahaya", correct: false, rationale: "Sebaliknya, pokok di tempat gelap tidak mendapat sebarang cahaya matahari langsung." },
+          { text: "Pokok di tempat gelap tidak mendapat cahaya yang mencukupi untuk membesar dengan sihat", correct: true, rationale: "Betul! Pokok yang layu dan kuning menunjukkan ia kekurangan cahaya matahari untuk menjalankan fotosintesis bagi menghasilkan makanan." },
+          { text: "Pokok di tempat gelap mendapat terlalu banyak air", correct: false, rationale: "Semua pokok menerima jumlah air yang sama — jadi air bukan punca masalah pokok di tempat gelap." },
+          { text: "Pokok di tempat gelap adalah jenis pokok yang berbeza daripada yang lain", correct: false, rationale: "Tidak betul. Semua pokok adalah jenis yang sama — hanya jumlah cahaya yang berbeza." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    color: "#0891b2",
+    title: "Bahagian 5 — Bunyi dan Jarak dari Sumber",
+    scenario: "Hafiz memukul loceng dengan kekuatan yang sama dan rakan-rakannya mendengar bunyi dari jarak yang berbeza. Mereka mencatatkan kuat bunyi yang didengar dari setiap jarak.",
+    tableHeaders: ["Jarak dari Loceng", "Kuat Bunyi Didengar"],
+    tableRows: [
+      ["1 meter", "Sangat kuat"],
+      ["3 meter", "Sederhana kuat"],
+      ["5 meter", "Perlahan"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan Hafiz?",
+        options: [
+          { text: "Kuat bunyi yang didengar", correct: false, rationale: "Kuat bunyi adalah pembolehubah bergerak balas — ia berubah akibat perubahan jarak." },
+          { text: "Jarak dari sumber bunyi (loceng)", correct: true, rationale: "Betul! Hafiz mengubah jarak dari loceng untuk setiap pemerhatian — itulah pembolehubah dimanipulasi." },
+          { text: "Jenis loceng yang digunakan", correct: false, rationale: "Loceng yang sama digunakan sepanjang penyiasatan — ini adalah pembolehubah dimalarkan." },
+          { text: "Bilangan rakan yang mendengar bunyi", correct: false, rationale: "Bilangan pendengar tidak diubah dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan Hafiz?",
+        options: [
+          { text: "Jarak dari loceng", correct: false, rationale: "Jarak adalah pembolehubah dimanipulasi — Hafiz yang mengubahnya." },
+          { text: "Jenis loceng yang digunakan", correct: false, rationale: "Jenis loceng tidak diubah dan tidak diukur sebagai hasil dalam penyiasatan ini." },
+          { text: "Kuat bunyi yang didengar", correct: true, rationale: "Betul! Kuat bunyi berubah mengikut jarak dari loceng — ini adalah pembolehubah bergerak balas." },
+          { text: "Cara loceng dipukul", correct: false, rationale: "Cara loceng dipukul adalah sama sepanjang penyiasatan — ini adalah pembolehubah dimalarkan." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang paling sesuai untuk penyiasatan Hafiz?",
+        options: [
+          { text: "Semakin jauh jarak dari sumber bunyi, semakin kuat bunyi yang didengar", correct: false, rationale: "Ini adalah kebalikan yang betul. Bunyi menjadi lebih perlahan, bukan lebih kuat, apabila jarak bertambah." },
+          { text: "Jarak tidak mempengaruhi kuat bunyi yang didengar", correct: false, rationale: "Ini tidak betul berdasarkan keputusan penyiasatan — kuat bunyi memang berubah dengan jarak." },
+          { text: "Semakin jauh jarak dari sumber bunyi, semakin perlahan bunyi yang didengar", correct: true, rationale: "Betul! Hipotesis ini disokong oleh data — bunyi semakin perlahan apabila jarak bertambah." },
+          { text: "Bunyi hanya boleh didengar pada jarak 1 meter sahaja", correct: false, rationale: "Tidak betul. Bunyi masih boleh didengar pada jarak 3 dan 5 meter, walaupun lebih perlahan." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang paling sesuai tentang bunyi pada jarak 5 meter?",
+        options: [
+          { text: "Pada jarak 5 meter, bunyi didengar sangat kuat", correct: false, rationale: "Tidak betul. Bunyi sangat kuat didengar pada jarak 1 meter, bukan 5 meter." },
+          { text: "Pada jarak 5 meter, tiada bunyi langsung yang dapat didengar", correct: false, rationale: "Bunyi masih boleh didengar pada jarak 5 meter, tetapi pada tahap perlahan." },
+          { text: "Pada jarak 5 meter, bunyi didengar paling perlahan kerana paling jauh dari sumber", correct: true, rationale: "Betul! Jarak 5 meter adalah paling jauh dari loceng, jadi bunyi yang didengar adalah paling perlahan." },
+          { text: "Pada jarak 5 meter, bunyi didengar sederhana kuat", correct: false, rationale: "Bunyi sederhana kuat didengar pada jarak 3 meter, bukan 5 meter." }
+        ]
+      },
+      {
+        tag: "Kesimpulan", tagColor: "#0e7490", tagBg: "#cffafe",
+        question: "Apakah kesimpulan yang paling sesuai untuk penyiasatan Hafiz?",
+        options: [
+          { text: "Jarak tidak mempengaruhi kuat bunyi yang didengar", correct: false, rationale: "Ini bertentangan dengan keputusan penyiasatan." },
+          { text: "Bunyi hanya boleh didengar dalam jarak 5 meter sahaja", correct: false, rationale: "Penyiasatan ini tidak menguji had jarak bunyi — ia hanya mengkaji tiga jarak tertentu." },
+          { text: "Semakin jauh jarak dari sumber bunyi, semakin perlahan bunyi yang didengar", correct: true, rationale: "Betul! Ini adalah kesimpulan yang tepat berdasarkan data yang dikumpulkan oleh Hafiz." },
+          { text: "Semakin jauh jarak, semakin kuat bunyi yang didengar", correct: false, rationale: "Ini bertentangan dengan data — bunyi semakin perlahan, bukan semakin kuat, apabila jarak bertambah." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    color: "#92400e",
+    title: "Bahagian 6 — Jenis Tanah dan Kadar Penyerapan Air",
+    scenario: "Siti menjalankan penyiasatan untuk mengkaji sama ada jenis tanah mempengaruhi kadar penyerapan air. Beliau menuang 100 ml air ke atas tiga jenis tanah yang berbeza dan memerhati berapa lama air meresap.",
+    tableHeaders: ["Jenis Tanah", "Kadar Penyerapan Air"],
+    tableRows: [
+      ["Tanah pasir", "Cepat meresap"],
+      ["Tanah humus", "Sederhana meresap"],
+      ["Tanah liat", "Lambat meresap"]
+    ],
+    questions: [
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi dalam penyiasatan Siti?",
+        options: [
+          { text: "Jumlah air yang dituang (100 ml)", correct: false, rationale: "Jumlah air adalah sama (100 ml) untuk semua jenis tanah — ini adalah pembolehubah dimalarkan." },
+          { text: "Jenis tanah yang diuji", correct: true, rationale: "Betul! Siti mengubah jenis tanah untuk setiap ujian — itulah pembolehubah dimanipulasi." },
+          { text: "Kadar penyerapan air", correct: false, rationale: "Kadar penyerapan air adalah pembolehubah bergerak balas — ia berubah mengikut jenis tanah." },
+          { text: "Masa penyiasatan dijalankan", correct: false, rationale: "Masa tidak diubah dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas dalam penyiasatan Siti?",
+        options: [
+          { text: "Jenis tanah yang diuji", correct: false, rationale: "Jenis tanah adalah pembolehubah dimanipulasi — Siti yang mengubahnya." },
+          { text: "Jumlah air yang dituang", correct: false, rationale: "Jumlah air adalah sama untuk semua ujian — ini adalah pembolehubah dimalarkan." },
+          { text: "Kadar penyerapan air", correct: true, rationale: "Betul! Kadar penyerapan air berubah mengikut jenis tanah — ini adalah pembolehubah bergerak balas." },
+          { text: "Warna tanah yang digunakan", correct: false, rationale: "Warna tanah tidak diukur sebagai hasil dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Hipotesis", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah hipotesis yang paling sesuai untuk penyiasatan Siti?",
+        options: [
+          { text: "Semua jenis tanah menyerap air dengan kadar yang sama", correct: false, rationale: "Ini tidak betul berdasarkan keputusan penyiasatan — kadar penyerapan berbeza antara jenis tanah." },
+          { text: "Jenis tanah mempengaruhi kadar penyerapan air", correct: true, rationale: "Betul! Hipotesis ini disokong oleh data — kadar penyerapan air memang berbeza mengikut jenis tanah." },
+          { text: "Tanah liat menyerap air paling cepat sekali", correct: false, rationale: "Tidak betul. Tanah pasir menyerap air paling cepat, bukan tanah liat." },
+          { text: "Air tidak boleh diserap oleh mana-mana jenis tanah", correct: false, rationale: "Ini tidak betul. Kesemua tiga jenis tanah boleh menyerap air, cuma pada kadar yang berbeza." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan jadual, apakah inferens yang paling sesuai tentang tanah liat?",
+        options: [
+          { text: "Tanah liat menyerap air paling cepat daripada semua jenis tanah", correct: false, rationale: "Tidak betul. Tanah pasir menyerap air paling cepat." },
+          { text: "Tanah liat mempunyai zarah yang kecil dan padat, menyebabkan air lambat meresap", correct: true, rationale: "Betul! Tanah liat mempunyai zarah yang sangat kecil dan padat, sehingga air sukar untuk meresap melaluinya dengan cepat." },
+          { text: "Tanah liat tidak boleh menyerap air langsung", correct: false, rationale: "Tanah liat boleh menyerap air tetapi pada kadar yang paling lambat berbanding tanah pasir dan tanah humus." },
+          { text: "Tanah liat adalah jenis tanah yang terbaik untuk semua jenis tumbuhan", correct: false, rationale: "Soalan ini tidak berkaitan dengan kesesuaian tanah untuk tanaman — ia berkaitan dengan kadar penyerapan air." }
+        ]
+      },
+      {
+        tag: "Kesimpulan", tagColor: "#0e7490", tagBg: "#cffafe",
+        question: "Apakah kesimpulan yang paling sesuai untuk penyiasatan Siti?",
+        options: [
+          { text: "Jenis tanah tidak mempengaruhi kadar penyerapan air", correct: false, rationale: "Ini bertentangan dengan keputusan penyiasatan." },
+          { text: "Semua jenis tanah menyerap air dengan kadar yang sama", correct: false, rationale: "Data menunjukkan kadar penyerapan yang berbeza — pasir paling cepat dan liat paling lambat." },
+          { text: "Jenis tanah mempengaruhi kadar penyerapan air — tanah pasir menyerap paling cepat dan tanah liat paling lambat", correct: true, rationale: "Betul! Ini adalah kesimpulan yang tepat berdasarkan data Siti." },
+          { text: "Hanya tanah pasir sahaja yang boleh menyerap air", correct: false, rationale: "Kesemua tiga jenis tanah boleh menyerap air — cuma pada kadar yang berbeza." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
+    color: "#be123c",
+    title: "Bahagian 7 — Soalan Konsep: Kemahiran Saintifik",
+    scenario: "Bahagian ini menguji pemahaman kamu tentang konsep-konsep penting dalam penyiasatan sains. Baca setiap soalan dengan teliti.",
+    tableHeaders: null,
+    tableRows: null,
+    questions: [
+      {
+        tag: "Konsep", tagColor: "#9f1239", tagBg: "#ffe4e6",
+        question: "Apakah yang dimaksudkan dengan 'pembolehubah dimanipulasi'?",
+        options: [
+          { text: "Pembolehubah yang berubah akibat perubahan pembolehubah lain", correct: false, rationale: "Ini adalah definisi pembolehubah bergerak balas, bukan pembolehubah dimanipulasi." },
+          { text: "Pembolehubah yang diubah dengan sengaja oleh saintis semasa penyiasatan", correct: true, rationale: "Betul! Pembolehubah dimanipulasi adalah perkara yang kita ubah dengan sengaja untuk melihat kesannya. Contoh: mengubah jenis bahan dalam eksperimen elektrik." },
+          { text: "Pembolehubah yang tidak berubah langsung sepanjang penyiasatan", correct: false, rationale: "Ini adalah definisi pembolehubah dimalarkan." },
+          { text: "Pembolehubah yang direkod sebelum penyiasatan dimulakan sahaja", correct: false, rationale: "Pembolehubah dimanipulasi adalah apa yang kita ubah semasa penyiasatan, bukan yang direkod sebelumnya." }
+        ]
+      },
+      {
+        tag: "Konsep", tagColor: "#9f1239", tagBg: "#ffe4e6",
+        question: "Apakah yang dimaksudkan dengan 'pembolehubah bergerak balas'?",
+        options: [
+          { text: "Pembolehubah yang diubah dengan sengaja oleh saintis", correct: false, rationale: "Ini adalah definisi pembolehubah dimanipulasi, bukan pembolehubah bergerak balas." },
+          { text: "Pembolehubah yang dimalarkan sepanjang penyiasatan", correct: false, rationale: "Ini adalah definisi pembolehubah dimalarkan." },
+          { text: "Pembolehubah yang berubah akibat perubahan pembolehubah dimanipulasi", correct: true, rationale: "Betul! Pembolehubah bergerak balas adalah hasil atau kesan yang kita perhatikan dan ukur. Contoh: keadaan mentol menyala atau tidak apabila jenis bahan diubah." },
+          { text: "Pembolehubah yang direkod sebelum penyiasatan dimulakan", correct: false, rationale: "Pembolehubah bergerak balas direkod semasa dan selepas penyiasatan, bukan sebelumnya." }
+        ]
+      },
+      {
+        tag: "Aplikasi", tagColor: "#9f1239", tagBg: "#ffe4e6",
+        question: "Izzatul ingin mengetahui sama ada jenis baja mempengaruhi ketinggian pokok cili. Apakah pembolehubah dimanipulasi dalam penyiasatan ini?",
+        options: [
+          { text: "Ketinggian pokok cili selepas dua minggu", correct: false, rationale: "Ketinggian pokok cili adalah pembolehubah bergerak balas — ia berubah akibat perubahan jenis baja." },
+          { text: "Jenis baja yang digunakan", correct: true, rationale: "Betul! Izzatul mengubah jenis baja untuk setiap pokok — itulah pembolehubah dimanipulasi." },
+          { text: "Jumlah air yang diberikan kepada setiap pokok", correct: false, rationale: "Jumlah air kekal sama untuk semua pokok — ini adalah pembolehubah dimalarkan." },
+          { text: "Bilangan daun pada pokok cili", correct: false, rationale: "Bilangan daun bukan pembolehubah yang diubah dalam penyiasatan ini." }
+        ]
+      },
+      {
+        tag: "Aplikasi", tagColor: "#9f1239", tagBg: "#ffe4e6",
+        question: "Dalam penyiasatan 'Adakah ketebalan dawai mempengaruhi nada bunyi gitar?', apakah pembolehubah bergerak balas?",
+        options: [
+          { text: "Ketebalan dawai gitar", correct: false, rationale: "Ketebalan dawai adalah pembolehubah dimanipulasi — penyiasat yang mengubahnya dengan sengaja." },
+          { text: "Nada bunyi yang dihasilkan oleh dawai", correct: true, rationale: "Betul! Nada bunyi berubah mengikut ketebalan dawai — ini adalah pembolehubah bergerak balas." },
+          { text: "Jenis gitar yang digunakan", correct: false, rationale: "Jenis gitar tidak diubah dalam penyiasatan ini — ia adalah pembolehubah dimalarkan." },
+          { text: "Cara dawai dipetik", correct: false, rationale: "Cara dawai dipetik tidak diubah — ia adalah pembolehubah dimalarkan supaya penyiasatan adalah adil." }
+        ]
+      },
+      {
+        tag: "Inferens", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Murid memerhati bahawa daun pokok bertukar kuning dan layu apabila pokok itu tidak mendapat cahaya matahari selama seminggu. Apakah inferens yang paling sesuai?",
+        options: [
+          { text: "Pokok itu sudah mati dan tidak boleh dipulihkan", correct: false, rationale: "Tidak boleh disimpulkan bahawa pokok sudah mati hanya berdasarkan daun yang kuning. Pokok mungkin masih boleh dipulihkan jika diberi cahaya." },
+          { text: "Pokok itu mendapat terlalu banyak air dan baja", correct: false, rationale: "Maklumat yang diberikan adalah tentang kekurangan cahaya, bukan kelebihan air atau baja." },
+          { text: "Pokok itu memerlukan cahaya matahari untuk menghasilkan klorofil dan makanannya", correct: true, rationale: "Betul! Daun menjadi kuning kerana kekurangan klorofil — klorofil hanya boleh dihasilkan dengan bantuan cahaya matahari melalui proses fotosintesis." },
+          { text: "Pokok itu ditanam di jenis tanah yang salah", correct: false, rationale: "Maklumat yang diberikan adalah tentang kekurangan cahaya matahari, bukan masalah tanah." }
+        ]
+      }
+    ]
+  }
+];
+
+// Flatten all questions into a single array for grading
+let allQuestions = [];
+sections.forEach(section => {
+  section.questions.forEach(q => {
+    allQuestions.push({ ...q, sectionColor: section.color });
+  });
+});
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  let globalQNum = 1;
+
+  sections.forEach(section => {
+    const startQ = globalQNum;
+    const endQ = globalQNum + section.questions.length - 1;
+
+    // Experiment block
+    const expBlock = document.createElement('div');
+    expBlock.className = 'experiment-block';
+    expBlock.style.borderColor = section.color;
+
+    const expHeader = document.createElement('div');
+    expHeader.className = 'experiment-header';
+    expHeader.style.backgroundColor = section.color;
+    expHeader.innerHTML = `<span>${section.title}</span><span class="q-range">Soalan ${startQ}–${endQ}</span>`;
+    expBlock.appendChild(expHeader);
+
+    const expBody = document.createElement('div');
+    expBody.className = 'experiment-body';
+
+    const scenarioP = document.createElement('p');
+    scenarioP.className = 'scenario-text';
+    scenarioP.textContent = section.scenario;
+    expBody.appendChild(scenarioP);
+
+    if (section.tableHeaders) {
+      const table = document.createElement('table');
+      table.className = 'data-table';
+
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      section.tableHeaders.forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        th.style.backgroundColor = section.color;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      section.tableRows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      expBody.appendChild(table);
+    }
+
+    expBlock.appendChild(expBody);
+    container.appendChild(expBlock);
+
+    // Question cards
+    section.questions.forEach(q => {
+      const globalIdx = globalQNum - 1;
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.setAttribute('data-qidx', globalIdx);
+      card.style.borderLeftColor = section.color;
+
+      const tagSpan = document.createElement('span');
+      tagSpan.className = 'question-tag';
+      tagSpan.textContent = q.tag;
+      tagSpan.style.backgroundColor = q.tagBg;
+      tagSpan.style.color = q.tagColor;
+      card.appendChild(tagSpan);
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = globalQNum + '. ' + q.question;
+      card.appendChild(qText);
+
+      const optsList = document.createElement('ul');
+      optsList.className = 'options-list';
+      q.options.forEach((opt, oIdx) => {
+        const li = document.createElement('li');
+        li.className = 'option-item';
+        li.textContent = opt.text;
+        li.onclick = () => selectOption(globalIdx, oIdx, li);
+        optsList.appendChild(li);
+      });
+      card.appendChild(optsList);
+
+      const ratBox = document.createElement('div');
+      ratBox.className = 'rationale';
+      ratBox.id = 'rat-' + globalIdx;
+      card.appendChild(ratBox);
+
+      container.appendChild(card);
+      globalQNum++;
+    });
+  });
+}
+
+let selections = {};
+
+function selectOption(qIdx, oIdx, element) {
+  const card = document.querySelector('[data-qidx="' + qIdx + '"]');
+  card.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+  element.classList.add('selected');
+  selections[qIdx] = oIdx;
+}
+
+function gradeQuiz() {
+  let correctCount = 0;
+  allQuestions.forEach((q, qIdx) => {
+    const ratBox = document.getElementById('rat-' + qIdx);
+    const selectedOIdx = selections[qIdx];
+
+    if (selectedOIdx === undefined) {
+      ratBox.className = 'rationale incorrect-fb';
+      ratBox.innerHTML = '<strong>Tidak dijawab.</strong> Sila pilih satu jawapan.';
+      ratBox.style.display = 'block';
+      return;
+    }
+
+    const chosenOpt = q.options[selectedOIdx];
+    const correctOpt = q.options.find(o => o.correct);
+
+    if (chosenOpt.correct) {
+      correctCount++;
+      ratBox.className = 'rationale correct-fb';
+      ratBox.innerHTML = '<strong>Betul!</strong> ' + chosenOpt.rationale;
+    } else {
+      ratBox.className = 'rationale incorrect-fb';
+      ratBox.innerHTML = '<strong>Tidak betul.</strong> Kamu memilih: "' + chosenOpt.text + '".<br><em>Jawapan betul:</em> <strong>' + correctOpt.text + '</strong> — ' + correctOpt.rationale;
+    }
+    ratBox.style.display = 'block';
+  });
+
+  const total = allQuestions.length;
+  const pct = Math.round((correctCount / total) * 100);
+  let msg = pct >= 80 ? 'Tahniah! Kerja yang sangat bagus!' : pct >= 60 ? 'Bagus! Teruskan berlatih ya!' : 'Jangan putus asa! Cuba semula ya!';
+
+  const scoreBanner = document.getElementById('scoreBanner');
+  scoreBanner.innerHTML = 'Markah Kamu: ' + correctCount + ' / ' + total + ' (' + pct + '%) — ' + msg;
+  scoreBanner.style.display = 'block';
+
+  document.getElementById('submitBtn').style.display = 'none';
+  document.getElementById('resetBtn').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  selections = {};
+  document.getElementById('scoreBanner').style.display = 'none';
+  document.getElementById('submitBtn').style.display = 'block';
+  document.getElementById('resetBtn').style.display = 'none';
+  document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.rationale').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.onload = renderQuiz;
+</script>
+</body>
+</html>
