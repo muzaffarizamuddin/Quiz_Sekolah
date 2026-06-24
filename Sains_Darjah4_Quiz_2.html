@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuiz Sains Darjah 4 – Siri 2</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f0fdf4;
+            color: #1e293b;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 880px; margin: 0 auto; }
+        .page-header {
+            background: white;
+            padding: 28px 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin-bottom: 26px;
+        }
+        h1 { color: #14532d; margin: 0 0 6px 0; font-size: 1.65em; }
+        .subtitle { color: #475569; margin: 0 0 14px 0; font-size: 0.97em; }
+        .concept-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+        .badge {
+            background: #dcfce7; color: #15803d; padding: 3px 11px;
+            border-radius: 20px; font-size: 0.8em; font-weight: 600;
+            border: 1px solid #86efac;
+        }
+        .score-banner {
+            display: none;
+            background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px;
+            padding: 22px; text-align: center; margin-bottom: 26px;
+            font-size: 1.2em; font-weight: bold; color: #065f46;
+        }
+        .experiment-block {
+            border-radius: 10px; margin-bottom: 6px;
+            overflow: hidden; border: 2px solid #e2e8f0;
+        }
+        .experiment-header {
+            padding: 13px 20px; color: white; font-weight: 700;
+            font-size: 1em; display: flex; justify-content: space-between; align-items: center;
+        }
+        .q-range {
+            font-size: 0.82em; font-weight: 500; opacity: 0.88;
+            background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;
+            white-space: nowrap; margin-left: 12px;
+        }
+        .experiment-body { background: white; padding: 16px 20px 10px 20px; }
+        .scenario-text { color: #374151; margin: 0 0 14px 0; font-size: 0.96em; }
+        .experiment-img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            max-height: 250px;
+            margin: 12px 0;
+            border-radius: 6px;
+        }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.91em; margin-bottom: 4px; }
+        .data-table th { padding: 9px 14px; text-align: left; font-weight: 700; border: 1px solid #d1d5db; color: white; }
+        .data-table td { padding: 8px 14px; border: 1px solid #e5e7eb; }
+        .data-table tr:nth-child(even) td { background: #f9fafb; }
+        .question-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 8px;
+            padding: 18px 22px; margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            border-left-width: 4px;
+        }
+        .question-tag {
+            display: inline-block; font-size: 0.71em; font-weight: 700;
+            padding: 2px 9px; border-radius: 4px; margin-bottom: 8px;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .question-text { font-weight: 600; font-size: 1em; color: #0f172a; margin-bottom: 13px; }
+        .options-list { list-style: none; padding: 0; margin: 0; }
+        .option-item {
+            padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 6px;
+            margin-bottom: 8px; cursor: pointer; transition: all 0.15s ease;
+            background: #f8fafc; font-size: 0.96em;
+        }
+        .option-item:hover { background: #f1f5f9; border-color: #94a3b8; }
+        .option-item.selected { background: #2563eb; color: white; border-color: #1d4ed8; font-weight: 500; }
+        .rationale {
+            margin-top: 11px; padding: 11px 15px; border-radius: 6px;
+            display: none; font-size: 0.91em; line-height: 1.5;
+        }
+        .correct-fb { background: #d1fae5; border: 1px solid #10b981; color: #065f46; }
+        .incorrect-fb { background: #fee2e2; border: 1px solid #ef4444; color: #991b1b; }
+        .action-btn {
+            background-color: #15803d; color: white; border: none;
+            padding: 14px 32px; font-size: 1.05em; font-weight: 700;
+            border-radius: 8px; cursor: pointer; transition: background 0.2s;
+            display: block; margin: 30px auto 10px auto;
+        }
+        .action-btn:hover { background-color: #166534; }
+        .reset-btn {
+            background: white; color: #15803d; border: 2px solid #15803d;
+            padding: 10px 24px; font-size: 0.97em; font-weight: 600;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s;
+            display: none; margin: 0 auto 30px auto;
+        }
+        .reset-btn:hover { background: #f0fdf4; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .page-header { padding: 18px; }
+            h1 { font-size: 1.3em; }
+            .experiment-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Kuiz Sains Darjah 4 – Siri 2 (Kemahiran Saintifik & Pergerakan Bumi)</h1>
+        <p class="subtitle">Sila baca setiap penyiasatan dengan teliti, perhatikan gambar rajah yang disediakan, kemudian jawab semua soalan. Klik <strong>Semak Jawapan</strong> selepas selesai.</p>
+        <div class="concept-badges">
+            <span class="badge">Pembolehubah Dimanipulasi</span>
+            <span class="badge">Pembolehubah Bergerak Balas</span>
+            <span class="badge">Penyiasatan Bayang-bayang</span>
+            <span class="badge">Sifat Bahan</span>
+            <span class="badge">Pergerakan Bumi</span>
+        </div>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="quizContainer"></div>
+
+    <button class="action-btn" id="submitBtn" onclick="gradeQuiz()">Semak Jawapan &amp; Lihat Markah</button>
+    <button class="reset-btn" id="resetBtn" onclick="resetQuiz()">Cuba Semula</button>
+</div>
+
+<script>
+const sections = [
+  {
+    id: 1,
+    color: "#ea580c",
+    title: "Bahagian 1 — Penyiasatan Saiz Bayang-bayang",
+    scenario: "Sekumpulan murid menjalankan penyiasatan menggunakan lampu suluh, sekeping kad, dan skrin untuk mengkaji faktor yang mempengaruhi saiz bayang-bayang. Jarak di antara lampu suluh dengan kad diubah-ubah manakala jarak skrin dimalarkan.",
+    image: "images/lampusuluh.png",
+    tableHeaders: ["Jarak di antara Lampu Suluh dengan Kad (cm)", "Saiz Bayang-bayang pada Skrin"],
+    tableRows: [
+      ["5", "Sangat Besar"],
+      ["10", "Besar"],
+      ["15", "Sederhana"],
+      ["20", "Kecil"]
+    ],
+    questions: [
+      {
+        tag: "Tujuan Penyiasatan", tagColor: "#c2410c", tagBg: "#ffedd5",
+        question: "Apakah tujuan penyiasatan ini?",
+        options: [
+          { text: "Untuk mengkaji hubungan antara saiz kad dengan kecerahan lampu suluh.", correct: false, rationale: "Tidak tepat. Saiz kad dan kecerahan lampu tidak berubah dalam eksperimen ini." },
+          { text: "Untuk mengkaji hubungan antara jarak di antara lampu suluh dengan kad dan saiz bayang-bayang.", correct: true, rationale: "Betul! Eksperimen ini mahu melihat bagaimana perubahan jarak lampu-kad mempengaruhi saiz bayang-bayang." },
+          { text: "Untuk membuktikan bahawa lampu suluh boleh menyala dengan terang.", correct: false, rationale: "Ini bukan tujuan eksperimen saintifik ini." },
+          { text: "Untuk melihat bentuk bayang-bayang kad pada skrin.", correct: false, rationale: "Bentuk kad tidak berubah, yang diperhatikan ialah perubahan saiznya." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Dimanipulasi", tagColor: "#15803d", tagBg: "#dcfce7",
+        question: "Apakah pembolehubah dimanipulasi (perkara yang sengaja diubah) dalam penyiasatan ini?",
+        options: [
+          { text: "Jarak di antara lampu suluh dengan kad.", correct: true, rationale: "Betul! Jarak ini diubah-ubah (5cm, 10cm, 15cm, 20cm) untuk melihat kesannya." },
+          { text: "Saiz bayang-bayang pada skrin.", correct: false, rationale: "Ini ialah pembolehubah bergerak balas (hasil yang diperhatikan)." },
+          { text: "Jenis lampu suluh yang digunakan.", correct: false, rationale: "Lampu suluh yang sama digunakan, jadi ini ialah pembolehubah dimalarkan." },
+          { text: "Kedudukan skrin putih.", correct: false, rationale: "Kedudukan skrin tidak diubah dalam eksperimen ini." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Bergerak Balas", tagColor: "#1d4ed8", tagBg: "#dbeafe",
+        question: "Apakah pembolehubah bergerak balas (hasil atau perkara yang diperhatikan) dalam penyiasatan ini?",
+        options: [
+          { text: "Jenis kad yang diletakkan di tengah.", correct: false, rationale: "Kad tidak ditukar dengan jenis lain." },
+          { text: "Jarak di antara lampu suluh dengan kad.", correct: false, rationale: "Ini ialah pembolehubah dimanipulasi." },
+          { text: "Saiz bayang-bayang pada skrin.", correct: true, rationale: "Betul! Saiz bayang-bayang berubah mengikut jarak lampu dari kad." },
+          { text: "Ketinggian bongkah kayu.", correct: false, rationale: "Bongkah kayu digunakan untuk menyokong lampu sahaja dan tidak diukur hasilnya." }
+        ]
+      },
+      {
+        tag: "Corak Perubahan", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah corak perubahan saiz bayang-bayang apabila jarak di antara lampu suluh dan kad BERTAMBAH?",
+        options: [
+          { text: "Saiz bayang-bayang semakin bertambah (membesar).", correct: false, rationale: "Salah. Lihat jadual, semakin jauh jarak (bertambah dari 5 ke 20cm), saiz bayang-bayang menjadi semakin kecil." },
+          { text: "Saiz bayang-bayang semakin berkurang (mengecil).", correct: true, rationale: "Betul! Apabila objek dijauhkan dari sumber cahaya, saiz bayang-bayang menjadi semakin kecil." },
+          { text: "Saiz bayang-bayang tidak berubah.", correct: false, rationale: "Salah. Saiznya jelas berubah berdasarkan jadual data." },
+          { text: "Bayang-bayang akan hilang terus.", correct: false, rationale: "Bayang-bayang masih ada tetapi saiznya sahaja mengecil." }
+        ]
+      },
+      {
+        tag: "Corak Perubahan", tagColor: "#b45309", tagBg: "#fef3c7",
+        question: "Apakah corak perubahan saiz bayang-bayang apabila jarak di antara lampu suluh dengan kad BERKURANG?",
+        options: [
+          { text: "Saiz bayang-bayang semakin bertambah (membesar).", correct: true, rationale: "Betul! Apabila objek didekatkan dengan sumber cahaya (jarak berkurang), ia menghalang lebih banyak cahaya dan bayang-bayang menjadi besar." },
+          { text: "Saiz bayang-bayang semakin berkurang (mengecil).", correct: false, rationale: "Salah. Mengecil berlaku apabila objek dijauhkan." },
+          { text: "Saiz bayang-bayang menjadi kabur.", correct: false, rationale: "Kejelasan bayang-bayang bergantung pada sifat bahan, bukan jarak objek." },
+          { text: "Bayang-bayang bertukar warna menjadi putih.", correct: false, rationale: "Bayang-bayang tetap berwarna gelap." }
+        ]
+      },
+      {
+        tag: "Kesimpulan", tagColor: "#0e7490", tagBg: "#cffafe",
+        question: "Apakah kesimpulan yang betul bagi penyiasatan tentang bayang-bayang ini?",
+        options: [
+          { text: "Semakin bertambah jarak di antara lampu suluh dengan kad, semakin bertambah saiz bayang-bayang.", correct: false, rationale: "Salah. Hubungan ini terbalik." },
+          { text: "Semakin bertambah jarak di antara lampu suluh dengan kad, semakin berkurang saiz bayang-bayang.", correct: true, rationale: "Betul! Ini adalah kesimpulan/hipotesis akhir yang disokong oleh data eksperimen." },
+          { text: "Lampu suluh yang terang akan menghasilkan bayang-bayang berwarna-warni.", correct: false, rationale: "Salah dan tidak berkaitan dengan data eksperimen." },
+          { text: "Saiz bayang-bayang tidak mempunyai sebarang kaitan dengan jarak objek.", correct: false, rationale: "Salah. Jarak objek sangat mempengaruhi saiz bayang-bayang." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    color: "#0284c7",
+    title: "Bahagian 2 — Sifat Bahan Terhadap Cahaya (Lut Sinar, Lut Cahaya, Legap)",
+    scenario: "Murid-murid menguji tiga jenis mentol lampu yang mempunyai permukaan berbeza untuk melihat bagaimana mereka membenarkan cahaya melaluinya, sama seperti kesan memegang bahan berbeza di hadapan muka.",
+    image: "images/lut_legap.png",
+    tableHeaders: ["Jenis Mentol / Sifat Bahan", "Kesan Cahaya / Penglihatan Muka"],
+    tableRows: [
+      ["Mentol Kaca Jernih (Lut Sinar)", "Cahaya lalu sepenuhnya / Muka nampak jelas"],
+      ["Mentol Berwarna Kuning (Lut Cahaya)", "Cahaya lalu sebahagian / Muka nampak kabur"],
+      ["Mentol Berwarna Hijau Pekat (Legap)", "Cahaya tidak boleh lalu / Muka terlindung sepenuhnya"]
+    ],
+    questions: [
+      {
+        tag: "Kenal Pasti Istilah", tagColor: "#0369a1", tagBg: "#e0f2fe",
+        question: "Apakah sifat bahan yang membenarkan SEMUA cahaya melaluinya dan membolehkan kita melihat objek di sebaliknya dengan jelas?",
+        options: [
+          { text: "Bahan Lut Cahaya", correct: false, rationale: "Bahan lut cahaya hanya membenarkan sebahagian sahaja cahaya melaluinya." },
+          { text: "Bahan Lut Sinar", correct: true, rationale: "Betul! Seperti kaca jernih, ia membenarkan semua cahaya melaluinya dengan jelas." },
+          { text: "Bahan Legap", correct: false, rationale: "Bahan legap langsung tidak membenarkan cahaya melaluinya." },
+          { text: "Bahan Berkilat", correct: false, rationale: "Berkilat berkaitan pantulan cahaya, bukan penembusan cahaya." }
+        ]
+      },
+      {
+        tag: "Kenal Pasti Istilah", tagColor: "#0369a1", tagBg: "#e0f2fe",
+        question: "Berdasarkan gambar murid yang mukanya kelihatan KABUR, apakah sifat bahan penghalang tersebut?",
+        options: [
+          { text: "Lut Sinar", correct: false, rationale: "Jika lut sinar, muka akan kelihatan sangat jelas." },
+          { text: "Legap", correct: false, rationale: "Jika legap, muka langsung tidak akan kelihatan." },
+          { text: "Lut Cahaya", correct: true, rationale: "Betul! Bahan lut cahaya membenarkan sebahagian cahaya melaluinya, jadi objek di sebalik kelihatan kabur." },
+          { text: "Penyerap cahaya", correct: false, rationale: "Ini bukan istilah klasifikasi penembusan cahaya yang tepat." }
+        ]
+      },
+      {
+        tag: "Aplikasi Konsep", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Mengapakah mentol lampu yang berwarna hijau pekat (paling kanan) dikategorikan sebagai objek LEGAP?",
+        options: [
+          { text: "Kerana ia membenarkan separuh sahaja cahaya melaluinya.", correct: false, rationale: "Itu adalah sifat bagi bahan lut cahaya." },
+          { text: "Kerana ia tidak membenarkan sebarang cahaya melaluinya dan menghasilkan bayang-bayang yang gelap.", correct: true, rationale: "Betul! Objek legap menghalang semua cahaya daripada melaluinya." },
+          { text: "Kerana permukaan mentol itu diperbuat daripada cermin jernih.", correct: false, rationale: "Jika cermin jernih, ia adalah lut sinar." },
+          { text: "Kerana mentol itu tidak menggunakan tenaga elektrik.", correct: false, rationale: "Sifat kelegapan tidak ada kaitan dengan penggunaan elektrik." }
+        ]
+      },
+      {
+        tag: "Pembolehubah Dimalarkan", tagColor: "#be185d", tagBg: "#fce7f3",
+        question: "Jika murid mahu membandingkan sifat cahaya bagi ketiga-tiga mentol ini dengan adil, apakah perkara yang mesti DIMALARKAN (sama)?",
+        options: [
+          { text: "Warna atau jenis permukaan mentol.", correct: false, rationale: "Ini ialah pembolehubah dimanipulasi, jadi ia mesti berbeza." },
+          { text: "Kuasa/Kekuatan tenaga elektrik yang dibekalkan kepada mentol.", correct: true, rationale: "Betul! Mentol mesti dipasang pada bekalan kuasa yang sama kekuatan supaya perbandingan sifat bahan adalah adil." },
+          { text: "Keputusan kecerahan mentol.", correct: false, rationale: "Keputusan ialah pembolehubah bergerak balas, ia akan berubah mengikut mentol." },
+          { text: "Saiz bilik eksperimen.", correct: false, rationale: "Saiz bilik tidak memberi kesan langsung kepada sifat cahaya mentol itu sendiri." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    color: "#059669",
+    title: "Bahagian 3 — Pergerakan Bumi (Putaran dan Peredaran)",
+    scenario: "Rajah menunjukkan model sistem suria yang melibatkan Matahari dan planet Bumi. Bumi melakukan dua jenis pergerakan serentak iaitu pergerakan P dan pergerakan Q pada paksinya yang condong.",
+    image: "images/matahari_bumi.png",
+    tableHeaders: ["Label Pergerakan / Kawasan", "Nama Pergerakan / Fenomena Waktu"],
+    tableRows: [
+      ["Pergerakan P", "Bumi mengelilingi Matahari mengikut orbit"],
+      ["Pergerakan Q", "Bumi berputar pada paksinya sendiri"],
+      ["Kawasan X", "Bahagian Bumi menghadap Matahari"],
+      ["Kawasan Y", "Bahagian Bumi terlindung daripada Matahari"]
+    ],
+    questions: [
+      {
+        tag: "Nama Pergerakan", tagColor: "#047857", tagBg: "#d1fae5",
+        question: "Apakah nama bagi Pergerakan P?",
+        options: [
+          { text: "Putaran Bumi pada paksinya.", correct: false, rationale: "Salah. Putaran berlaku pada paksi Bumi sendiri (Label Q)." },
+          { text: "Peredaran Bumi mengelilingi Matahari.", correct: true, rationale: "Betul! Pergerakan Bumi mengelilingi Matahari mengikut laluan orbit dinamakan peredaran Bumi." },
+          { text: "Peredaran Matahari mengelilingi Bumi.", correct: false, rationale: "Salah. Matahari tidak bergerak mengelilingi Bumi; Bumi yang mengelilingi Matahari." },
+          { text: "Tarikan graviti bulan.", correct: false, rationale: "Ini bukan pergerakan Bumi yang ditunjukkan oleh anak panah P." }
+        ]
+      },
+      {
+        tag: "Nama Pergerakan", tagColor: "#047857", tagBg: "#d1fae5",
+        question: "Apakah nama bagi Pergerakan Q?",
+        options: [
+          { text: "Putaran Bumi pada paksinya sendiri.", correct: true, rationale: "Betul! Bumi berputar pada paksinya sendiri dari barat ke timur (Label Q)." },
+          { text: "Peredaran Bumi mengelilingi orbit.", correct: false, rationale: "Peredaran mengelilingi orbit ditunjukkan oleh label P." },
+          { text: "Garis Khatulistiwa.", correct: false, rationale: "Khatulistiwa ialah nama garisan bayangan tengah Bumi, bukan nama pergerakan." },
+          { text: "Peredaran planet Marikh.", correct: false, rationale: "Rajah ini menunjukkan planet Bumi, bukan Marikh." }
+        ]
+      },
+      {
+        tag: "Kenal Pasti Fenomena", tagColor: "#4338ca", tagBg: "#e0e7ff",
+        question: "Apakah fenomena utama yang berlaku akibat daripada Putaran Bumi pada paksinya (Pergerakan Q)?",
+        options: [
+          { text: "Kejadian empat musim (Musim Bunga, Musim Sejuk).", correct: false, rationale: "Kejadian empat musim disebabkan oleh peredaran Bumi mengelilingi Matahari dan kecondongan paksinya." },
+          { text: "Kejadian siang dan malam.", correct: true, rationale: "Betul! Putaran Bumi menyebabkan bahagian yang menghadap matahari mengalami siang dan bahagian terlindung mengalami malam." },
+          { text: "Kejadian gerhana matahari sahaja.", correct: false, rationale: "Gerhana melibatkan kedudukan sejajar Bulan, Bumi, dan Matahari, bukan disebabkan oleh putaran harian Bumi semata-mata." },
+          { text: "Bumi menjadi semakin panas setiap tahun.", correct: false, rationale: "Ini berkaitan isu pemanasan global, bukan kesan utama putaran bumi." }
+        ]
+      },
+      {
+        tag: "Aplikasi Rajah", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan rajah, apakah waktu yang berlaku pada Kawasan X?",
+        options: [
+          { text: "Waktu Malam", correct: false, rationale: "Salah. Kawasan X menerima cahaya matahari terus seperti yang ditunjukkan oleh anak panah kecil." },
+          { text: "Waktu Siang", correct: true, rationale: "Betul! Kawasan X menghadap Matahari, jadi ia menerima cahaya dan mengalami waktu siang." },
+          { text: "Waktu Senja sahaja", correct: false, rationale: "Kurang tepat. Secara amnya ia mengalami waktu siang." },
+          { text: "Musim Sejuk", correct: false, rationale: "Kawasan X menerima cahaya matahari, jadi ia bukan penentu musim sejuk harian." }
+        ]
+      },
+      {
+        tag: "Aplikasi Rajah", tagColor: "#6d28d9", tagBg: "#ede9fe",
+        question: "Berdasarkan rajah, apakah waktu yang berlaku pada Kawasan Y?",
+        options: [
+          { text: "Waktu Siang", correct: false, rationale: "Salah. Kawasan Y berada di bahagian yang gelap dan terlindung daripada cahaya matahari." },
+          { text: "Waktu Malam", correct: true, rationale: "Betul! Bahagian Bumi yang membelakangi atau terlindung daripada Matahari akan mengalami waktu malam." },
+          { text: "Waktu Tengah Hari", correct: false, rationale: "Tengah hari berlaku di bahagian yang mendapat cahaya tegak matahari (X)." },
+          { text: "Waktu Pagi", correct: false, rationale: "Salah, ia adalah kawasan gelap sepenuhnya (malam)." }
+        ]
+      },
+      {
+        tag: "Arah Putaran", tagColor: "#9a3412", tagBg: "#ffedd5",
+        question: "Apakah arah putaran Bumi pada paksinya jika dilihat dari Kutub Utara?",
+        options: [
+          { text: "Dari Timur ke Barat (mengikut arah jam).", correct: false, rationale: "Salah. Bumi berputar dari Barat ke Timur." },
+          { text: "Dari Barat ke Timur (menentang arah jam).", correct: true, rationale: "Betul! Bumi berputar dari arah Barat ke arah Timur, sebab itu Matahari kelihatan terbit di Timur." },
+          { text: "Dari Utara ke Selatan.", correct: false, rationale: "Bumi berputar secara mendatar pada paksinya, bukan dari atas ke bawah." },
+          { text: "Bumi tidak berputar, ia hanya pegun.", correct: false, rationale: "Salah. Bumi sentiasa berputar tanpa kita sedari." }
+        ]
+      },
+      {
+        tag: "Tempoh Masa", tagColor: "#701a75", tagBg: "#fdf4ff",
+        question: "Berapakah tempoh masa yang diambil oleh Bumi untuk melengkapkan SATU putaran penuh pada paksinya?",
+        options: [
+          { text: "12 jam", correct: false, rationale: "12 jam biasanya hanyalah tempoh purata siang atau malam sahaja." },
+          { text: "24 jam (atau 1 hari)", correct: true, rationale: "Betul! Satu putaran lengkap mengambil masa 24 jam atau bersamaan dengan satu hari." },
+          { text: "365 ¼ hari (atau 1 tahun)", correct: false, rationale: "Ini ialah tempoh bagi peredaran Bumi mengelilingi Matahari, bukan putaran paksi." },
+          { text: "1 bulan", correct: false, rationale: "1 bulan ialah tempoh anggaran Bulan mengelilingi Bumi." }
+        ]
+      },
+      {
+        tag: "Tempoh Masa", tagColor: "#701a75", tagBg: "#fdf4ff",
+        question: "Berapakah tempoh masa yang diambil oleh Bumi untuk melengkapkan SATU peredaran penuh mengelilingi Matahari?",
+        options: [
+          { text: "24 jam", correct: false, rationale: "24 jam ialah tempoh putaran Bumi pada paksi." },
+          { text: "7 hari", correct: false, rationale: "7 hari ialah tempoh satu minggu." },
+          { text: "365 ¼ hari (atau 1 tahun)", correct: true, rationale: "Betul! Bumi mengambil masa selama satu tahun untuk mengelilingi Matahari sepenuhnya." },
+          { text: "100 tahun", correct: false, rationale: "Ini tempoh satu abad, terlalu lama untuk satu pusingan orbit Bumi." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    color: "#475569",
+    title: "Bahagian 4 — Soalan Pengukuhan Konsep Sains",
+    scenario: "Mari uji pemahaman akhir kamu tentang konsep asas pembolehubah dalam eksperimen sains sekolah rendah.",
+    tableHeaders: null,
+    tableRows: null,
+    questions: [
+      {
+        tag: "Uji Minda Pembolehubah", tagColor: "#334155", tagBg: "#f1f5f9",
+        question: "Apakah cara terbaik untuk mengingat maksud 'Pembolehubah Dimanipulasi'?",
+        options: [
+          { text: "Perkara yang kita PERHATIKAN di akhir eksperimen.", correct: false, rationale: "Itu ialah pembolehubah bergerak balas." },
+          { text: "Perkara yang kita UBAH atau BEZAKAN pada awal eksperimen.", correct: true, rationale: "Betul! Dimanipulasi bermaksud kita sengaja tukar atau bezakan untuk melihat kesan hasilnya." },
+          { text: "Perkara yang kita KEKALKAN SAMA sepanjang eksperimen.", correct: false, rationale: "Itu ialah pembolehubah dimalarkan." },
+          { text: "Nama alat radas sains yang mahal.", correct: false, rationale: "Salah, ini konsep sains, bukan nama alat." }
+        ]
+      },
+      {
+        tag: "Uji Minda Pembolehubah", tagColor: "#334155", tagBg: "#f1f5f9",
+        question: "Mengapakah kita perlu menetapkan 'Pembolehubah Dimalarkan' dengan betul dalam sesuatu eksperimen?",
+        options: [
+          { text: "Supaya eksperimen menjadi lebih susah.", correct: false, rationale: "Salah." },
+          { text: "Supaya kita mendapat keputusan yang adil dan tepat.", correct: true, rationale: "Betul! Jika pembolehubah lain tidak dimalarkan (disamakan), keputusan eksperimen akan menjadi tidak adil dan cacat." },
+          { text: "Supaya kita boleh menukar keputusan mengikut suka hati.", correct: false, rationale: "Kita tidak boleh menipu atau mengubah data eksperimen sains." },
+          { text: "Supaya lampu suluh menyala lebih terang.", correct: false, rationale: "Tidak berkaitan secara umum dengan semua eksperimen." }
+        ]
+      }
+    ]
+  }
+];
+
+// Flatten all questions into a single array for grading
+let allQuestions = [];
+sections.forEach(section => {
+  section.questions.forEach(q => {
+    allQuestions.push({ ...q, sectionColor: section.color });
+  });
+});
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  let globalQNum = 1;
+
+  sections.forEach(section => {
+    const startQ = globalQNum;
+    const endQ = globalQNum + section.questions.length - 1;
+
+    // Experiment block
+    const expBlock = document.createElement('div');
+    expBlock.className = 'experiment-block';
+    expBlock.style.borderColor = section.color;
+
+    const expHeader = document.createElement('div');
+    expHeader.className = 'experiment-header';
+    expHeader.style.backgroundColor = section.color;
+    expHeader.innerHTML = `<span>${section.title}</span><span class="q-range">Soalan ${startQ}–${endQ}</span>`;
+    expBlock.appendChild(expHeader);
+
+    const expBody = document.createElement('div');
+    expBody.className = 'experiment-body';
+
+    const scenarioP = document.createElement('p');
+    scenarioP.className = 'scenario-text';
+    scenarioP.textContent = section.scenario;
+    expBody.appendChild(scenarioP);
+
+    // Insert Image if exists
+    if (section.image) {
+      const img = document.createElement('img');
+      img.src = section.image;
+      img.alt = section.title;
+      img.className = 'experiment-img';
+      expBody.appendChild(img);
+    }
+
+    if (section.tableHeaders) {
+      const table = document.createElement('table');
+      table.className = 'data-table';
+
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      section.tableHeaders.forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        th.style.backgroundColor = section.color;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      section.tableRows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      expBody.appendChild(table);
+    }
+
+    expBlock.appendChild(expBody);
+    container.appendChild(expBlock);
+
+    // Question cards
+    section.questions.forEach(q => {
+      const globalIdx = globalQNum - 1;
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.setAttribute('data-qidx', globalIdx);
+      card.style.borderLeftColor = section.color;
+
+      const tagSpan = document.createElement('span');
+      tagSpan.className = 'question-tag';
+      tagSpan.textContent = q.tag;
+      tagSpan.style.backgroundColor = q.tagBg;
+      tagSpan.style.color = q.tagColor;
+      card.appendChild(tagSpan);
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = globalQNum + '. ' + q.question;
+      card.appendChild(qText);
+
+      const optsList = document.createElement('ul');
+      optsList.className = 'options-list';
+      q.options.forEach((opt, oIdx) => {
+        const li = document.createElement('li');
+        li.className = 'option-item';
+        li.textContent = opt.text;
+        li.onclick = () => selectOption(globalIdx, oIdx, li);
+        optsList.appendChild(li);
+      });
+      card.appendChild(optsList);
+
+      const ratBox = document.createElement('div');
+      ratBox.className = 'rationale';
+      ratBox.id = 'rat-' + globalIdx;
+      card.appendChild(ratBox);
+
+      container.appendChild(card);
+      globalQNum++;
+    });
+  });
+}
+
+let selections = {};
+
+function selectOption(qIdx, oIdx, element) {
+  const card = document.querySelector('[data-qidx="' + qIdx + '"]');
+  card.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+  element.classList.add('selected');
+  selections[qIdx] = oIdx;
+}
+
+function gradeQuiz() {
+  let correctCount = 0;
+  allQuestions.forEach((q, qIdx) => {
+    const ratBox = document.getElementById('rat-' + qIdx);
+    const selectedOIdx = selections[qIdx];
+
+    if (selectedOIdx === undefined) {
+      ratBox.className = 'rationale incorrect-fb';
+      ratBox.innerHTML = '<strong>Tidak dijawab.</strong> Sila pilih satu jawapan.';
+      ratBox.style.display = 'block';
+      return;
+    }
+
+    const chosenOpt = q.options[selectedOIdx];
+    const correctOpt = q.options.find(o => o.correct);
+
+    if (chosenOpt.correct) {
+      correctCount++;
+      ratBox.className = 'rationale correct-fb';
+      ratBox.innerHTML = '<strong>Betul!</strong> ' + chosenOpt.rationale;
+    } else {
+      ratBox.className = 'rationale incorrect-fb';
+      ratBox.innerHTML = '<strong>Tidak betul.</strong> Kamu memilih: "' + chosenOpt.text + '".<br><em>Jawapan betul:</em> <strong>' + correctOpt.text + '</strong> — ' + correctOpt.rationale;
+    }
+    ratBox.style.display = 'block';
+  });
+
+  const total = allQuestions.length;
+  const pct = Math.round((correctCount / total) * 100);
+  let msg = pct >= 80 ? 'Hebat! Kamu memang pakar Sains!' : pct >= 60 ? 'Bagus! Sedikit lagi latihan untuk dapat skor penuh!' : 'Jangan putus asa! Boleh cuba sekali lagi ya!';
+
+  const scoreBanner = document.getElementById('scoreBanner');
+  scoreBanner.innerHTML = 'Markah Kamu: ' + correctCount + ' / ' + total + ' (' + pct + '%) — ' + msg;
+  scoreBanner.style.display = 'block';
+
+  document.getElementById('submitBtn').style.display = 'none';
+  document.getElementById('resetBtn').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  selections = {};
+  document.getElementById('scoreBanner').style.display = 'none';
+  document.getElementById('submitBtn').style.display = 'block';
+  document.getElementById('resetBtn').style.display = 'none';
+  document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.rationale').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.onload = renderQuiz;
+</script>
+</body>
+</html>
