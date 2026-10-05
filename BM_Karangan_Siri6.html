@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karangan BM Darjah 4 – Siri 6</title>
+    <link rel="stylesheet" href="kuiz_karangan.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Bahasa Melayu Darjah 4 – Siri 6: Bina Karangan (Lebih Mencabar)</h1>
+        <p class="subtitle">Karangan 1–4: latihan klik dan susun. Karangan 5–8: tulis sendiri. Ingat <b>Peraturan Emas</b>: setiap ayat mesti tentang TAJUK. Gunakan <b>💡 Petunjuk</b>, <b>✅ Semak</b> dan <b>📖 Karangan Contoh</b>.</p>
+    </div>
+
+    <details id="petua"></details>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="kContainer"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Semua Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+</div>
+
+<script>
+window.KARANGAN = {
+  theme: '#ea580c', themeDark: '#9a3412', themeSoft: '#fff7ed',
+  minWords: 80,
+  levels: [
+    { from: 1, name: 'Bahagian A — Latihan Susun & Klik (Karangan 1–4)', desc: 'Pilih isi yang betul, susun pendahuluan, bina ayat, guna penanda wacana dan susun penutup.' },
+    { from: 5, name: 'Bahagian B — Tulis Sendiri (Karangan 5–8)', desc: 'Tulis karangan penuh. Tekan 💡 Petunjuk jika buntu, kemudian ✅ Semak.' }
+  ],
+  credits: [
+    'Kelas — "Planets Hub Classroom.jpg", CC BY-SA 3.0',
+    'Pantai — "Gorgeous beach somewhere in Johore.jpg", CC BY-SA 4.0',
+    'Menanam pokok — "Children planting plants in Seychelles.jpg", CC BY 4.0',
+    'Kantin — "Thai-school-canteen-area IMG 4606.jpg", CC BY-SA 4.0',
+    'Gotong-royong — "Gotong Royong adalah warisan budaya.jpg", CC BY-SA 4.0',
+    'Unggun api — "Scout campfire to sing round.jpg", CC BY-SA 4.0',
+    'Pasar malam — "Pasar Malam Alun-alun Ngawi.jpg", CC BY-SA 4.0',
+    'Jalur Gemilang — "Sipitang Sabah Fly-Jalur-gemilang-Campaign-2013-02.jpg", CC BY-SA 3.0'
+  ],
+  items: [
+    // ================= BAHAGIAN A: LATIH =================
+    {
+      title: 'Cara Menjaga Kebersihan Kelas', mode: 'latih',
+      tajuk: 'Tulis sebuah karangan bertajuk <b>"Cara Menjaga Kebersihan Kelas"</b>.',
+      image: { src: 'images/k_kelas.jpg', cap: 'Bilik darjah yang kemas dan ceria' },
+      topicWords: ['kelas', 'bilik darjah', 'bersih', 'kotor', 'sampah', 'tong', 'sapu', 'penyapu', 'meja', 'kerusi', 'papan', 'tingkap', 'lantai', 'jadual', 'tugas', 'bertugas', 'conteng', 'susun', 'kemas', 'ceria', 'selesa', 'belajar', 'guru', 'murid', 'kipas', 'lampu', 'sudut', 'bacaan', 'hiasan', 'cara', 'kebersihan', 'tanggungjawab', 'habuk', 'lap', 'elektrik', 'jimat'],
+      activities: [
+        { type: 'pilih', prompt: 'Tajuk: "Cara Menjaga Kebersihan Kelas". Klik SEMUA isi yang berkaitan. Ada 4 perangkap!',
+          items: [
+            { t: 'Membuang sampah ke dalam tong sampah.', ok: true },
+            { t: 'Menjalankan tugas mengikut jadual bertugas.', ok: true },
+            { t: 'Menyapu lantai dan mengelap tingkap.', ok: true },
+            { t: 'Tidak menconteng meja dan dinding kelas.', ok: true },
+            { t: 'Menyusun meja dan kerusi dengan kemas.', ok: true },
+            { t: 'Menutup kipas dan lampu sebelum pulang.', ok: true },
+            { t: 'Saya ternampak objek tajam di dalam tandas.', ok: false, why: 'tentang tandas dan objek tajam, bukan kelas!' },
+            { t: 'Saya suka makan aiskrim coklat.', ok: false, why: 'tiada kaitan dengan kebersihan kelas.' },
+            { t: 'Abang saya bermain badminton pada waktu petang.', ok: false, why: 'tentang abang dan sukan.' },
+            { t: 'Kami pergi bercuti ke Pulau Langkawi.', ok: false, why: 'tentang percutian, bukan kelas.' }
+          ] },
+        { type: 'susun', prompt: 'Susun ayat PENDAHULUAN mengikut urutan yang betul.',
+          sentences: ['Kelas ialah tempat kami belajar setiap hari.',
+                      'Kelas yang bersih akan membuatkan kami berasa selesa untuk belajar.',
+                      'Oleh itu, semua murid mesti menjaga kebersihan kelas.',
+                      'Terdapat beberapa cara untuk menjaga kebersihan kelas.'] },
+        { type: 'bina', prompt: 'Bina ayat ISI dengan menyusun perkataan ini.',
+          sentence: 'Murid yang bertugas mesti menyapu lantai dan mengelap papan putih.' },
+        { type: 'kosong', prompt: 'Lengkapkan perenggan ISI dengan penanda wacana.',
+          template: '{0}, kita mesti membuang sampah ke dalam tong sampah. {1}, murid hendaklah menjalankan tugas mengikut jadual bertugas. {2}, kita tidak boleh menconteng meja dan dinding. {3}, kita perlu menutup kipas dan lampu sebelum pulang.',
+          chips: ['Pertama', 'Selain itu', 'Seterusnya', 'Akhir sekali', 'Kesimpulannya', 'Pada suatu pagi', 'Tetapi'],
+          accept: [['Pertama'], ['Selain itu', 'Seterusnya'], ['Seterusnya', 'Selain itu'], ['Akhir sekali']] },
+        { type: 'susun', prompt: 'Susun ayat PENUTUP mengikut urutan yang betul.',
+          sentences: ['Kesimpulannya, menjaga kebersihan kelas ialah tanggungjawab semua murid.',
+                      'Kelas yang bersih dan ceria akan membuatkan kami seronok belajar.',
+                      'Marilah kita bersama-sama menjaga kebersihan kelas.'] }
+      ],
+      hints: {
+        pendahuluan: ['Kelas tempat belajar setiap hari.', 'Kelas bersih → selesa belajar.', 'Ada beberapa cara menjaga kebersihan kelas.'],
+        isi: [{ t: 'Buang sampah ke dalam tong sampah.', k: ['tong sampah', 'buang sampah'] }, { t: 'Ikut jadual bertugas.', k: ['jadual', 'bertugas'] },
+              { t: 'Sapu lantai, lap tingkap dan papan putih.', k: ['sapu', 'lap'] }, { t: 'Jangan conteng meja dan dinding.', k: ['conteng'] },
+              { t: 'Susun meja dan kerusi; tutup kipas dan lampu.', k: ['susun', 'kipas', 'lampu'] }],
+        penutup: ['Kebersihan kelas tanggungjawab semua murid.', 'Kelas bersih → seronok belajar.', 'Marilah menjaga kebersihan bersama-sama.'],
+        kosaKata: ['bersih dan ceria', 'selesa untuk belajar', 'jadual bertugas', 'tanggungjawab bersama', 'kebersihan itu sebahagian daripada iman']
+      },
+      model: [
+        'Kelas ialah tempat kami belajar setiap hari. Kelas yang bersih akan membuatkan kami berasa selesa untuk belajar. Oleh itu, semua murid mesti menjaga kebersihan kelas. Terdapat beberapa cara untuk menjaga kebersihan kelas.',
+        'Pertama, kita mesti membuang sampah ke dalam tong sampah. Kita tidak boleh membuang sampah di bawah meja. Selain itu, murid hendaklah menjalankan tugas mengikut jadual bertugas. Murid yang bertugas mesti menyapu lantai dan mengelap papan putih.',
+        'Seterusnya, kita tidak boleh menconteng meja dan dinding kelas. Meja yang diconteng akan kelihatan kotor dan buruk. Kita juga perlu menyusun meja dan kerusi dengan kemas.',
+        'Akhir sekali, kita perlu menutup kipas dan lampu sebelum pulang. Amalan ini dapat menjimatkan elektrik.',
+        'Kesimpulannya, menjaga kebersihan kelas ialah tanggungjawab semua murid. Kelas yang bersih dan ceria akan membuatkan kami seronok belajar. Marilah kita bersama-sama menjaga kebersihan kelas.'
+      ]
+    },
+    {
+      title: 'Berkelah di Pantai', mode: 'latih',
+      tajuk: 'Kamu sekeluarga telah pergi berkelah di pantai. Tulis sebuah karangan tentang pengalaman itu.',
+      image: { src: 'images/k_pantai.jpg', cap: 'Pantai yang indah di Johor' },
+      topicWords: ['pantai', 'berkelah', 'laut', 'pasir', 'ombak', 'istana pasir', 'mandi', 'tikar', 'bakul', 'makanan', 'sandwic', 'nasi', 'air', 'pokok kelapa', 'angin', 'nyaman', 'keluarga', 'ayah', 'ibu', 'adik', 'kakak', 'abang', 'bermain', 'kerang', 'siput', 'sampah', 'kereta', 'pulang', 'matahari', 'bola', 'layang-layang', 'biru', 'indah', 'redup'],
+      activities: [
+        { type: 'pilih', prompt: 'Tajuk: "Berkelah di Pantai". Klik SEMUA isi yang berkaitan. Ada 4 perangkap!',
+          items: [
+            { t: 'Ayah membentangkan tikar di bawah pokok kelapa.', ok: true },
+            { t: 'Saya dan adik membina istana pasir.', ok: true },
+            { t: 'Kami mandi-manda di tepi pantai.', ok: true },
+            { t: 'Ibu menyediakan nasi lemak dan sandwic.', ok: true },
+            { t: 'Kami mengutip kulit kerang di tepi pantai.', ok: true },
+            { t: 'Kami membuang sampah ke dalam tong sebelum pulang.', ok: true },
+            { t: 'Cikgu memberikan kami kerja rumah matematik.', ok: false, why: 'tentang sekolah, bukan berkelah.' },
+            { t: 'Saya terjumpa objek tajam di dalam laci meja.', ok: false, why: 'laci meja tiada di pantai, terkeluar tajuk!' },
+            { t: 'Kawan saya mempunyai seekor arnab.', ok: false, why: 'tentang arnab kawan, bukan berkelah.' },
+            { t: 'Pada malam itu, saya menonton televisyen di rumah.', ok: false, why: 'bukan aktiviti berkelah.' }
+          ] },
+        { type: 'susun', prompt: 'Susun ayat PENDAHULUAN mengikut urutan yang betul.',
+          sentences: ['Pada cuti hujung minggu yang lalu, saya sekeluarga pergi berkelah di Pantai Desaru.',
+                      'Kami bertolak dari rumah dengan menaiki kereta pada pukul 8.00 pagi.',
+                      'Ibu telah menyediakan sebakul makanan untuk dibawa.',
+                      'Setelah satu jam perjalanan, kami pun tiba di pantai.'] },
+        { type: 'bina', prompt: 'Bina ayat ISI dengan menyusun perkataan ini.',
+          sentence: 'Saya dan adik membina istana pasir di tepi pantai.' },
+        { type: 'kosong', prompt: 'Lengkapkan perenggan dengan penanda wacana.',
+          template: '{0} tiba, ayah membentangkan tikar di bawah pokok kelapa. {1}, saya dan adik membina istana pasir. {2}, kami mandi-manda di tepi pantai. {3} tengah hari, kami menikmati makanan yang dibawa oleh ibu.',
+          chips: ['Setelah', 'Kemudian', 'Selepas itu', 'Pada waktu', 'Kesimpulannya', 'Pertama', 'Tetapi'],
+          accept: [['Setelah'], ['Kemudian', 'Selepas itu'], ['Selepas itu', 'Kemudian'], ['Pada waktu']] },
+        { type: 'susun', prompt: 'Susun ayat PENUTUP mengikut urutan yang betul.',
+          sentences: ['Akhirnya, kami pulang ke rumah pada waktu petang.',
+                      'Walaupun penat, kami sekeluarga berasa sangat gembira.',
+                      'Saya berharap dapat berkelah di pantai lagi.'] }
+      ],
+      hints: {
+        pendahuluan: ['Bila: cuti hujung minggu lalu.', 'Siapa: saya sekeluarga.', 'Ke mana: Pantai ... (nama pantai).', 'Naik kereta, ibu sediakan makanan.'],
+        isi: [{ t: 'Ayah membentangkan tikar di bawah pokok.', k: ['tikar'] }, { t: 'Membina istana pasir.', k: ['istana pasir', 'pasir'] },
+              { t: 'Mandi-manda di tepi pantai.', k: ['mandi'] }, { t: 'Menikmati makanan bersama.', k: ['makan', 'nasi', 'sandwic'] },
+              { t: 'Mengutip kulit kerang / bermain layang-layang.', k: ['kerang', 'siput', 'layang'] }],
+        penutup: ['Pulang pada waktu petang.', 'Penat tetapi gembira.', 'Berharap dapat datang lagi.'],
+        kosaKata: ['air laut yang biru jernih', 'pantai yang bersih dan indah', 'angin bertiup sepoi-sepoi bahasa', 'mandi-manda', 'kenangan manis']
+      },
+      model: [
+        'Pada cuti hujung minggu yang lalu, saya sekeluarga pergi berkelah di Pantai Desaru. Kami bertolak dari rumah dengan menaiki kereta pada pukul 8.00 pagi. Ibu telah menyediakan sebakul makanan untuk dibawa. Setelah satu jam perjalanan, kami pun tiba di pantai.',
+        'Setelah tiba, ayah membentangkan tikar di bawah pokok kelapa. Angin bertiup sepoi-sepoi bahasa. Kemudian, saya dan adik membina istana pasir di tepi pantai. Istana pasir kami sangat cantik.',
+        'Selepas itu, kami mandi-manda di tepi pantai. Air laut yang biru jernih itu sangat sejuk. Ayah sentiasa mengawasi kami supaya kami selamat.',
+        'Pada waktu tengah hari, kami menikmati nasi lemak dan sandwic yang dibawa oleh ibu. Selepas makan, kami mengutip kulit kerang. Sebelum pulang, kami membuang sampah ke dalam tong sampah.',
+        'Akhirnya, kami pulang ke rumah pada waktu petang. Walaupun penat, kami sekeluarga berasa sangat gembira. Saya berharap dapat berkelah di pantai lagi.'
+      ]
+    },
+    {
+      title: 'Menanam Pokok di Kebun Sekolah', mode: 'latih',
+      tajuk: 'Kelas kamu telah menanam pokok di kebun sekolah. Tulis sebuah karangan tentang aktiviti itu.',
+      image: { src: 'images/k_menanam_pokok.jpg', cap: 'Murid-murid menanam pokok' },
+      topicWords: ['pokok', 'tanam', 'menanam', 'kebun', 'anak pokok', 'benih', 'tanah', 'cangkul', 'lubang', 'baja', 'siram', 'air', 'guru', 'cikgu', 'sayur', 'cili', 'bunga', 'subur', 'hijau', 'tumbuh', 'tangan', 'sarung', 'penyiram', 'tunas', 'daun', 'buah', 'hasil', 'jaga', 'menjaga', 'kumpulan', 'peralatan', 'sekolah', 'alam', 'mendengar', 'teliti'],
+      activities: [
+        { type: 'pilih', prompt: 'Tajuk: "Menanam Pokok di Kebun Sekolah". Klik SEMUA isi yang berkaitan. Ada 4 perangkap!',
+          items: [
+            { t: 'Cikgu Rahman menunjukkan cara menanam anak pokok.', ok: true },
+            { t: 'Kami menggali lubang menggunakan cangkul kecil.', ok: true },
+            { t: 'Kami memasukkan anak pokok cili ke dalam lubang.', ok: true },
+            { t: 'Kami menimbus lubang dengan tanah dan menabur baja.', ok: true },
+            { t: 'Kami menyiram anak pokok setiap pagi.', ok: true },
+            { t: 'Anak pokok itu tumbuh dengan subur.', ok: true },
+            { t: 'Saya menjumpai objek tajam di dalam beg kawan saya.', ok: false, why: 'cerita lain, bukan menanam pokok.' },
+            { t: 'Ibu membeli baju baharu untuk Hari Raya.', ok: false, why: 'tentang Hari Raya, bukan kebun.' },
+            { t: 'Saya bermain telefon bimbit sepanjang malam.', ok: false, why: 'bukan aktiviti menanam pokok.' },
+            { t: 'Bas sekolah saya berwarna kuning.', ok: false, why: 'tiada kaitan dengan tajuk.' }
+          ] },
+        { type: 'susun', prompt: 'Susun ayat PENDAHULUAN mengikut urutan yang betul.',
+          sentences: ['Pada hari Rabu yang lalu, kelas saya telah menjalankan aktiviti menanam pokok.',
+                      'Aktiviti itu diadakan di kebun sekolah.',
+                      'Kami diiringi oleh guru Sains kami, Cikgu Rahman.',
+                      'Kami membawa peralatan seperti cangkul kecil, baja dan penyiram air.'] },
+        { type: 'bina', prompt: 'Bina ayat ISI dengan menyusun perkataan ini.',
+          sentence: 'Kami menggali lubang di dalam tanah menggunakan cangkul kecil.' },
+        { type: 'kosong', prompt: 'Lengkapkan perenggan dengan penanda wacana.',
+          template: '{0}, Cikgu Rahman menunjukkan cara menanam anak pokok. {1}, kami menggali lubang di dalam tanah. {2}, kami memasukkan anak pokok cili ke dalam lubang itu. {3}, kami menimbus lubang dengan tanah dan menyiramnya.',
+          chips: ['Mula-mula', 'Kemudian', 'Selepas itu', 'Akhir sekali', 'Kesimpulannya', 'Pada suatu hari', 'Tetapi'],
+          accept: [['Mula-mula'], ['Kemudian', 'Selepas itu'], ['Selepas itu', 'Kemudian'], ['Akhir sekali']] },
+        { type: 'susun', prompt: 'Susun ayat PENUTUP mengikut urutan yang betul.',
+          sentences: ['Kesimpulannya, aktiviti menanam pokok itu sangat menyeronokkan.',
+                      'Kini, pokok cili kami sudah mula berbuah.',
+                      'Saya berasa bangga kerana dapat menjaga alam sekitar.'] }
+      ],
+      hints: {
+        pendahuluan: ['Bila: hari Rabu lalu.', 'Di mana: kebun sekolah.', 'Siapa: kelas saya dan guru Sains.', 'Peralatan: cangkul kecil, baja, penyiram air.'],
+        isi: [{ t: 'Guru menunjukkan cara menanam.', k: ['menunjukkan', 'cara'] }, { t: 'Menggali lubang dengan cangkul.', k: ['lubang', 'cangkul'] },
+              { t: 'Memasukkan anak pokok dan menimbus tanah.', k: ['anak pokok', 'timbus'] }, { t: 'Menabur baja dan menyiram air.', k: ['baja', 'siram'] },
+              { t: 'Menjaga pokok setiap hari sehingga tumbuh subur.', k: ['subur', 'setiap hari', 'tumbuh'] }],
+        penutup: ['Aktiviti yang menyeronokkan.', 'Pokok mula tumbuh / berbuah.', 'Bangga menjaga alam sekitar.'],
+        kosaKata: ['tumbuh dengan subur', 'bermandi peluh', 'menghijaukan alam sekitar', 'hasil titik peluh sendiri', 'disiram setiap pagi']
+      },
+      model: [
+        'Pada hari Rabu yang lalu, kelas saya telah menjalankan aktiviti menanam pokok. Aktiviti itu diadakan di kebun sekolah. Kami diiringi oleh guru Sains kami, Cikgu Rahman. Kami membawa peralatan seperti cangkul kecil, baja dan penyiram air.',
+        'Mula-mula, Cikgu Rahman menunjukkan cara menanam anak pokok. Kami mendengar dengan teliti. Kemudian, kami menggali lubang di dalam tanah menggunakan cangkul kecil.',
+        'Selepas itu, kami memasukkan anak pokok cili ke dalam lubang itu. Akhir sekali, kami menimbus lubang dengan tanah dan menabur baja. Kami juga menyiram anak pokok itu dengan air.',
+        'Setiap pagi, kami bergilir-gilir menyiram pokok di kebun sekolah. Selepas beberapa minggu, anak pokok itu tumbuh dengan subur.',
+        'Kesimpulannya, aktiviti menanam pokok itu sangat menyeronokkan. Kini, pokok cili kami sudah mula berbuah. Saya berasa bangga kerana dapat menjaga alam sekitar.'
+      ]
+    },
+    {
+      title: 'Amalan Makan Makanan Sihat', mode: 'latih',
+      tajuk: 'Tulis sebuah karangan bertajuk <b>"Amalan Makan Makanan Sihat"</b>.',
+      image: { src: 'images/k_kantin.jpg', cap: 'Kantin sekolah' },
+      topicWords: ['makan', 'makanan', 'sihat', 'sayur', 'buah', 'susu', 'air kosong', 'minum', 'gula', 'manis', 'berminyak', 'goreng', 'ringan', 'sarapan', 'kantin', 'tenaga', 'badan', 'kuat', 'penyakit', 'gigi', 'kesihatan', 'pinggan', 'seimbang', 'vitamin', 'nasi', 'ikan', 'ayam', 'gemuk', 'obesiti', 'kencing manis', 'amalan', 'bersenam', 'cergas', 'belajar', 'mencegah', 'mengubati'],
+      activities: [
+        { type: 'pilih', prompt: 'Tajuk: "Amalan Makan Makanan Sihat". Klik SEMUA isi yang berkaitan. Ada 4 perangkap!',
+          items: [
+            { t: 'Makan sarapan setiap pagi sebelum ke sekolah.', ok: true },
+            { t: 'Makan sayur-sayuran dan buah-buahan setiap hari.', ok: true },
+            { t: 'Minum air kosong yang secukupnya.', ok: true },
+            { t: 'Kurangkan makanan yang manis dan berminyak.', ok: true },
+            { t: 'Elakkan makanan ringan seperti kerepek.', ok: true },
+            { t: 'Badan yang sihat membantu kita belajar dengan baik.', ok: true },
+            { t: 'Saya terjumpa objek tajam di tepi longkang.', ok: false, why: 'tiada kaitan dengan makanan sihat.' },
+            { t: 'Sekolah saya mempunyai padang yang luas.', ok: false, why: 'tentang padang sekolah.' },
+            { t: 'Pakcik saya bekerja sebagai pemandu teksi.', ok: false, why: 'tentang pekerjaan pakcik.' },
+            { t: 'Saya suka mewarna gambar kartun.', ok: false, why: 'tentang hobi, bukan makanan sihat.' }
+          ] },
+        { type: 'susun', prompt: 'Susun ayat PENDAHULUAN mengikut urutan yang betul.',
+          sentences: ['Makanan memberikan tenaga kepada badan kita.',
+                      'Kita mesti memilih makanan yang sihat supaya badan sentiasa cergas.',
+                      'Terdapat beberapa amalan makan makanan sihat yang boleh kita lakukan.'] },
+        { type: 'bina', prompt: 'Bina ayat HURAIAN dengan menyusun perkataan ini.',
+          sentence: 'Sayur-sayuran dan buah-buahan mengandungi banyak vitamin.' },
+        { type: 'kosong', prompt: 'Lengkapkan perenggan ISI dengan penanda wacana.',
+          template: '{0}, kita mesti makan sarapan setiap pagi. {1}, kita perlu makan sayur-sayuran dan buah-buahan. {2}, kita hendaklah minum air kosong yang secukupnya. {3}, kita perlu mengurangkan makanan yang manis dan berminyak.',
+          chips: ['Pertama', 'Selain itu', 'Seterusnya', 'Akhir sekali', 'Kesimpulannya', 'Pada suatu hari', 'Tetapi'],
+          accept: [['Pertama'], ['Selain itu', 'Seterusnya'], ['Seterusnya', 'Selain itu'], ['Akhir sekali']] },
+        { type: 'susun', prompt: 'Susun ayat PENUTUP mengikut urutan yang betul.',
+          sentences: ['Kesimpulannya, kita mesti mengamalkan pemakanan yang sihat.',
+                      'Badan yang sihat membantu kita belajar dengan lebih baik.',
+                      'Ingatlah, mencegah lebih baik daripada mengubati.'] }
+      ],
+      hints: {
+        pendahuluan: ['Makanan memberi tenaga.', 'Pilih makanan sihat supaya cergas.', 'Ada beberapa amalan makan makanan sihat.'],
+        isi: [{ t: 'Makan sarapan setiap pagi.', k: ['sarapan'] }, { t: 'Makan sayur-sayuran dan buah-buahan.', k: ['sayur', 'buah'] },
+              { t: 'Minum air kosong secukupnya.', k: ['air kosong'] }, { t: 'Kurangkan makanan manis dan berminyak.', k: ['manis', 'berminyak', 'gula'] },
+              { t: 'Elakkan makanan ringan.', k: ['makanan ringan', 'kerepek'] }],
+        penutup: ['Amalkan pemakanan sihat.', 'Badan sihat → belajar dengan baik.', 'Mencegah lebih baik daripada mengubati.'],
+        kosaKata: ['badan yang sihat dan cergas', 'mengandungi banyak vitamin', 'menjauhi penyakit', 'mencegah lebih baik daripada mengubati', 'pemakanan seimbang']
+      },
+      model: [
+        'Makanan memberikan tenaga kepada badan kita. Kita mesti memilih makanan yang sihat supaya badan sentiasa cergas. Terdapat beberapa amalan makan makanan sihat yang boleh kita lakukan.',
+        'Pertama, kita mesti makan sarapan setiap pagi. Sarapan memberi kita tenaga untuk belajar di sekolah. Selain itu, kita perlu makan sayur-sayuran dan buah-buahan. Sayur-sayuran dan buah-buahan mengandungi banyak vitamin.',
+        'Seterusnya, kita hendaklah minum air kosong yang secukupnya. Air kosong lebih sihat daripada minuman bergas yang manis.',
+        'Akhir sekali, kita perlu mengurangkan makanan yang manis dan berminyak. Kita juga harus mengelakkan makanan ringan seperti kerepek. Makanan ini boleh menyebabkan obesiti dan penyakit.',
+        'Kesimpulannya, kita mesti mengamalkan pemakanan yang sihat. Badan yang sihat membantu kita belajar dengan lebih baik. Ingatlah, mencegah lebih baik daripada mengubati.'
+      ]
+    },
+
+    // ================= BAHAGIAN B: TULIS =================
+    {
+      title: 'Gotong-royong di Taman Perumahan', mode: 'tulis',
+      tajuk: 'Penduduk taman perumahan kamu telah mengadakan gotong-royong. Tulis sebuah karangan tentang gotong-royong itu.',
+      image: { src: 'images/k_gotong_royong.jpg', cap: 'Penduduk bergotong-royong' },
+      topicWords: ['gotong', 'royong', 'bersih', 'sampah', 'sapu', 'penyapu', 'cangkul', 'rumput', 'longkang', 'sabit', 'plastik', 'penduduk', 'jiran', 'taman', 'perumahan', 'kawasan', 'kutip', 'kerjasama', 'jamuan', 'surau', 'balai', 'ketua', 'mesra', 'ceria', 'peralatan', 'kumpulan', 'taman permainan', 'pokok', 'cat', 'nyamuk', 'aedes', 'denggi', 'air', 'bekas', 'kerja', 'minum', 'makan'],
+      hints: {
+        pendahuluan: ['Bila: Ahad lalu, pukul 7.30 pagi.', 'Siapa: penduduk Taman ... (nama taman), ketua kampung / pengerusi persatuan.', 'Tujuan: membersihkan kawasan taman dan mencegah denggi.'],
+        isi: [{ t: 'Taklimat oleh pengerusi dan pembahagian kumpulan.', k: ['taklimat', 'kumpulan', 'pengerusi'] },
+              { t: 'Orang lelaki membersihkan longkang dan memotong rumput.', k: ['longkang', 'rumput'] },
+              { t: 'Kaum ibu / kanak-kanak mengutip sampah.', k: ['kutip', 'sampah'] },
+              { t: 'Membuang bekas berisi air untuk mencegah nyamuk Aedes.', k: ['aedes', 'nyamuk', 'denggi', 'bekas'] },
+              { t: 'Mengecat taman permainan / menanam pokok.', k: ['cat', 'pokok', 'taman permainan'] },
+              { t: 'Jamuan selepas gotong-royong, suasana mesra antara jiran.', k: ['jamuan', 'makan', 'mesra'] }],
+        penutup: ['Taman menjadi bersih dan cantik.', 'Hubungan jiran bertambah erat.', 'Penat tetapi gembira, harap diadakan lagi.'],
+        kosaKata: ['berat sama dipikul, ringan sama dijinjing', 'hubungan silaturahim', 'bertungkus-lumus', 'bersih dan ceria', 'mencegah wabak denggi']
+      },
+      model: [
+        'Pada hari Ahad yang lalu, penduduk Taman Melati telah mengadakan gotong-royong. Gotong-royong itu bertujuan untuk membersihkan kawasan taman perumahan kami. Semua penduduk berkumpul di hadapan surau pada pukul 7.30 pagi.',
+        'Pertama, pengerusi persatuan penduduk memberikan taklimat. Kemudian, kami dibahagikan kepada beberapa kumpulan. Orang lelaki membersihkan longkang dan memotong rumput yang panjang.',
+        'Selain itu, saya dan kawan-kawan mengutip sampah di taman permainan. Kami juga membuang bekas-bekas yang berisi air. Hal ini supaya nyamuk Aedes tidak dapat membiak.',
+        'Seterusnya, kaum ibu mengecat pagar taman permainan. Setelah kerja selesai, kami menikmati jamuan bersama-sama. Suasana sangat mesra kerana semua jiran berbual dan bergurau senda.',
+        'Akhirnya, kawasan taman kami kelihatan bersih dan ceria. Walaupun penat, saya berasa gembira. Gotong-royong juga mengeratkan hubungan antara jiran. Saya berharap gotong-royong seperti ini akan diadakan lagi.'
+      ]
+    },
+    {
+      title: 'Malam Unggun Api', mode: 'tulis',
+      tajuk: 'Semasa perkhemahan, kamu telah menyertai malam unggun api. Tulis sebuah karangan tentang pengalaman itu.',
+      image: { src: 'images/k_unggun_api.jpg', cap: 'Malam unggun api di tapak perkhemahan' },
+      topicWords: ['unggun', 'api', 'malam', 'khemah', 'perkhemahan', 'pengakap', 'kayu', 'nyala', 'menyanyi', 'nyanyian', 'lagu', 'sketsa', 'persembahan', 'lakonan', 'kumpulan', 'guru', 'bulan', 'bintang', 'sejuk', 'hangat', 'jagung', 'bakar', 'marshmallow', 'tepuk', 'ketawa', 'meriah', 'hadiah', 'tidur', 'nyamuk', 'cahaya', 'gelap', 'bulatan', 'peserta'],
+      hints: {
+        pendahuluan: ['Perkhemahan apa, di mana, berapa hari.', 'Malam terakhir: malam unggun api.', 'Bila: pukul 8.30 malam.'],
+        isi: [{ t: 'Guru menyalakan unggun api, peserta duduk dalam bulatan.', k: ['nyala', 'bulatan', 'duduk'] },
+              { t: 'Menyanyi lagu bersama-sama.', k: ['nyanyi', 'lagu'] },
+              { t: 'Persembahan sketsa / lakonan oleh setiap kumpulan.', k: ['sketsa', 'lakonan', 'persembahan'] },
+              { t: 'Membakar jagung / makan bersama.', k: ['jagung', 'bakar', 'makan'] },
+              { t: 'Suasana: langit berbintang, udara sejuk, api yang hangat.', k: ['bintang', 'sejuk', 'hangat'] }],
+        penutup: ['Malam yang sangat meriah.', 'Perasaan gembira dan terhibur.', 'Kenangan yang tidak dapat dilupakan.'],
+        kosaKata: ['api yang marak menyala', 'langit dihiasi bintang-bintang', 'gelak ketawa yang riuh', 'suasana yang meriah', 'kenangan manis yang tidak dapat dilupakan']
+      },
+      model: [
+        'Pada cuti sekolah yang lalu, saya telah menyertai perkhemahan Pengakap selama tiga hari. Pada malam terakhir, kami mengadakan malam unggun api. Acara itu bermula pada pukul 8.30 malam.',
+        'Pertama, guru pengiring menyalakan unggun api di tengah-tengah tapak perkhemahan. Api itu marak menyala. Kami semua duduk dalam satu bulatan di sekeliling unggun api itu.',
+        'Selepas itu, kami menyanyikan lagu bersama-sama sambil bertepuk tangan. Kemudian, setiap kumpulan membuat persembahan sketsa. Kumpulan saya melakonkan cerita Sang Kancil. Semua peserta ketawa terbahak-bahak.',
+        'Seterusnya, kami membakar jagung di atas unggun api. Udara malam yang sejuk tidak terasa kerana api itu sangat hangat. Langit pula dihiasi bintang-bintang yang berkelipan.',
+        'Akhirnya, malam unggun api tamat pada pukul 11.00 malam. Saya berasa sangat gembira dan terhibur. Malam itu menjadi kenangan manis yang tidak dapat saya lupakan.'
+      ]
+    },
+    {
+      title: 'Ke Pasar Malam Bersama Keluarga', mode: 'tulis',
+      tajuk: 'Kamu sekeluarga telah pergi ke pasar malam. Tulis sebuah karangan tentang pengalaman kamu.',
+      image: { src: 'images/k_pasar_malam.jpg', cap: 'Suasana pasar malam yang meriah' },
+      topicWords: ['pasar malam', 'pasar', 'gerai', 'peniaga', 'penjual', 'beli', 'membeli', 'jual', 'menjual', 'harga', 'murah', 'wang', 'duit', 'sayur', 'buah', 'kuih', 'makanan', 'minuman', 'air', 'satay', 'apam', 'pisang goreng', 'baju', 'mainan', 'lampu', 'meriah', 'sesak', 'ramai', 'orang', 'keluarga', 'ayah', 'ibu', 'adik', 'pulang', 'malam', 'bau', 'harum', 'kereta', 'maghrib'],
+      hints: {
+        pendahuluan: ['Bila: Rabu lalu, selepas solat Maghrib.', 'Siapa: saya sekeluarga.', 'Di mana: pasar malam di taman / pekan berhampiran.'],
+        isi: [{ t: 'Suasana: ramai orang, gerai berderet, lampu terang.', k: ['ramai', 'gerai', 'lampu', 'sesak'] },
+              { t: 'Ibu membeli sayur-sayuran dan buah-buahan.', k: ['sayur', 'buah'] },
+              { t: 'Membeli makanan: satay, apam balik, kuih.', k: ['satay', 'apam', 'kuih', 'makanan'] },
+              { t: 'Ayah membelikan adik mainan / baju.', k: ['mainan', 'baju'] },
+              { t: 'Berhati-hati dan memegang tangan ibu supaya tidak sesat.', k: ['pegang', 'sesat', 'hati-hati'] }],
+        penutup: ['Pulang dengan banyak barang.', 'Perasaan gembira.', 'Menikmati makanan bersama keluarga di rumah.'],
+        kosaKata: ['gerai yang berderet-deret', 'bau makanan yang harum', 'orang ramai berpusu-pusu', 'harga yang berpatutan', 'suasana yang meriah']
+      },
+      model: [
+        'Pada malam Rabu yang lalu, saya sekeluarga pergi ke pasar malam di taman perumahan kami. Kami pergi ke sana selepas solat Maghrib dengan menaiki kereta.',
+        'Setibanya di sana, saya melihat gerai yang berderet-deret. Orang ramai berpusu-pusu membeli barang. Lampu yang terang menjadikan suasana sangat meriah.',
+        'Pertama, ibu membeli sayur-sayuran dan buah-buahan. Harga barang di pasar malam itu berpatutan. Selain itu, ayah membeli satay dan apam balik. Bau makanan yang harum membuatkan saya berasa lapar.',
+        'Seterusnya, ayah membelikan adik sebuah kereta mainan. Adik berasa sangat gembira. Saya pula memegang tangan ibu supaya tidak sesat dalam keadaan yang sesak itu.',
+        'Akhirnya, kami pulang ke rumah pada pukul 9.30 malam. Kami menikmati makanan yang dibeli bersama-sama. Saya berasa sangat gembira kerana dapat ke pasar malam bersama keluarga.'
+      ]
+    },
+    {
+      title: 'Sambutan Hari Kemerdekaan di Sekolah', mode: 'tulis',
+      tajuk: 'Sekolah kamu telah mengadakan sambutan Hari Kemerdekaan. Tulis sebuah karangan tentang sambutan itu.',
+      image: { src: 'images/k_merdeka.jpg', cap: 'Jalur Gemilang berkibar semasa sambutan' },
+      topicWords: ['merdeka', 'kemerdekaan', 'jalur gemilang', 'bendera', 'negara', 'malaysia', 'sambutan', 'menyambut', 'perhimpunan', 'lagu', 'negaraku', 'patriotik', 'perbarisan', 'kawad', 'pertandingan', 'mewarna', 'sajak', 'kuiz', 'pakaian', 'tradisional', 'baju', 'guru', 'murid', 'tapak', 'dewan', 'hadiah', 'pemimpin', 'tunku', 'sayang', 'cinta', 'bangga', 'hiasan', 'menghias', 'kelas', 'ogos', 'laungan', 'meriah', 'acara', 'persembahan', 'tarian', 'cantik', 'cheongsam', 'sari'],
+      hints: {
+        pendahuluan: ['Bila: 30 Ogos (sebelum 31 Ogos).', 'Di mana: dataran / dewan sekolah.', 'Sekolah dihias dengan Jalur Gemilang.'],
+        isi: [{ t: 'Perhimpunan: menyanyikan lagu Negaraku dan lagu patriotik.', k: ['negaraku', 'lagu', 'perhimpunan'] },
+              { t: 'Perbarisan / kawad dengan membawa Jalur Gemilang.', k: ['perbarisan', 'kawad', 'jalur gemilang', 'bendera'] },
+              { t: 'Pertandingan: menghias kelas, mewarna, deklamasi sajak.', k: ['pertandingan', 'menghias', 'mewarna', 'sajak'] },
+              { t: 'Murid memakai pakaian tradisional / persembahan tarian.', k: ['pakaian', 'tradisional', 'tarian'] },
+              { t: 'Laungan "Merdeka!" dan penyampaian hadiah.', k: ['laung', 'hadiah'] }],
+        penutup: ['Sambutan yang meriah.', 'Berasa bangga sebagai rakyat Malaysia.', 'Kita mesti menghargai kemerdekaan dan menjaga keamanan negara.'],
+        kosaKata: ['Jalur Gemilang berkibar megah', 'semangat patriotik', 'laungan "Merdeka!" bergema', 'menghargai jasa pejuang negara', 'bangga menjadi anak Malaysia']
+      },
+      model: [
+        'Pada 30 Ogos yang lalu, sekolah saya telah mengadakan sambutan Hari Kemerdekaan. Sambutan itu diadakan di dataran sekolah. Seluruh kawasan sekolah dihiasi dengan Jalur Gemilang.',
+        'Pertama, sambutan dimulakan dengan perhimpunan. Kami menyanyikan lagu Negaraku dan lagu-lagu patriotik dengan penuh semangat. Kemudian, guru besar memberikan ucapan tentang kepentingan kemerdekaan.',
+        'Selain itu, murid-murid mengadakan perbarisan sambil membawa Jalur Gemilang. Ramai murid memakai pakaian tradisional seperti baju Melayu, cheongsam dan sari. Mereka kelihatan sangat cantik.',
+        'Seterusnya, pelbagai pertandingan diadakan seperti pertandingan menghias kelas dan deklamasi sajak. Kelas saya memenangi tempat pertama dalam pertandingan menghias kelas. Akhir sekali, kami melaungkan "Merdeka!" sebanyak tujuh kali.',
+        'Kesimpulannya, sambutan Hari Kemerdekaan itu sangat meriah. Saya berasa bangga menjadi rakyat Malaysia. Kita mesti menghargai jasa pejuang negara dan menjaga keamanan negara kita.'
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_karangan.js"></script>
+</body>
+</html>
