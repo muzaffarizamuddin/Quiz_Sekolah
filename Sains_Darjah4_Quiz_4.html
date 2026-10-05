@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuiz Sains Darjah 4 – Siri 4</title>
+    <link rel="stylesheet" href="kuiz_pembolehubah.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Kuiz Sains Darjah 4 – Siri 4: Pemboleh Ubah (Lebih Mencabar)</h1>
+        <p class="subtitle">Penyiasatan baharu: penebat haba, litar elektrik, bayang-bayang, tuas, takal, roda dan gandar, satah condong, gerak balas tumbuhan dan bahan menyerap air. Soalan 1–3 pilih jawapan, Soalan 4–6 guna kotak perkataan, Soalan 7–10 tulis sendiri. Klik <strong>Semak Jawapan</strong> di bawah selepas selesai.</p>
+    </div>
+
+    <details id="petua"></details>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="quizContainer"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan &amp; Lihat Markah</button>
+    <button class="reset-btn" id="resetBtn">Cuba Semula</button>
+</div>
+
+<script>
+window.QUIZ = {
+  theme: '#0f766e', themeDark: '#115e59', themeSoft: '#f0fdfa',
+  levels: [
+    { from: 1, name: 'Tahap 1 — Pilih Jawapan', desc: 'Soalan 1–3: Pilih satu jawapan yang betul bagi setiap bahagian.' },
+    { from: 4, name: 'Tahap 2 — Kotak Perkataan', desc: 'Soalan 4–6: Bina jawapan dengan memilih perkataan dari kotak kuning. Hati-hati, ada perkataan perangkap!' },
+    { from: 7, name: 'Tahap 3 — Tulis Sendiri (Seperti Peperiksaan)', desc: 'Soalan 7–10: Tulis jawapan dengan ayat sendiri. Ingat formula "Semakin ..., semakin ...".' }
+  ],
+  credits: [
+    'Mug logam — "Enamel mug.jpg", CC BY 3.0',
+    'Anak pokok — "Positive phototropism in Quercus humboldtii seedlings.jpg", CC BY-SA 3.0',
+    'Pemutar skru — "Black screwdriver.png", CC BY 4.0',
+    'Span — "Sponge Macro.jpg", CC BY-SA 4.0'
+  ],
+  questions: [
+    // ---------------- TAHAP 1: MCQ ----------------
+    {
+      title: 'Cawan Polistirena dan Mug Logam',
+      scenario: 'Sebanyak <b>200 ml air panas bersuhu 80 °C</b> dituang ke dalam cawan polistirena dan mug logam. Selepas <b>20 minit</b>, suhu air dalam setiap bekas diukur dengan termometer.',
+      images: [{ src: 'images/mug_logam.jpg', cap: 'Mug logam' }],
+      svg: `<svg viewBox="0 0 420 200" width="420" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <polygon points="60,70 150,70 140,180 70,180" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+        <circle cx="85" cy="110" r="2" fill="#cbd5e1"/><circle cx="110" cy="140" r="2" fill="#cbd5e1"/><circle cx="125" cy="100" r="2" fill="#cbd5e1"/><circle cx="95" cy="160" r="2" fill="#cbd5e1"/>
+        <rect x="100" y="30" width="8" height="120" rx="4" fill="#fecaca" stroke="#dc2626"/><circle cx="104" cy="152" r="7" fill="#dc2626"/>
+        <text x="105" y="198" text-anchor="middle" font-weight="bold">Cawan polistirena</text>
+        <rect x="250" y="70" width="90" height="110" fill="#9ca3af" stroke="#4b5563" stroke-width="2"/>
+        <path d="M340 90 q35 0 35 30 q0 30 -35 30" fill="none" stroke="#4b5563" stroke-width="8"/>
+        <rect x="291" y="30" width="8" height="120" rx="4" fill="#fecaca" stroke="#dc2626"/><circle cx="295" cy="152" r="7" fill="#dc2626"/>
+        <text x="295" y="198" text-anchor="middle" font-weight="bold">Mug logam</text>
+        <text x="210" y="20" text-anchor="middle">200 ml air panas, 80 °C</text>
+      </svg>`,
+      table: { headers: ['Jenis bekas', 'Suhu air selepas 20 minit (°C)'], rows: [['Cawan polistirena', '68'], ['Mug logam', '45']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi?',
+          options: ['Suhu air selepas 20 minit', 'Jenis bahan bekas', 'Isipadu air panas', 'Masa 20 minit'], answer: 1,
+          explain: 'Bekas dibezakan: polistirena dan logam.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan?',
+          options: ['Jenis bahan bekas', 'Suhu air selepas 20 minit', 'Isipadu dan suhu awal air panas', 'Warna bekas'], answer: 2,
+          explain: 'Kedua-dua bekas diisi 200 ml air pada 80 °C.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas?',
+          options: ['Suhu air selepas 20 minit', 'Jenis termometer', 'Isipadu air panas', 'Jenis bahan bekas'], answer: 0,
+          explain: 'Suhu yang dibaca pada termometer ialah hasil.' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah hubungan antara jenis bahan bekas dengan suhu air?',
+          options: ['Air dalam mug logam kekal panas lebih lama kerana logam ialah penebat haba.',
+                    'Air dalam cawan polistirena kekal panas lebih lama kerana polistirena ialah penebat haba.',
+                    'Suhu air dalam kedua-dua bekas adalah sama.',
+                    'Air dalam cawan polistirena sejuk lebih cepat.'], answer: 1,
+          explain: 'Polistirena ialah penebat haba (68 °C). Logam ialah konduktor haba, jadi haba cepat hilang (45 °C).' }
+      ]
+    },
+    {
+      title: 'Litar Elektrik: Bahan Konduktor',
+      scenario: 'Murid membina litar dengan sel kering, mentol dan wayar. Bahan yang berbeza disambungkan, satu demi satu, di antara klip X dan Y. <b>Sel kering, mentol dan wayar yang sama</b> digunakan.',
+      svg: `<svg viewBox="0 0 440 210" width="440" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <polyline points="80,60 80,30 360,30 360,90" fill="none" stroke="#334155" stroke-width="3"/>
+        <polyline points="80,110 80,170 170,170" fill="none" stroke="#334155" stroke-width="3"/>
+        <polyline points="270,170 360,170 360,130" fill="none" stroke="#334155" stroke-width="3"/>
+        <rect x="62" y="60" width="36" height="50" rx="4" fill="#f59e0b" stroke="#92400e"/>
+        <text x="40" y="92" text-anchor="end" font-weight="bold">Sel</text><text x="40" y="106" text-anchor="end" font-weight="bold">kering</text>
+        <circle cx="360" cy="110" r="20" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+        <path d="M352 112 q8 -14 16 0" fill="none" stroke="#a16207"/>
+        <text x="390" y="114" font-weight="bold">Mentol</text>
+        <polygon points="170,164 188,170 170,176" fill="#dc2626"/><text x="168" y="195" text-anchor="middle">X</text>
+        <polygon points="270,164 252,170 270,176" fill="#dc2626"/><text x="272" y="195" text-anchor="middle">Y</text>
+        <rect x="188" y="160" width="64" height="20" rx="3" fill="#cbd5e1" stroke="#475569" stroke-dasharray="4 2"/>
+        <text x="220" y="150" text-anchor="middle" font-weight="bold" fill="#0f766e">Bahan diuji</text>
+      </svg>`,
+      table: { headers: ['Bahan', 'Keadaan mentol'],
+        rows: [['Paku besi', 'Menyala'], ['Syiling', 'Menyala'], ['Pembaris plastik', 'Tidak menyala'], ['Pemadam getah', 'Tidak menyala']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi?',
+          options: ['Keadaan mentol', 'Bilangan sel kering', 'Jenis bahan', 'Panjang wayar'], answer: 2,
+          explain: 'Bahan ditukar: paku besi, syiling, pembaris plastik, pemadam getah.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan?',
+          options: ['Bilangan sel kering', 'Jenis bahan', 'Keadaan mentol', 'Warna bahan'], answer: 0,
+          explain: 'Sel kering, mentol dan wayar yang sama digunakan.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas?',
+          options: ['Jenis bahan', 'Keadaan mentol (menyala atau tidak)', 'Saiz mentol', 'Bilangan wayar'], answer: 1,
+          explain: 'Kita perhatikan sama ada mentol menyala atau tidak.' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah kesimpulan yang betul?',
+          options: ['Bahan plastik dan getah ialah konduktor elektrik.',
+                    'Bahan logam seperti paku besi dan syiling mengalirkan elektrik, jadi mentol menyala.',
+                    'Semua bahan boleh mengalirkan elektrik.',
+                    'Mentol menyala apabila bahan itu ringan.'], answer: 1,
+          explain: 'Logam ialah konduktor elektrik. Plastik dan getah ialah penebat elektrik.' },
+        { kind: 'LAIN', type: 'mcq', prompt: 'Ramalkan keadaan mentol jika sudu keluli (logam) digunakan.',
+          options: ['Mentol menyala', 'Mentol tidak menyala', 'Mentol meletup', 'Mentol berkelip-kelip'], answer: 0,
+          explain: 'Sudu keluli ialah logam, iaitu konduktor elektrik.' }
+      ]
+    },
+    {
+      title: 'Bayang-bayang dan Waktu',
+      scenario: 'Sebatang kayu <b>setinggi 1 meter</b> dipacak di tengah padang sekolah. Panjang bayang-bayang kayu diukur pada waktu yang berbeza dalam satu hari yang cerah.',
+      svg: `<svg viewBox="0 0 540 190" width="540" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <g>
+          <circle cx="30" cy="115" r="14" fill="#facc15"/>
+          <line x1="10" y1="150" x2="170" y2="150" stroke="#16a34a" stroke-width="3"/>
+          <line x1="70" y1="150" x2="70" y2="100" stroke="#92400e" stroke-width="5"/>
+          <line x1="72" y1="152" x2="165" y2="152" stroke="#1e293b" stroke-width="6" opacity="0.7"/>
+          <text x="90" y="178" text-anchor="middle" font-weight="bold">8.00 pagi</text>
+        </g>
+        <g>
+          <circle cx="270" cy="30" r="14" fill="#facc15"/>
+          <line x1="190" y1="150" x2="350" y2="150" stroke="#16a34a" stroke-width="3"/>
+          <line x1="270" y1="150" x2="270" y2="100" stroke="#92400e" stroke-width="5"/>
+          <line x1="266" y1="152" x2="278" y2="152" stroke="#1e293b" stroke-width="6" opacity="0.7"/>
+          <text x="270" y="178" text-anchor="middle" font-weight="bold">12.00 tengah hari</text>
+        </g>
+        <g>
+          <circle cx="510" cy="115" r="14" fill="#facc15"/>
+          <line x1="370" y1="150" x2="530" y2="150" stroke="#16a34a" stroke-width="3"/>
+          <line x1="470" y1="150" x2="470" y2="100" stroke="#92400e" stroke-width="5"/>
+          <line x1="375" y1="152" x2="468" y2="152" stroke="#1e293b" stroke-width="6" opacity="0.7"/>
+          <text x="450" y="178" text-anchor="middle" font-weight="bold">5.00 petang</text>
+        </g>
+      </svg>`,
+      table: { headers: ['Waktu', 'Panjang bayang-bayang (cm)'], rows: [['8.00 pagi', '180'], ['12.00 tengah hari', '10'], ['5.00 petang', '170']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi?',
+          options: ['Panjang bayang-bayang', 'Waktu dalam sehari', 'Ketinggian kayu', 'Warna kayu'], answer: 1,
+          explain: 'Ukuran diambil pada waktu berbeza: pagi, tengah hari, petang.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan?',
+          options: ['Waktu dalam sehari', 'Panjang bayang-bayang', 'Ketinggian kayu (1 meter)', 'Kedudukan Matahari'], answer: 2,
+          explain: 'Kayu yang sama setinggi 1 meter di tempat yang sama.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas?',
+          options: ['Panjang bayang-bayang', 'Ketinggian kayu', 'Waktu dalam sehari', 'Saiz padang'], answer: 0,
+          explain: 'Panjang bayang-bayang diukur (cm).' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah hubungan antara waktu dengan panjang bayang-bayang?',
+          options: ['Bayang-bayang paling panjang pada waktu tengah hari.',
+                    'Panjang bayang-bayang sama sepanjang hari.',
+                    'Semakin hampir waktu tengah hari, semakin pendek bayang-bayang.',
+                    'Semakin hampir waktu tengah hari, semakin panjang bayang-bayang.'], answer: 2,
+          explain: 'Pada tengah hari Matahari berada tegak di atas kepala, jadi bayang-bayang paling pendek.' },
+        { kind: 'LAIN', type: 'mcq', prompt: 'Apakah yang menyebabkan perubahan panjang dan arah bayang-bayang ini?',
+          options: ['Peredaran Bulan mengelilingi Bumi', 'Putaran Bumi pada paksinya', 'Peredaran Matahari mengelilingi Bumi', 'Angin yang kuat'], answer: 1,
+          explain: 'Putaran Bumi menyebabkan kedudukan Matahari kelihatan berubah sepanjang hari.' }
+      ]
+    },
+
+    // ---------------- TAHAP 2: WORD BANK ----------------
+    {
+      title: 'Lapisan Kertas Tisu dan Kecerahan Cahaya',
+      scenario: 'Kad dalam susunan radas digantikan dengan kertas tisu. <b>Bilangan lapisan kertas tisu</b> ditambah satu demi satu. Lampu suluh yang sama diletakkan pada <b>jarak yang sama dari skrin</b>. Kecerahan cahaya pada skrin diperhatikan.',
+      images: [{ src: 'images/lampusuluh.png', cap: 'Kad digantikan dengan lapisan kertas tisu' }],
+      table: { headers: ['Bilangan lapisan kertas tisu', 'Kecerahan cahaya pada skrin'],
+        rows: [['1', 'Sangat terang'], ['2', 'Terang'], ['3', 'Malap'], ['4', 'Sangat malap']] },
+      chips: ['bilangan lapisan kertas tisu', 'kecerahan cahaya pada skrin', 'jarak lampu suluh dari skrin', 'bertambah', 'berkurang',
+              'lut sinar', 'lut cahaya', 'legap', 'warna skrin'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['bilangan lapisan kertas tisu']],
+          explain: 'Lapisan ditambah: 1, 2, 3, 4.' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['jarak lampu suluh dari skrin']],
+          explain: 'Lampu suluh berada pada jarak yang sama.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['kecerahan cahaya pada skrin']],
+          explain: 'Kecerahan cahaya diperhatikan.' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan (berhati-hati, arahnya BERLAWANAN):', template: 'Semakin {0} {1}, semakin {2} {3}.',
+          accept: [['bertambah', 'bilangan lapisan kertas tisu', 'berkurang', 'kecerahan cahaya pada skrin'],
+                   ['berkurang', 'bilangan lapisan kertas tisu', 'bertambah', 'kecerahan cahaya pada skrin']],
+          explain: 'Lapisan naik 1 → 4, tetapi kecerahan turun (terang → malap).' },
+        { kind: 'LAIN', type: 'bank', prompt: 'Lengkapkan:', template: 'Kertas tisu ialah bahan {0} kerana ia membenarkan sebahagian cahaya melaluinya.',
+          accept: [['lut cahaya']], explain: 'Lut cahaya = sebahagian cahaya lalu, objek kelihatan kabur.' }
+      ]
+    },
+    {
+      title: 'Tuas: Jarak Daya dari Fulkrum',
+      scenario: 'Sebatang kayu digunakan sebagai tuas untuk mengangkat <b>beban yang sama</b>. Beban diletakkan 10 cm dari fulkrum dan tidak dialihkan. Neraca spring ditarik pada <b>jarak yang berbeza dari fulkrum</b> (A, B dan C), dan daya yang diperlukan dicatat.',
+      svg: `<svg viewBox="0 0 520 200" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <line x1="20" y1="170" x2="500" y2="170" stroke="#94a3b8" stroke-width="2"/>
+        <rect x="40" y="100" width="450" height="10" rx="3" fill="#a16207"/>
+        <polygon points="130,110 110,170 150,170" fill="#f59e0b" stroke="#92400e"/>
+        <text x="130" y="188" text-anchor="middle" font-weight="bold">Fulkrum</text>
+        <rect x="50" y="66" width="40" height="34" fill="#64748b"/>
+        <text x="70" y="58" text-anchor="middle" font-weight="bold">Beban</text>
+        <text x="100" y="135" text-anchor="middle" font-size="11">10 cm</text>
+        <g fill="#dc2626" font-weight="bold">
+          <line x1="250" y1="30" x2="250" y2="95" stroke="#dc2626" stroke-width="2"/><polygon points="250,98 244,88 256,88"/>
+          <text x="250" y="24" text-anchor="middle">A</text>
+          <line x1="350" y1="30" x2="350" y2="95" stroke="#dc2626" stroke-width="2"/><polygon points="350,98 344,88 356,88"/>
+          <text x="350" y="24" text-anchor="middle">B</text>
+          <line x1="460" y1="30" x2="460" y2="95" stroke="#dc2626" stroke-width="2"/><polygon points="460,98 454,88 466,88"/>
+          <text x="460" y="24" text-anchor="middle">C</text>
+        </g>
+        <text x="190" y="135" font-size="12" fill="#1d4ed8">jarak daya dari fulkrum →</text>
+      </svg>`,
+      table: { headers: ['Kedudukan daya', 'Jarak daya dari fulkrum (cm)', 'Daya yang diperlukan (N)'],
+        rows: [['A', '10', '6'], ['B', '20', '3'], ['C', '30', '2']] },
+      chips: ['jarak daya dari fulkrum', 'daya yang diperlukan', 'jisim beban', 'bertambah', 'berkurang', 'panjang fulkrum', 'warna kayu'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['jarak daya dari fulkrum']],
+          explain: 'Daya dikenakan di A (10 cm), B (20 cm), C (30 cm).' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['jisim beban']],
+          explain: 'Beban yang sama digunakan.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['daya yang diperlukan']],
+          explain: 'Bacaan neraca spring (N).' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan:', template: 'Semakin {0} {1}, semakin {2} {3}.',
+          accept: [['bertambah', 'jarak daya dari fulkrum', 'berkurang', 'daya yang diperlukan'],
+                   ['berkurang', 'jarak daya dari fulkrum', 'bertambah', 'daya yang diperlukan']],
+          explain: 'Jarak naik 10 → 30 cm, daya turun 6 → 2 N. Sebab itulah pemegang tuas yang panjang memudahkan kerja!' },
+        { kind: 'LAIN', type: 'bank', prompt: 'Ramalan: Jika daya dikenakan pada jarak 40 cm, daya yang diperlukan akan', template: '{0} daripada 2 N.',
+          accept: [['berkurang']], explain: 'Ikut corak: lebih jauh dari fulkrum, lebih sedikit daya (kira-kira 1.5 N).' }
+      ]
+    },
+    {
+      title: 'Gerak Balas Anak Pokok terhadap Cahaya',
+      scenario: 'Dua pasu anak pokok kacang yang sama diletakkan di dalam kotak yang gelap. Kotak P mempunyai <b>lubang di sebelah kanan</b>. Kotak Q mempunyai <b>lubang di bahagian atas</b>. Kedua-dua anak pokok disiram dengan <b>isipadu air yang sama</b> setiap hari. Arah pertumbuhan pucuk diperhatikan selepas 7 hari.',
+      images: [{ src: 'images/anak_pokok_cahaya.jpg', cap: 'Contoh anak pokok membengkok ke arah cahaya' }],
+      svg: `<svg viewBox="0 0 480 200" width="480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <rect x="30" y="30" width="160" height="140" fill="#1e293b"/>
+        <rect x="188" y="60" width="6" height="26" fill="#fef9c3"/>
+        <line x1="230" y1="73" x2="196" y2="73" stroke="#facc15" stroke-width="3"/><polygon points="196,73 206,67 206,79" fill="#facc15"/>
+        <rect x="80" y="140" width="40" height="30" fill="#b45309"/>
+        <path d="M100 140 C100 110 120 90 170 75" fill="none" stroke="#22c55e" stroke-width="4"/>
+        <ellipse cx="172" cy="74" rx="9" ry="5" fill="#22c55e"/>
+        <text x="110" y="192" text-anchor="middle" font-weight="bold">Kotak P (lubang kanan)</text>
+        <rect x="280" y="30" width="160" height="140" fill="#1e293b"/>
+        <rect x="347" y="26" width="26" height="6" fill="#fef9c3"/>
+        <line x1="360" y1="2" x2="360" y2="24" stroke="#facc15" stroke-width="3"/><polygon points="360,26 354,16 366,16" fill="#facc15"/>
+        <rect x="340" y="140" width="40" height="30" fill="#b45309"/>
+        <line x1="360" y1="140" x2="360" y2="70" stroke="#22c55e" stroke-width="4"/>
+        <ellipse cx="360" cy="66" rx="9" ry="5" fill="#22c55e"/>
+        <text x="360" y="192" text-anchor="middle" font-weight="bold">Kotak Q (lubang atas)</text>
+      </svg>`,
+      table: { headers: ['Kotak', 'Kedudukan lubang', 'Arah pertumbuhan pucuk selepas 7 hari'],
+        rows: [['P', 'Sebelah kanan', 'Membengkok ke kanan'], ['Q', 'Atas', 'Tegak ke atas']] },
+      chips: ['arah cahaya', 'arah pertumbuhan pucuk', 'isipadu air', 'ke arah', 'menjauhi', 'cahaya', 'air', 'graviti', 'warna pasu'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['arah cahaya']],
+          explain: 'Kedudukan lubang berbeza, jadi arah cahaya masuk berbeza.' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['isipadu air']],
+          explain: 'Kedua-duanya disiram dengan isipadu air yang sama. Jenis anak pokok juga sama.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['arah pertumbuhan pucuk']],
+          explain: 'Arah pucuk tumbuh diperhatikan selepas 7 hari.' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan:', template: 'Pucuk anak pokok tumbuh {0} {1}.',
+          accept: [['ke arah', 'cahaya']], explain: 'Pucuk bergerak balas terhadap cahaya. Di P cahaya dari kanan, jadi pucuk bengkok ke kanan.' },
+        { kind: 'LAIN', type: 'bank', prompt: 'Inferens:', template: 'Pucuk tumbuh ke arah cahaya supaya dapat menyerap {0} untuk membuat makanan (fotosintesis).',
+          accept: [['cahaya']], explain: 'Tumbuhan memerlukan cahaya matahari untuk fotosintesis.' }
+      ]
+    },
+
+    // ---------------- TAHAP 3: WRITTEN ----------------
+    {
+      title: 'Bilangan Takal dan Daya',
+      scenario: 'Beban yang <b>sama jisim (2 kg)</b> diangkat menggunakan sistem takal. <b>Bilangan takal</b> ditambah daripada 1 kepada 3. Bacaan neraca spring dicatatkan setiap kali.',
+      svg: `<svg viewBox="0 0 480 220" width="480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="12">
+        <rect x="10" y="10" width="460" height="10" fill="#475569"/>
+        <g>
+          <line x1="80" y1="20" x2="80" y2="40" stroke="#334155" stroke-width="2"/>
+          <circle cx="80" cy="52" r="12" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <line x1="68" y1="52" x2="68" y2="150" stroke="#a16207" stroke-width="2"/>
+          <line x1="92" y1="52" x2="92" y2="110" stroke="#a16207" stroke-width="2"/>
+          <rect x="84" y="110" width="16" height="30" fill="#fde68a" stroke="#334155"/>
+          <rect x="52" y="150" width="32" height="28" fill="#64748b"/>
+          <text x="68" y="168" text-anchor="middle" fill="white">2 kg</text>
+          <text x="80" y="205" text-anchor="middle" font-weight="bold">1 takal</text>
+        </g>
+        <g>
+          <line x1="230" y1="20" x2="230" y2="40" stroke="#334155" stroke-width="2"/>
+          <circle cx="230" cy="52" r="12" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <circle cx="230" cy="120" r="12" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <line x1="218" y1="52" x2="218" y2="120" stroke="#a16207" stroke-width="2"/>
+          <line x1="242" y1="52" x2="242" y2="120" stroke="#a16207" stroke-width="2"/>
+          <line x1="200" y1="20" x2="200" y2="70" stroke="#a16207" stroke-width="2"/>
+          <rect x="192" y="70" width="16" height="30" fill="#fde68a" stroke="#334155"/>
+          <line x1="230" y1="132" x2="230" y2="150" stroke="#334155" stroke-width="2"/>
+          <rect x="214" y="150" width="32" height="28" fill="#64748b"/>
+          <text x="230" y="168" text-anchor="middle" fill="white">2 kg</text>
+          <text x="230" y="205" text-anchor="middle" font-weight="bold">2 takal</text>
+        </g>
+        <g>
+          <line x1="390" y1="20" x2="390" y2="36" stroke="#334155" stroke-width="2"/>
+          <circle cx="390" cy="48" r="12" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <circle cx="390" cy="84" r="10" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <circle cx="390" cy="124" r="12" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+          <line x1="378" y1="48" x2="378" y2="124" stroke="#a16207" stroke-width="2"/>
+          <line x1="402" y1="48" x2="402" y2="124" stroke="#a16207" stroke-width="2"/>
+          <line x1="430" y1="20" x2="430" y2="70" stroke="#a16207" stroke-width="2"/>
+          <rect x="422" y="70" width="16" height="30" fill="#fde68a" stroke="#334155"/>
+          <line x1="390" y1="136" x2="390" y2="150" stroke="#334155" stroke-width="2"/>
+          <rect x="374" y="150" width="32" height="28" fill="#64748b"/>
+          <text x="390" y="168" text-anchor="middle" fill="white">2 kg</text>
+          <text x="390" y="205" text-anchor="middle" font-weight="bold">3 takal</text>
+        </g>
+        <text x="130" y="90" fill="#a16207">neraca spring</text>
+      </svg>`,
+      table: { headers: ['Bilangan takal', 'Bacaan neraca spring (N)'], rows: [['1', '20'], ['2', '10'], ['3', '7']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['takal']], none: ['daya', 'bacaan', 'neraca'] }],
+          model: ['Bilangan takal'], hint: 'Apa yang ditambah daripada 1 kepada 3?' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['beban', 'jisim', 'berat', '2 kg', 'batu']], none: ['takal', 'bacaan'] }],
+          model: ['Jisim beban (2 kg)'], hint: 'Apa yang sama setiap kali?' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['daya', 'bacaan', 'neraca spring', 'newton', 'tenaga']], none: ['bilangan takal'] }],
+          model: ['Daya yang diperlukan', 'Bacaan neraca spring'], hint: 'Apa yang dibaca pada neraca spring?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [{ trend: { a: ['bilangan takal', 'takal'], b: ['daya', 'bacaan neraca spring', 'bacaan', 'neraca spring', 'tenaga'], same: false } }],
+          model: ['Semakin bertambah bilangan takal, semakin berkurang daya yang diperlukan.',
+                  'Semakin banyak takal, semakin kecil bacaan neraca spring.'],
+          hint: 'Takal naik 1 → 3, bacaan TURUN 20 → 7. Arahnya berlawanan: "Semakin bertambah ______, semakin berkurang ______."' },
+        { kind: 'LAIN', type: 'write', prompt: 'Ramalkan bacaan neraca spring jika 4 takal digunakan.',
+          rubric: [{ all: [['kurang', 'rendah', 'kecil', 'sedikit', 'berkurang']] }, { num: { min: 3, max: 6.9 } }],
+          model: ['Kurang daripada 7 N (contoh: 5 N)'], hint: 'Ikut corak dalam jadual. Bacaan naik atau turun?' }
+      ]
+    },
+    {
+      title: 'Pemutar Skru: Roda dan Gandar',
+      scenario: 'Tiga pemutar skru dengan <b>saiz pemegang yang berbeza</b> digunakan untuk memutar <b>skru yang sama</b> ke dalam <b>kayu yang sama</b>. Daya yang diperlukan untuk memutar skru diukur.',
+      images: [{ src: 'images/pemutar_skru.png', cap: 'Pemutar skru (pemegang = roda, batang = gandar)' }],
+      svg: `<svg viewBox="0 0 420 150" width="420" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <text x="210" y="18" text-anchor="middle">Pemegang dilihat dari hujung</text>
+        <circle cx="70" cy="75" r="12" fill="#1e293b"/><circle cx="70" cy="75" r="3" fill="#94a3b8"/>
+        <text x="70" y="130" text-anchor="middle" font-weight="bold">X: 1 cm</text>
+        <circle cx="200" cy="75" r="25" fill="#1e293b"/><circle cx="200" cy="75" r="3" fill="#94a3b8"/>
+        <text x="200" y="130" text-anchor="middle" font-weight="bold">Y: 2 cm</text>
+        <circle cx="340" cy="75" r="38" fill="#1e293b"/><circle cx="340" cy="75" r="3" fill="#94a3b8"/>
+        <text x="340" y="130" text-anchor="middle" font-weight="bold">Z: 3 cm</text>
+      </svg>`,
+      table: { headers: ['Pemutar skru', 'Diameter pemegang (cm)', 'Daya yang diperlukan (N)'],
+        rows: [['X', '1', '12'], ['Y', '2', '8'], ['Z', '3', '4']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['saiz', 'diameter', 'ukuran', 'besar', 'lebar', 'tebal'], ['pemegang', 'hulu', 'pemutar skru']], none: ['daya'] }],
+          model: ['Saiz (diameter) pemegang pemutar skru'], hint: 'Apa yang berbeza pada X, Y dan Z?' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['skru', 'kayu', 'papan']], none: ['pemegang', 'daya', 'diameter'] }],
+          model: ['Jenis skru', 'Jenis kayu'], hint: 'Baca ayat: "skru yang sama", "kayu yang sama".' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['daya', 'tenaga', 'kekuatan']], none: ['pemegang', 'diameter'] }],
+          model: ['Daya yang diperlukan untuk memutar skru'], hint: 'Lajur paling kanan jadual.' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [{ trend: { a: ['saiz pemegang', 'diameter pemegang', 'pemegang', 'hulu', 'diameter', 'saiz'], b: ['daya', 'tenaga'], same: false } }],
+          model: ['Semakin bertambah saiz pemegang, semakin berkurang daya yang diperlukan.',
+                  'Semakin besar diameter pemegang, semakin kecil daya yang diperlukan untuk memutar skru.'],
+          hint: 'Pemegang besar → daya kecil. Gunakan "Semakin ..., semakin ...".' },
+        { kind: 'LAIN', type: 'write', prompt: 'Namakan mesin ringkas pada pemutar skru.',
+          rubric: [{ all: [['roda'], ['gandar']] }], model: ['Roda dan gandar'], hint: 'Pemegang = roda, batang = ______.' }
+      ]
+    },
+    {
+      title: 'Bahan yang Menyerap Air',
+      scenario: 'Empat bahan yang <b>sama saiz</b> dicelup ke dalam bikar berisi <b>100 ml air</b> selama <b>2 minit</b>, kemudian dikeluarkan. Isipadu air yang tinggal di dalam bikar diukur.',
+      images: [{ src: 'images/span.jpg', cap: 'Span (dilihat dekat): banyak lubang kecil' }],
+      table: { headers: ['Jenis bahan', 'Isipadu air yang tinggal di dalam bikar (ml)'],
+        rows: [['Span', '20'], ['Kain kapas', '55'], ['Kertas surat khabar', '70'], ['Plastik', '100']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['bahan', 'span kain kertas plastik']], none: ['isipadu', 'serap*', 'diserap', 'menyerap', 'tinggal', 'saiz bahan'] }],
+          model: ['Jenis bahan'], hint: 'Apa yang ditukar? Span, kain, kertas, plastik ialah jenis ______.' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['saiz', 'isipadu awal', '100', 'masa', 'tempoh', 'minit', 'isipadu air dalam bikar']], none: ['jenis bahan', 'tinggal'] }],
+          model: ['Saiz bahan', 'Isipadu awal air (100 ml)', 'Masa dicelup (2 minit)'], hint: 'Ada tiga perkara yang SAMA dalam ayat soalan.' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['serap*', 'diserap', 'menyerap', 'penyerapan', 'tinggal', 'baki']], none: ['jenis bahan'] }],
+          model: ['Isipadu air yang tinggal di dalam bikar', 'Isipadu air yang diserap'], hint: 'Apa yang diukur selepas bahan dikeluarkan?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara jenis bahan dengan isipadu air yang diserap.',
+          rubric: [
+            { compare: { win: ['span'], lose: ['plastik', 'kain kapas', 'kain', 'kertas surat khabar', 'kertas'], b: ['air', 'isipadu', 'serap*', 'diserap', 'menyerap'], winDir: 1 } },
+            { all: [['plastik'], ['tidak menyerap', 'tak menyerap', 'tidak serap', 'kalis air', 'tidak boleh menyerap', 'tidak dapat menyerap']] }
+          ],
+          model: ['Span menyerap paling banyak air berbanding bahan lain.', 'Plastik tidak menyerap air.'],
+          hint: 'Ini JENIS bahan. Sebut bahan MANA yang menyerap paling banyak air (ingat: air tinggal sedikit = banyak diserap!).' },
+        { kind: 'LAIN', type: 'write', long: true, prompt: 'Cadangkan bahan yang paling sesuai untuk membuat kain lap meja. Berikan sebab.',
+          rubric: [{ all: [['span', 'kain', 'kapas'], ['serap*', 'diserap', 'menyerap', 'banyak air']] }],
+          model: ['Span / kain kapas, kerana ia boleh menyerap banyak air.'], hint: 'Kain lap perlu menyerap tumpahan air.' }
+      ]
+    },
+    {
+      title: 'Panjang Satah Condong dan Daya',
+      scenario: 'Sebuah kotak yang <b>sama jisim</b> ditarik menaiki tiga satah condong P, Q dan R ke <b>ketinggian yang sama (50 cm)</b>. Panjang setiap satah condong berbeza. Daya yang diperlukan diukur dengan neraca spring.',
+      svg: `<svg viewBox="0 0 520 190" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <line x1="10" y1="160" x2="510" y2="160" stroke="#64748b" stroke-width="2"/>
+        <rect x="440" y="70" width="60" height="90" fill="#cbd5e1" stroke="#475569"/>
+        <text x="470" y="120" text-anchor="middle" font-weight="bold">50 cm</text>
+        <line x1="340" y1="160" x2="440" y2="70" stroke="#dc2626" stroke-width="4"/>
+        <text x="372" y="102" fill="#dc2626" font-weight="bold">P (1 m)</text>
+        <line x1="200" y1="160" x2="440" y2="70" stroke="#2563eb" stroke-width="4"/>
+        <text x="250" y="122" fill="#2563eb" font-weight="bold">Q (2 m)</text>
+        <line x1="30" y1="160" x2="440" y2="70" stroke="#16a34a" stroke-width="4"/>
+        <text x="90" y="138" fill="#16a34a" font-weight="bold">R (3 m)</text>
+        <rect x="410" y="50" width="26" height="20" fill="#f59e0b" stroke="#92400e"/>
+        <text x="420" y="40" text-anchor="middle">kotak</text>
+        <text x="260" y="182" text-anchor="middle">Ketinggian sama, panjang satah berbeza</text>
+      </svg>`,
+      table: { headers: ['Satah condong', 'Panjang satah condong (m)', 'Daya yang diperlukan (N)'],
+        rows: [['P', '1', '8'], ['Q', '2', '5'], ['R', '3', '3']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['panjang', 'kepanjangan']], none: ['daya'] }],
+          model: ['Panjang satah condong'], hint: 'Apa yang berbeza antara P, Q dan R?' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['ketinggian', 'tinggi', 'jisim', 'berat', 'kotak', 'beban', 'permukaan', '50']], none: ['panjang', 'daya'] }],
+          model: ['Ketinggian satah condong (50 cm)', 'Jisim kotak'], hint: 'Ada dua perkara yang SAMA dalam ayat soalan.' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['daya', 'bacaan', 'neraca', 'tenaga']], none: ['panjang satah'] }],
+          model: ['Daya yang diperlukan untuk menarik kotak'], hint: 'Apa yang diukur oleh neraca spring?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [{ trend: { a: ['satah condong', 'satah', 'papan', 'landasan'], b: ['daya', 'bacaan neraca spring', 'bacaan', 'tenaga'], same: false } }],
+          model: ['Semakin panjang satah condong, semakin berkurang daya yang diperlukan.',
+                  'Semakin bertambah panjang satah condong, semakin kecil daya untuk menarik kotak.'],
+          hint: 'Panjang naik 1 → 3 m, daya turun 8 → 3 N.' },
+        { kind: 'PM', type: 'write', long: true, prompt: 'Mengapakah ketinggian satah condong dan jisim kotak mesti dimalarkan?',
+          rubric: [{ all: [['adil', 'tepat', 'perbandingan', 'bandingan', 'banding', 'betul', 'saintifik']] }],
+          model: ['Supaya ujian adil / keputusan tepat, kerana hanya panjang satah condong yang mempengaruhi daya.'],
+          hint: 'Kalau banyak perkara berubah serentak, adakah perbandingan itu ______?' },
+        { kind: 'LAIN', type: 'write', prompt: 'Ramalkan daya yang diperlukan jika satah condong sepanjang 4 m digunakan.',
+          rubric: [{ all: [['kurang', 'rendah', 'kecil', 'sedikit', 'berkurang']] }, { num: { min: 0.5, max: 2.9 } }],
+          model: ['Kurang daripada 3 N (contoh: 2 N)'], hint: 'Ikut corak jadual.' }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_pembolehubah.js"></script>
+</body>
+</html>

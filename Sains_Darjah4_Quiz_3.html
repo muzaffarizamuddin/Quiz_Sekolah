@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuiz Sains Darjah 4 – Siri 3</title>
+    <link rel="stylesheet" href="kuiz_pembolehubah.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Kuiz Sains Darjah 4 – Siri 3: Pemboleh Ubah (Asas)</h1>
+        <p class="subtitle">Bagi setiap penyiasatan, kenal pasti pemboleh ubah <b>dimanipulasi</b>, <b>dimalarkan</b> dan <b>bergerak balas</b>, kemudian nyatakan <b>hubungan</b>. Soalan 1–3 pilih jawapan, Soalan 4–6 guna kotak perkataan, Soalan 7–10 tulis sendiri seperti dalam peperiksaan. Klik <strong>Semak Jawapan</strong> di bawah selepas selesai.</p>
+    </div>
+
+    <details id="petua"></details>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="quizContainer"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan &amp; Lihat Markah</button>
+    <button class="reset-btn" id="resetBtn">Cuba Semula</button>
+</div>
+
+<script>
+window.QUIZ = {
+  theme: '#7c3aed', themeDark: '#5b21b6', themeSoft: '#f5f3ff',
+  levels: [
+    { from: 1, name: 'Tahap 1 — Pilih Jawapan (Mudah)', desc: 'Soalan 1–3: Pilih satu jawapan yang betul bagi setiap bahagian.' },
+    { from: 4, name: 'Tahap 2 — Kotak Perkataan (Sederhana)', desc: 'Soalan 4–6: Bina jawapan sendiri dengan memilih perkataan dari kotak kuning.' },
+    { from: 7, name: 'Tahap 3 — Tulis Sendiri (Seperti Peperiksaan)', desc: 'Soalan 7–10: Tulis jawapan dengan ayat kamu sendiri. Gunakan formula dalam kotak PETUA.' }
+  ],
+  credits: [
+    'Shinkansen N700 — "N700 Series Shinkansen on Tokaido Line Tokyo March 2015", CC BY 4.0',
+    'KTM Komuter Kelas 83 — "Class83EMU-KTMKomuter.JPG", CC BY-SA 3.0',
+    'Glob — "A New American Thirteen Inch Terrestrial Globe", domain awam',
+    'Sudu logam — "Stainless 23.jpg", domain awam; Sudu kayu — "Cuiller en bois - dessus.jpg", CC BY-SA 3.0',
+    'Murid berlari — "2014-11-15 Relay race on the Sports day of Haikou Elementary School (Zhunan)", CC BY 2.0',
+    'Berudu — "Tadpoles 10 days.jpg", CC BY-SA 3.0',
+    'Pemerah R — "Zitronenpresse (fcm).jpg", CC BY-SA 4.0; Pemerah S — "Citrus lever press.jpg", domain awam'
+  ],
+  questions: [
+    // ---------------- TAHAP 1: MCQ ----------------
+    {
+      title: 'Bentuk Hadapan Kereta Api',
+      scenario: 'Dua buah kereta api diuji di atas landasan yang sama. Kedua-dua kereta api menggunakan <b>Enjin A</b> yang sama kuasa. Kereta api P mempunyai hidung yang <b>tajam</b>, manakala kereta api Q mempunyai hidung yang <b>leper</b>.',
+      images: [
+        { src: 'images/kereta_api_tajam.jpg', cap: 'Kereta api P — hidung tajam (Enjin A)' },
+        { src: 'images/kereta_api_leper.jpg', cap: 'Kereta api Q — hidung leper (Enjin A)' }
+      ],
+      table: { headers: ['Kereta api', 'Bentuk hidung', 'Enjin', 'Kelajuan maksimum'],
+        rows: [['P', 'Tajam', 'Enjin A', '321 km/j'], ['Q', 'Leper', 'Enjin A', '120 km/j']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi (yang sengaja dibezakan)?',
+          options: ['Kuasa enjin', 'Bentuk hidung kereta api', 'Kelajuan kereta api', 'Panjang landasan'], answer: 1,
+          explain: 'Hanya bentuk hidung yang berbeza (tajam vs leper). Itulah yang diubah.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan (yang dikekalkan sama)?',
+          options: ['Kuasa enjin (Enjin A)', 'Bentuk hidung kereta api', 'Kelajuan kereta api', 'Warna kereta api'], answer: 0,
+          explain: 'Kedua-dua kereta api guna Enjin A, jadi kuasa enjin dimalarkan supaya ujian adil.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas (hasil yang diukur)?',
+          options: ['Bentuk hidung kereta api', 'Jenis enjin', 'Kelajuan kereta api', 'Bilangan penumpang'], answer: 2,
+          explain: 'Kelajuan (km/j) ialah hasil yang diukur. Lihat lajur kanan jadual.' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah hubungan antara bentuk hidung kereta api dengan kelajuannya?',
+          options: ['Kereta api berhidung leper bergerak lebih laju berbanding kereta api berhidung tajam.',
+                    'Kereta api berhidung tajam bergerak lebih laju berbanding kereta api berhidung leper.',
+                    'Kedua-dua kereta api bergerak dengan kelajuan yang sama.',
+                    'Enjin A menyebabkan kereta api bergerak laju.'], answer: 1,
+          explain: 'Bentuk tajam (aerodinamik) mengurangkan rintangan udara, jadi P lebih laju (321 km/j berbanding 120 km/j).' }
+      ]
+    },
+    {
+      title: 'Beluncas di dalam Beg Plastik',
+      scenario: 'Seekor beluncas dan sehelai daun dimasukkan ke dalam setiap beg plastik yang sama saiz. Beg P <b>tidak berlubang</b>, manakala beg Q <b>ditebuk beberapa lubang</b>. Keadaan beluncas diperhatikan selepas 3 hari.',
+      images: [{ src: 'images/beluncas.PNG', cap: 'Beg P (tidak berlubang) dan Beg Q (berlubang)' }],
+      table: { headers: ['Beg', 'Lubang pada beg', 'Keadaan beluncas selepas 3 hari'],
+        rows: [['P', 'Tiada', 'Mati'], ['Q', 'Ada', 'Hidup']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi?',
+          options: ['Saiz beg plastik', 'Kehadiran lubang pada beg plastik (udara)', 'Keadaan beluncas', 'Jenis daun'], answer: 1,
+          explain: 'Satu beg ada lubang, satu lagi tiada. Lubang membenarkan udara masuk.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan?',
+          options: ['Keadaan beluncas', 'Kehadiran lubang', 'Bilangan beluncas dan saiz beg plastik', 'Masa beluncas mati'], answer: 2,
+          explain: 'Setiap beg ada seekor beluncas dan saiznya sama. Jenis daun juga sama.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas?',
+          options: ['Keadaan beluncas (hidup atau mati)', 'Saiz lubang', 'Jenis beg plastik', 'Warna daun'], answer: 0,
+          explain: 'Kita perhatikan sama ada beluncas hidup atau mati selepas 3 hari.' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah kesimpulan penyiasatan ini?',
+          options: ['Beluncas memerlukan daun yang banyak untuk hidup.',
+                    'Beluncas dalam beg berlubang hidup kerana mendapat udara untuk bernafas.',
+                    'Beluncas dalam beg tidak berlubang hidup lebih lama.',
+                    'Saiz beg mempengaruhi keadaan beluncas.'], answer: 1,
+          explain: 'Haiwan memerlukan udara (oksigen) untuk bernafas. Lubang membenarkan udara masuk.' }
+      ]
+    },
+    {
+      title: 'Bahan Lut Sinar, Lut Cahaya dan Legap',
+      scenario: 'Siti meletakkan tiga jenis bahan, satu demi satu, di antara lampu suluh dan skrin. Lampu suluh yang sama digunakan dan <b>jaraknya dari skrin tidak diubah</b>. Dia memerhatikan kecerahan cahaya pada skrin.',
+      images: [
+        { src: 'images/lampusuluh.png', cap: 'Susunan radas (kad digantikan dengan bahan yang diuji)' },
+        { src: 'images/lut_legap.png', cap: 'Lut sinar, lut cahaya, legap' }
+      ],
+      table: { headers: ['Jenis bahan', 'Kecerahan cahaya pada skrin'],
+        rows: [['Kaca jernih', 'Sangat terang'], ['Kertas minyak', 'Malap'], ['Kadbod', 'Gelap (tiada cahaya)']] },
+      parts: [
+        { kind: 'PD', type: 'mcq', prompt: 'Apakah pemboleh ubah dimanipulasi?',
+          options: ['Jarak lampu suluh dari skrin', 'Jenis bahan', 'Kecerahan cahaya pada skrin', 'Saiz skrin'], answer: 1,
+          explain: 'Siti menukar bahan: kaca jernih, kertas minyak, kadbod.' },
+        { kind: 'PM', type: 'mcq', prompt: 'Apakah pemboleh ubah dimalarkan?',
+          options: ['Jarak lampu suluh dari skrin', 'Jenis bahan', 'Kecerahan cahaya pada skrin', 'Ketebalan kadbod'], answer: 0,
+          explain: 'Jarak lampu suluh tidak diubah, dan lampu suluh yang sama digunakan.' },
+        { kind: 'PB', type: 'mcq', prompt: 'Apakah pemboleh ubah bergerak balas?',
+          options: ['Jenis lampu suluh', 'Jenis bahan', 'Kecerahan cahaya pada skrin', 'Masa lampu dinyalakan'], answer: 2,
+          explain: 'Siti memerhatikan kecerahan cahaya pada skrin.' },
+        { kind: 'HUB', type: 'mcq', prompt: 'Apakah hubungan antara jenis bahan dengan kecerahan cahaya pada skrin?',
+          options: ['Kadbod membenarkan paling banyak cahaya melaluinya.',
+                    'Kertas minyak menghasilkan cahaya paling terang pada skrin.',
+                    'Kaca jernih (lut sinar) membenarkan paling banyak cahaya melaluinya, jadi skrin paling terang.',
+                    'Semua bahan menghasilkan kecerahan yang sama.'], answer: 2,
+          explain: 'Lut sinar → semua cahaya lalu (terang). Lut cahaya → sebahagian (malap). Legap → tiada (gelap).' }
+      ]
+    },
+
+    // ---------------- TAHAP 2: WORD BANK ----------------
+    {
+      title: 'Tuas: Jarak Beban dari Fulkrum',
+      scenario: 'Ali menggunakan sebatang pembaris panjang di atas fulkrum sebagai tuas. Dia meletakkan <b>beban 400 g yang sama</b> pada jarak yang berbeza dari fulkrum. Dia menggunakan neraca spring di hujung pembaris untuk mengukur daya yang diperlukan bagi mengangkat beban.',
+      svg: `<svg viewBox="0 0 520 220" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <line x1="20" y1="190" x2="500" y2="190" stroke="#94a3b8" stroke-width="2"/>
+        <rect x="40" y="110" width="440" height="10" rx="3" fill="#b45309"/>
+        <polygon points="260,120 232,190 288,190" fill="#f59e0b" stroke="#92400e"/>
+        <text x="260" y="208" text-anchor="middle" font-weight="bold">Fulkrum</text>
+        <rect x="340" y="76" width="40" height="34" fill="#64748b"/>
+        <text x="360" y="98" text-anchor="middle" fill="white" font-weight="bold">400 g</text>
+        <text x="360" y="68" text-anchor="middle" font-weight="bold">Beban</text>
+        <line x1="272" y1="140" x2="358" y2="140" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="5 3"/>
+        <polygon points="358,140 350,135 350,145" fill="#1d4ed8"/>
+        <text x="300" y="160" fill="#1d4ed8">jarak beban dari fulkrum</text>
+        <text x="300" y="175" fill="#1d4ed8">(10, 20, 30, 40 cm)</text>
+        <line x1="60" y1="120" x2="60" y2="134" stroke="#334155" stroke-width="2"/>
+        <rect x="48" y="134" width="24" height="40" rx="4" fill="#e2e8f0" stroke="#334155"/>
+        <line x1="60" y1="174" x2="60" y2="186" stroke="#334155" stroke-width="2"/>
+        <polygon points="60,188 54,178 66,178" fill="#dc2626"/>
+        <text x="84" y="152" fill="#dc2626" font-weight="bold">Daya (neraca spring)</text>
+      </svg>`,
+      table: { headers: ['Jarak beban dari fulkrum (cm)', 'Daya yang diperlukan (N)'],
+        rows: [['10', '1'], ['20', '2'], ['30', '3'], ['40', '4']] },
+      chips: ['jarak beban dari fulkrum', 'daya yang diperlukan', 'jisim beban', 'bertambah', 'berkurang', 'warna pembaris', 'masa'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['jarak beban dari fulkrum']],
+          explain: 'Ali mengubah jarak beban: 10, 20, 30, 40 cm.' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['jisim beban']],
+          explain: 'Beban 400 g yang sama digunakan setiap kali.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['daya yang diperlukan']],
+          explain: 'Neraca spring mengukur daya yang diperlukan.' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan antara pemboleh ubah dimanipulasi dengan bergerak balas:',
+          template: 'Semakin {0} {1}, semakin {2} {3}.',
+          accept: [['bertambah', 'jarak beban dari fulkrum', 'bertambah', 'daya yang diperlukan'],
+                   ['berkurang', 'jarak beban dari fulkrum', 'berkurang', 'daya yang diperlukan']],
+          explain: 'Lihat jadual: jarak naik 10 → 40 cm, daya pun naik 1 → 4 N. Kedua-duanya bertambah.' }
+      ]
+    },
+    {
+      title: 'Sudu dalam Air Panas',
+      scenario: 'Tiga batang sudu yang sama panjang, iaitu sudu <b>logam</b>, sudu <b>plastik</b> dan sudu <b>kayu</b>, dimasukkan ke dalam bikar berisi <b>200 ml air panas</b>. Seketul mentega yang sama saiz diletakkan di hujung atas setiap sudu. Masa untuk mentega cair dicatatkan.',
+      images: [
+        { src: 'images/sudu_logam.jpg', cap: 'Sudu logam' },
+        { src: 'images/sudu_kayu.jpg', cap: 'Sudu kayu' }
+      ],
+      svg: `<svg viewBox="0 0 470 220" width="470" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <path d="M120 80 L120 200 L300 200 L300 80" fill="none" stroke="#334155" stroke-width="3"/>
+        <rect x="122" y="120" width="176" height="78" fill="#bfdbfe"/>
+        <text x="210" y="180" text-anchor="middle" fill="#1e3a8a" font-weight="bold">Air panas 200 ml</text>
+        <path d="M170 112 q6 -8 0 -16 q-6 -8 0 -16" stroke="#94a3b8" fill="none"/>
+        <path d="M250 112 q6 -8 0 -16 q-6 -8 0 -16" stroke="#94a3b8" fill="none"/>
+        <line x1="150" y1="160" x2="70" y2="40" stroke="#6b7280" stroke-width="7" stroke-linecap="round"/>
+        <rect x="56" y="24" width="22" height="14" fill="#fde047" stroke="#ca8a04"/>
+        <text x="40" y="18" font-weight="bold">Logam</text>
+        <line x1="210" y1="165" x2="210" y2="35" stroke="#f472b6" stroke-width="7" stroke-linecap="round"/>
+        <rect x="199" y="19" width="22" height="14" fill="#fde047" stroke="#ca8a04"/>
+        <text x="190" y="13" font-weight="bold">Plastik</text>
+        <line x1="270" y1="160" x2="350" y2="40" stroke="#92400e" stroke-width="7" stroke-linecap="round"/>
+        <rect x="342" y="24" width="22" height="14" fill="#fde047" stroke="#ca8a04"/>
+        <text x="335" y="18" font-weight="bold">Kayu</text>
+        <text x="370" y="36" fill="#a16207">← mentega</text>
+      </svg>`,
+      table: { headers: ['Jenis bahan sudu', 'Masa untuk mentega cair (minit)'],
+        rows: [['Logam', '2'], ['Plastik', '8'], ['Kayu', '11']] },
+      chips: ['jenis bahan sudu', 'masa untuk mentega cair', 'isipadu air panas', 'sudu logam', 'sudu kayu', 'sudu plastik',
+              'paling singkat', 'paling lama', 'konduktor haba', 'penebat haba', 'warna mentega'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['jenis bahan sudu']],
+          explain: 'Bahan sudu dibezakan: logam, plastik, kayu.' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['isipadu air panas']],
+          explain: 'Isipadu air panas sama (200 ml). Saiz mentega dan panjang sudu juga sama.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['masa untuk mentega cair']],
+          explain: 'Masa (minit) diukur. Lihat lajur kanan jadual.' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan:',
+          template: 'Mentega pada {0} cair dalam masa {1} kerana logam ialah {2} yang baik.',
+          accept: [['sudu logam', 'paling singkat', 'konduktor haba']],
+          explain: 'Logam mengalirkan haba dengan cepat (konduktor haba), jadi mentega cair dalam 2 minit sahaja.' },
+        { kind: 'LAIN', type: 'bank', prompt: 'Lengkapkan inferens:',
+          template: 'Mentega pada {0} cair {1} kerana kayu ialah {2}.',
+          accept: [['sudu kayu', 'paling lama', 'penebat haba']],
+          explain: 'Kayu tidak mengalirkan haba dengan baik (penebat haba), jadi mentega mengambil masa 11 minit.' }
+      ]
+    },
+    {
+      title: 'Glob dan Lampu Suluh: Putaran Bumi',
+      scenario: 'Murid-murid menggunakan glob sebagai model Bumi dan lampu suluh sebagai Matahari. Lampu suluh diletakkan <b>50 cm dari glob</b> dan tidak dialihkan. Glob diputar pada paksinya dengan <b>kelajuan yang berbeza</b>. Mereka mengira berapa kali kedudukan Malaysia (titik merah) mengalami siang dalam masa 1 minit.',
+      images: [{ src: 'images/glob.jpg', cap: 'Glob (model Bumi)' }],
+      svg: `<svg viewBox="0 0 480 200" width="480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <rect x="20" y="85" width="70" height="30" rx="4" fill="#475569"/>
+        <polygon points="90,80 120,70 120,130 90,120" fill="#94a3b8"/>
+        <text x="70" y="150" text-anchor="middle" font-weight="bold">Lampu suluh</text>
+        <text x="70" y="166" text-anchor="middle">(Matahari)</text>
+        <line x1="125" y1="80" x2="300" y2="65" stroke="#facc15" stroke-width="3"/>
+        <line x1="125" y1="100" x2="300" y2="100" stroke="#facc15" stroke-width="3"/>
+        <line x1="125" y1="120" x2="300" y2="135" stroke="#facc15" stroke-width="3"/>
+        <circle cx="350" cy="100" r="55" fill="#60a5fa"/>
+        <path d="M350 45 A55 55 0 0 1 350 155 Z" fill="#1e293b" opacity="0.65"/>
+        <line x1="340" y1="30" x2="360" y2="170" stroke="#334155" stroke-width="2" stroke-dasharray="4 3"/>
+        <circle cx="318" cy="92" r="6" fill="#dc2626"/>
+        <text x="270" y="190" fill="#dc2626">● Malaysia</text>
+        <text x="320" y="88" font-size="11" fill="white">siang</text>
+        <text x="368" y="104" font-size="11" fill="white">malam</text>
+        <path d="M300 30 Q350 5 400 30" fill="none" stroke="#16a34a" stroke-width="2"/>
+        <polygon points="400,30 390,22 392,34" fill="#16a34a"/>
+        <text x="350" y="16" text-anchor="middle" fill="#16a34a" font-weight="bold">putar</text>
+        <line x1="125" y1="178" x2="295" y2="178" stroke="#334155"/>
+        <text x="210" y="172" text-anchor="middle">50 cm (tetap)</text>
+      </svg>`,
+      table: { headers: ['Kelajuan putaran glob (putaran seminit)', 'Bilangan kali Malaysia mengalami siang dalam 1 minit'],
+        rows: [['2', '2'], ['4', '4'], ['6', '6']] },
+      chips: ['kelajuan putaran glob', 'bilangan kali siang dan malam', 'jarak lampu suluh dari glob', 'bertambah', 'berkurang',
+              'putaran', 'peredaran', 'bentuk lampu suluh'],
+      parts: [
+        { kind: 'PD', type: 'bank', prompt: 'Pemboleh ubah dimanipulasi:', template: '{0}', accept: [['kelajuan putaran glob']],
+          explain: 'Glob diputar dengan kelajuan berbeza: 2, 4, 6 putaran seminit.' },
+        { kind: 'PM', type: 'bank', prompt: 'Pemboleh ubah dimalarkan:', template: '{0}', accept: [['jarak lampu suluh dari glob']],
+          explain: 'Lampu suluh kekal 50 cm dari glob.' },
+        { kind: 'PB', type: 'bank', prompt: 'Pemboleh ubah bergerak balas:', template: '{0}', accept: [['bilangan kali siang dan malam']],
+          explain: 'Murid mengira berapa kali Malaysia mengalami siang (dan malam).' },
+        { kind: 'HUB', type: 'bank', prompt: 'Lengkapkan hubungan:', template: 'Semakin {0} {1}, semakin {2} {3}.',
+          accept: [['bertambah', 'kelajuan putaran glob', 'bertambah', 'bilangan kali siang dan malam'],
+                   ['berkurang', 'kelajuan putaran glob', 'berkurang', 'bilangan kali siang dan malam']],
+          explain: 'Kelajuan naik 2 → 6, bilangan siang pun naik 2 → 6.' },
+        { kind: 'LAIN', type: 'bank', prompt: 'Lengkapkan fakta sains:', template: 'Kejadian siang dan malam disebabkan oleh {0} Bumi pada paksinya.',
+          accept: [['putaran']],
+          explain: 'Bumi berputar pada paksinya dari barat ke timur. Satu putaran lengkap = 24 jam. (Peredaran = Bumi mengelilingi Matahari.)' }
+      ]
+    },
+
+    // ---------------- TAHAP 3: WRITTEN ----------------
+    {
+      title: 'Kereta Mainan di Satah Condong',
+      scenario: 'Aminah membina satah condong menggunakan sekeping papan dan beberapa buah buku. Dia menambah <b>bilangan buku</b> untuk meninggikan satah condong. <b>Kereta mainan yang sama</b> dilepaskan dari bahagian atas papan. Dia mengukur jarak kereta mainan bergerak di atas lantai yang sama.',
+      svg: `<svg viewBox="0 0 520 200" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="13">
+        <line x1="10" y1="170" x2="510" y2="170" stroke="#64748b" stroke-width="2"/>
+        <rect x="30" y="150" width="60" height="20" fill="#ef4444"/>
+        <rect x="30" y="130" width="60" height="20" fill="#3b82f6"/>
+        <rect x="30" y="110" width="60" height="20" fill="#22c55e"/>
+        <text x="60" y="100" text-anchor="middle" font-weight="bold">Buku</text>
+        <line x1="90" y1="110" x2="250" y2="170" stroke="#a16207" stroke-width="6" stroke-linecap="round"/>
+        <rect x="98" y="100" width="34" height="14" rx="3" fill="#7c3aed" transform="rotate(20 115 107)"/>
+        <circle cx="104" cy="118" r="4" fill="#111"/><circle cx="124" cy="125" r="4" fill="#111"/>
+        <text x="150" y="102" fill="#7c3aed" font-weight="bold">kereta mainan</text>
+        <rect x="430" y="152" width="34" height="14" rx="3" fill="#7c3aed"/>
+        <circle cx="437" cy="168" r="4" fill="#111"/><circle cx="457" cy="168" r="4" fill="#111"/>
+        <line x1="252" y1="188" x2="428" y2="188" stroke="#1d4ed8" stroke-width="2"/>
+        <polygon points="428,188 420,183 420,193" fill="#1d4ed8"/>
+        <text x="340" y="182" text-anchor="middle" fill="#1d4ed8">jarak kereta mainan bergerak</text>
+        <line x1="18" y1="110" x2="18" y2="170" stroke="#dc2626" stroke-width="2"/>
+        <text x="10" y="60" fill="#dc2626">ketinggian</text>
+      </svg>`,
+      table: { headers: ['Bilangan buku (ketinggian satah condong)', 'Jarak kereta mainan bergerak (cm)'],
+        rows: [['1', '40'], ['2', '70'], ['3', '100'], ['4', '130']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['ketinggian', 'tinggi', 'bilangan buku', 'jumlah buku', 'buku']], none: ['jarak'] }],
+          model: ['Ketinggian satah condong', 'Bilangan buku'], hint: 'Apa yang Aminah tambah / ubah? Lihat lajur KIRI jadual.' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan satu pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['kereta', 'permukaan', 'lantai', 'jisim', 'panjang papan', 'papan']], none: ['jarak', 'ketinggian', 'bilangan buku'] }],
+          model: ['Kereta mainan yang sama / jisim kereta mainan', 'Permukaan lantai', 'Panjang papan'],
+          hint: 'Apa yang SAMA setiap kali? (Baca ayat: "kereta mainan yang sama", "lantai yang sama")' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['jarak', 'jauh']], none: ['ketinggian', 'bilangan buku'] }],
+          model: ['Jarak kereta mainan bergerak'], hint: 'Apa yang Aminah UKUR dengan pembaris? Lihat lajur KANAN jadual.' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [{ trend: { a: ['ketinggian satah condong', 'satah condong', 'ketinggian', 'satah', 'bilangan buku', 'buku', 'papan'],
+                              b: ['jarak', 'kereta mainan', 'kereta'], same: true } }],
+          model: ['Semakin bertambah ketinggian satah condong, semakin bertambah jarak kereta mainan bergerak.',
+                  'Semakin banyak buku, semakin jauh kereta mainan bergerak.'],
+          hint: 'Ini nombor, jadi guna formula: "Semakin bertambah ______, semakin ______ ______."' }
+      ]
+    },
+    {
+      title: 'Kadar Pernafasan Selepas Aktiviti',
+      scenario: 'Haziq menjalankan tiga aktiviti berbeza, setiap satu selama <b>5 minit</b>: duduk, berjalan dan berlari. Selepas setiap aktiviti, rakannya mengira bilangan tarikan nafas Haziq dalam 1 minit.',
+      images: [{ src: 'images/murid_berlari.jpg', cap: 'Murid berlari' }],
+      table: { headers: ['Jenis aktiviti (5 minit)', 'Kadar pernafasan (tarikan nafas seminit)'],
+        rows: [['Duduk', '18'], ['Berjalan', '25'], ['Berlari', '40']] },
+      parts: [
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['aktiviti', 'senaman', 'kegiatan', 'duduk berjalan berlari']], none: ['kadar', 'nafas', 'pernafasan', 'tempoh', 'minit'] }],
+          model: ['Jenis aktiviti'], hint: 'Apa yang Haziq tukar-tukar? Duduk, berjalan, berlari ialah jenis ______.' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['tempoh', 'masa', 'minit', 'murid', 'orang', 'haziq', 'budak']], none: ['kadar', 'nafas', 'pernafasan'] }],
+          model: ['Tempoh aktiviti (5 minit)', 'Murid yang sama (Haziq)'], hint: 'Setiap aktiviti dibuat selama berapa minit?' },
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['pernafasan', 'nafas', 'bernafas', 'tarikan']] }],
+          model: ['Kadar pernafasan', 'Bilangan tarikan nafas seminit'], hint: 'Apa yang rakannya KIRA?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara jenis aktiviti dengan kadar pernafasan.',
+          rubric: [
+            { trend: { a: ['jenis aktiviti', 'aktiviti', 'senaman', 'bersenam', 'pergerakan'], b: ['kadar pernafasan', 'pernafasan', 'bernafas', 'nafas', 'tarikan'], same: true } },
+            { compare: { win: ['berlari', 'lari'], lose: ['duduk', 'berjalan', 'jalan'], b: ['pernafasan', 'bernafas', 'nafas', 'tarikan'], winDir: 1 } }
+          ],
+          model: ['Semakin cergas/aktif aktiviti, semakin tinggi kadar pernafasan.',
+                  'Kadar pernafasan semasa berlari lebih tinggi berbanding semasa duduk.'],
+          hint: 'Aktiviti ialah JENIS, jadi boleh tulis: "Kadar pernafasan semasa ______ lebih tinggi berbanding semasa ______."' }
+      ]
+    },
+    {
+      title: 'Berudu dan Lapisan Minyak',
+      scenario: 'Lima ekor berudu dimasukkan ke dalam setiap bekas yang berisi <b>500 ml air kolam</b>. Bekas A hanya mengandungi air kolam. Bekas B mengandungi air kolam dengan <b>lapisan minyak</b> di atas permukaan air. Keadaan berudu diperhatikan selepas satu hari.',
+      images: [
+        { src: 'images/berudu.png', cap: 'Bekas B: berudu dalam air berminyak' },
+        { src: 'images/berudu_foto.jpg', cap: 'Berudu' }
+      ],
+      table: { headers: ['Bekas', 'Lapisan minyak', 'Keadaan berudu selepas 1 hari'],
+        rows: [['A', 'Tiada', '5 ekor hidup'], ['B', 'Ada', '5 ekor mati']] },
+      parts: [
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['keadaan', 'hidup', 'mati', 'bilangan berudu yang hidup', 'bernafas']], none: ['minyak'] }],
+          model: ['Keadaan berudu (hidup atau mati)', 'Bilangan berudu yang hidup'], hint: 'Apa yang diperhatikan selepas satu hari?' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan satu pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['bilangan berudu', 'lima', '5', 'isipadu', 'air kolam', '500', 'saiz bekas', 'bekas', 'jenis berudu']], none: ['minyak', 'keadaan', 'hidup', 'mati'] }],
+          model: ['Bilangan berudu (5 ekor)', 'Isipadu air kolam (500 ml)'], hint: 'Ada dua nombor dalam ayat soalan yang SAMA untuk kedua-dua bekas.' },
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['minyak', 'berminyak']] }],
+          model: ['Kehadiran lapisan minyak', 'Ada atau tiada minyak'], hint: 'Apakah beza bekas A dengan bekas B?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [
+            { all: [['minyak', 'berminyak'], ['mati', 'tidak hidup', 'tidak dapat bernafas', 'tak dapat bernafas', 'lemas']], none: ['tiada minyak mati', 'tanpa minyak mati'] },
+            { all: [['tanpa minyak', 'tiada minyak', 'tidak berminyak', 'tak ada minyak', 'tiada lapisan minyak', 'tanpa lapisan minyak', 'bekas a'], ['hidup']] }
+          ],
+          model: ['Berudu dalam air yang ada lapisan minyak mati, manakala berudu dalam air tanpa minyak hidup.',
+                  'Kehadiran lapisan minyak menyebabkan berudu mati.'],
+          hint: 'Ini ADA / TIADA, jadi sebut: "Berudu dalam air yang ada minyak ______, berudu dalam air tanpa minyak ______."' },
+        { kind: 'LAIN', type: 'write', long: true, prompt: 'Nyatakan inferens: Mengapakah berudu dalam bekas B mati?',
+          rubric: [{ all: [['udara', 'oksigen', 'bernafas', 'nafas', 'pernafasan']] }],
+          model: ['Lapisan minyak menghalang udara/oksigen sampai ke air, jadi berudu tidak dapat bernafas.'],
+          hint: 'Berudu memerlukan sesuatu dari udara untuk hidup...' }
+      ]
+    },
+    {
+      title: 'Alat Pemerah Jus R dan S (seperti soalan peperiksaan)',
+      scenario: 'Rajah menunjukkan dua alat dengan kegunaan yang sama pada dua zaman yang berbeza. Dua biji lemon yang <b>sama saiz</b> diperah menggunakan setiap alat. Isipadu jus yang terhasil diukur.',
+      images: [
+        { src: 'images/pemerah_R.jpg', cap: 'Alat R' },
+        { src: 'images/pemerah_S.jpg', cap: 'Alat S' }
+      ],
+      table: { headers: ['Alat', 'Isipadu jus lemon (ml)'], rows: [['R', '40'], ['S', '90']] },
+      parts: [
+        { kind: 'PB', type: 'write', prompt: 'Nyatakan pemboleh ubah bergerak balas.',
+          rubric: [{ all: [['jus']] , none: ['jenis alat'] }],
+          model: ['Isipadu jus lemon', 'Jumlah jus lemon yang diperah'], hint: 'Apa yang diukur (ml)?' },
+        { kind: 'PM', type: 'write', prompt: 'Nyatakan pemboleh ubah dimalarkan.',
+          rubric: [{ all: [['lemon', 'limau', 'buah']], none: ['jus'] }, { all: [['saiz', 'bilangan', 'dua biji', '2 biji', 'jenis buah']], none: ['jus', 'alat'] }],
+          model: ['Saiz lemon', 'Bilangan lemon (dua biji)'],
+          hint: 'Apa yang SAMA untuk kedua-dua alat? (Baca ayat: "lemon yang sama saiz")' },
+        { kind: 'PD', type: 'write', prompt: 'Nyatakan pemboleh ubah dimanipulasi.',
+          rubric: [{ all: [['alat*', 'pemerah', 'mesin', 'r dan s']], none: ['isipadu', 'jumlah', 'saiz lemon'] }],
+          model: ['Jenis alat pemerah'], hint: 'Apakah beza R dan S?' },
+        { kind: 'HUB', type: 'write', long: true, prompt: 'Nyatakan hubungan antara pemboleh ubah dimanipulasi dengan pemboleh ubah bergerak balas.',
+          rubric: [{ compare: { win: ['alat s', 'pemerah s', 's', 'tuas', 'mesin ringkas', 'moden'], lose: ['alat r', 'pemerah r', 'r', 'lama', 'tradisional'],
+                                b: ['jus'], winDir: 1 } }],
+          model: ['Alat S menghasilkan isipadu jus yang lebih banyak berbanding alat R.',
+                  'Alat R menghasilkan jus yang lebih sedikit daripada alat S.'],
+          hint: 'Jangan tulis "jus tidak sama" sahaja! Sebut alat MANA yang menghasilkan jus LEBIH BANYAK.' },
+        { kind: 'LAIN', type: 'write', long: true, prompt: 'Ramalkan masa yang diambil oleh alat R berbanding dengan alat S untuk memerah jus.',
+          rubric: [{ compare: { win: ['alat r', 'pemerah r', 'r'], lose: ['alat s', 'pemerah s', 's'], b: ['masa', 'tempoh'], needB: false, winDir: 1,
+                                dirMap: { cepat: -1, pantas: -1, laju: -1, sekejap: -1, singkat: -1, lambat: 1, lama: 1, panjang: 1 } } }],
+          model: ['Alat R mengambil masa yang lebih lama berbanding alat S.', 'Alat S mengambil masa yang lebih singkat daripada alat R.'],
+          hint: 'Alat S guna tuas, jadi lebih mudah. Alat mana yang lebih LAMA?' },
+        { kind: 'LAIN', type: 'write', prompt: 'Namakan mesin ringkas yang terdapat pada alat S.',
+          rubric: [{ all: [['tuas']] }], model: ['Tuas'], hint: 'Pemegang panjang yang ditekan ke bawah dan berpusing pada satu titik (fulkrum).' }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_pembolehubah.js"></script>
+</body>
+</html>
