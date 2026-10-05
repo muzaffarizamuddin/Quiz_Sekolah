@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Year 4 – UASA Practice Paper A</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Back to quiz list</a>
+    <div class="page-header">
+        <h1>English Year 4 – UASA Practice Paper A</h1>
+        <p class="subtitle">Same format as the UASA 2024 paper: 7 parts, 50 marks, 1 hour 15 minutes. Answer ALL questions, then press <b>Check Answers</b> at the bottom.
+        <span class="malay" style="display:block">Jawab semua soalan. Tekan butang "Check Answers" di bawah selepas selesai.</span></p>
+        <table class="marks-table">
+            <tr><th>Part</th><th>Questions</th><th>Marks</th></tr>
+            <tr><td>1</td><td>1 – 5</td><td>5</td></tr><tr><td>2</td><td>6 – 9</td><td>4</td></tr>
+            <tr><td>3</td><td>10 – 14</td><td>5</td></tr><tr><td>4</td><td>15 – 20</td><td>6</td></tr>
+            <tr><td>5</td><td>21 – 25</td><td>5</td></tr><tr><td>6</td><td>26 (note)</td><td>10</td></tr>
+            <tr><td>7</td><td>27 (email)</td><td>15</td></tr><tr><th colspan="2">Total</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Check Answers</button>
+    <button class="reset-btn" id="resetBtn">Start Again</button>
+</div>
+
+<script>
+window.PAPER = {
+  theme: '#1d4ed8', themeDark: '#1e3a8a', themeSoft: '#eff6ff',
+  parts: [
+    {
+      title: 'Part 1 (Questions 1 – 5)', marks: 5,
+      instr: 'For each question, choose the correct answer A, B or C.',
+      questions: [
+        { n: 1,
+          stim: `<div class="email-box"><div class="hdr">To: siti@gmail.com<br>From: lily@gmail.com</div>
+            Dear Siti,<br><br>My family went to Langkawi last weekend. We took a ferry from Kuala Perlis. My brother loved the beach the most, but my favourite part was the cable car ride. We could see the whole island from the top!<br><br>Your friend,<br>Lily</div>`,
+          q: 'Based on the email, Lily\'s favourite part of the trip was the _______.',
+          options: ['ferry', 'cable car', 'beach'], answer: 1,
+          explain: '"...but my favourite part was the cable car ride." The beach was her BROTHER\'s favourite.' },
+        { n: 2,
+          stim: `<div class="sign"><h4>LIBRARY RULES</h4><ul><li>Speak softly</li><li>No food or drinks</li><li>Return books on time</li><li>Handle books with care</li></ul></div>`,
+          q: 'Based on the sign, which of these is NOT allowed in the library?',
+          options: ['Reading quietly.', 'Eating snacks.', 'Borrowing books.'], answer: 1,
+          explain: '"No food or drinks", so eating snacks is not allowed.' },
+        { n: 3,
+          stim: `<div class="chat"><div class="bubble l"><b>Aina</b>Shall we go cycling this evening?</div>
+            <div class="bubble r"><b>Ben</b>I can't. I have to help my mum at her night market stall.</div>
+            <div class="bubble l"><b>Aina</b>Oh, then how about Sunday morning?</div>
+            <div class="bubble r"><b>Ben</b>Sure! See you at the park at 8 o'clock.</div></div>`,
+          q: 'When will Aina and Ben go cycling?',
+          options: ['This evening.', 'On Sunday morning.', 'On Sunday evening.'], answer: 1,
+          explain: 'Ben cannot go this evening. They agree on Sunday morning at 8 o\'clock.' },
+        { n: 4,
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 420 240" width="420" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="12">
+            <text x="210" y="16" text-anchor="middle" font-weight="bold" font-size="14">Favourite Fruits of Year 4 Students</text>
+            <line x1="50" y1="200" x2="400" y2="200" stroke="#334155"/><line x1="50" y1="30" x2="50" y2="200" stroke="#334155"/>
+            <g fill="#64748b" text-anchor="end"><text x="44" y="204">0</text><text x="44" y="164">4</text><text x="44" y="124">8</text><text x="44" y="84">12</text><text x="44" y="44">16</text></g>
+            <g stroke="#e2e8f0"><line x1="50" y1="160" x2="400" y2="160"/><line x1="50" y1="120" x2="400" y2="120"/><line x1="50" y1="80" x2="400" y2="80"/><line x1="50" y1="40" x2="400" y2="40"/></g>
+            <rect x="70" y="60" width="50" height="140" fill="#f59e0b"/><text x="95" y="54" text-anchor="middle">14</text>
+            <rect x="155" y="110" width="50" height="90" fill="#facc15"/><text x="180" y="104" text-anchor="middle">9</text>
+            <rect x="240" y="20" width="50" height="180" fill="#22c55e"/><text x="265" y="38" text-anchor="middle" fill="white" font-weight="bold">18</text>
+            <rect x="325" y="150" width="50" height="50" fill="#84cc16"/><text x="350" y="144" text-anchor="middle">5</text>
+            <g text-anchor="middle"><text x="95" y="218">Mango</text><text x="180" y="218">Banana</text><text x="265" y="218">Watermelon</text><text x="350" y="218">Durian</text></g>
+            <text x="12" y="120" transform="rotate(-90 12 120)" text-anchor="middle">Number of students</text>
+          </svg></div>`,
+          q: 'Based on the graph, which statement is true?',
+          options: ['Fewer students like mango than banana.', 'Durian is the least favourite fruit.', 'Banana is more popular than watermelon.'], answer: 1,
+          explain: 'Durian has the shortest bar (5 students), so it is the least favourite.' },
+        { n: 5,
+          stim: `<div class="sign" style="border-color:#1d4ed8"><h4 style="color:#1d4ed8">PELANGI BOOKSHOP<br>OPENING HOURS</h4>
+            Monday – Friday : 9.00 a.m. – 5.00 p.m.<br>Saturday : 9.00 a.m. – 1.00 p.m.<br>Sunday &amp; Public Holidays : CLOSED</div>`,
+          q: 'Based on the notice, the bookshop _______.',
+          options: ['opens on Sundays', 'closes at 1.00 p.m. on Saturdays', 'opens at 5.00 p.m. on weekdays'], answer: 1,
+          explain: 'Saturday: 9.00 a.m. – 1.00 p.m. It is closed on Sundays and closes (not opens) at 5.00 p.m. on weekdays.' }
+      ]
+    },
+    {
+      title: 'Part 2 (Questions 6 – 9)', marks: 4,
+      instr: 'Read Danial\'s blog entry and choose the best answer A, B or C to fill in each blank.',
+      passage: `<p><b>Danial's Blog — A Weekend in Ipoh</b></p>
+        <p>Last Saturday, my family and I <span class="gap">(0) went</span> to my grandparents' house in Ipoh. My grandmother <span class="gap">(6) _______</span> us nasi kerabu for lunch. It was delicious!</p>
+        <p>After lunch, we walked <span class="gap">(7) _______</span> the river behind the house. The river was <span class="gap">(8) _______</span> than the river near my school. In the evening, it started to rain, <span class="gap">(9) _______</span> we played board games inside the house.</p>
+        <p class="src">(0) Example: A. go &nbsp; <b>B. went</b> &nbsp; C. going</p>`,
+      questions: [
+        { n: 6, q: 'Blank (6)', inline: true, options: ['cook', 'cooks', 'cooked'], answer: 2, explain: '"Last Saturday" is in the past, so use the past tense: cooked.' },
+        { n: 7, q: 'Blank (7)', inline: true, options: ['along', 'under', 'between'], answer: 0, explain: 'We walk ALONG a river (beside it).' },
+        { n: 8, q: 'Blank (8)', inline: true, options: ['clean', 'cleaner', 'cleanest'], answer: 1, explain: '"...than..." means comparing two things → cleaner.' },
+        { n: 9, q: 'Blank (9)', inline: true, options: ['so', 'but', 'because'], answer: 0, explain: 'It rained → that is the reason they played inside → "so".' }
+      ]
+    },
+    {
+      title: 'Part 3 (Questions 10 – 14)', marks: 5,
+      instr: 'Read the article about saving water and choose the best answer A, B or C.',
+      passage: `<p><b>Every Drop Counts!</b></p>
+        <p>Water is very important to all living things. We use water every day to drink, cook, bathe and clean. However, clean water is limited, so we must not waste it.</p>
+        <p>There are many simple ways to save water at home. Firstly, turn off the tap while you are brushing your teeth. This can save up to six litres of water every minute! Secondly, take a short shower instead of a long bath. Next, if you see a leaking pipe, tell an adult so that it can be repaired quickly.</p>
+        <p>You can also reuse water. For example, the water used to wash vegetables can be used to water the plants in the garden. Some families collect rainwater in big containers to wash their cars.</p>
+        <p>If everyone saves a little water every day, there will be enough water for our future.</p>`,
+      questions: [
+        { n: 10, q: 'Why must we not waste water?', options: ['Clean water is limited.', 'Water is very expensive to drink.', 'Living things do not need much water.'], answer: 0, explain: '"However, clean water is limited, so we must not waste it."' },
+        { n: 11, q: 'How much water can we save every minute by turning off the tap while brushing our teeth?', options: ['Up to two litres.', 'Up to six litres.', 'Up to sixty litres.'], answer: 1, explain: '"This can save up to six litres of water every minute!"' },
+        { n: 12, q: 'What should you do if you see a leaking pipe?', options: ['Repair it yourself.', 'Take a long bath.', 'Tell an adult.'], answer: 2, explain: '"...tell an adult so that it can be repaired quickly."' },
+        { n: 13, q: 'Water used to wash vegetables can be reused to _______.', options: ['wash the car', 'water the plants', 'cook the vegetables'], answer: 1, explain: '"...can be used to water the plants in the garden." Rainwater is used to wash cars.' },
+        { n: 14, q: 'Another good title for this article is _______.', options: ['How to Wash Your Car', 'Ways to Save Water', 'The Life of Plants'], answer: 1, explain: 'The whole article is about ways to save water.' }
+      ]
+    },
+    {
+      title: 'Part 4 (Questions 15 – 20)', marks: 6,
+      instr: 'Read the texts about three Malaysian animals. Which animal (A, B or C) does each sentence describe?',
+      texts: [
+        { label: 'A', title: 'Hornbill', html: 'The hornbill is a large bird with a big, curved beak. It lives in the rainforests of Sarawak, which is known as the "Land of the Hornbills". It eats fruits, especially figs, and helps to spread seeds in the forest.' },
+        { label: 'B', title: 'Orang Utan', html: 'The orang utan is a clever ape with long arms and reddish-brown hair. It spends most of its time in the trees. Every night, it builds a new nest of leaves and branches to sleep in. Baby orang utans stay with their mothers for about seven years.' },
+        { label: 'C', title: 'Leatherback Turtle', html: 'The leatherback turtle is the largest turtle in the world. It can weigh more than 500 kilogrammes. It spends almost all its life in the sea and eats jellyfish. The female comes to the beach at night to lay her eggs in the sand.' }
+      ],
+      questions: [
+        { n: 15, q: 'It builds a new bed every night.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 1, explain: '"Every night, it builds a new nest..."' },
+        { n: 16, q: 'It is the biggest of its kind in the world.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 2, explain: '"...the largest turtle in the world."' },
+        { n: 17, q: 'One state in Malaysia is named after this animal.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 0, explain: 'Sarawak is the "Land of the Hornbills".' },
+        { n: 18, q: 'Its babies live with their mothers for many years.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 1, explain: '"...stay with their mothers for about seven years."' },
+        { n: 19, q: 'It helps new plants to grow in the forest.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 0, explain: 'It spreads seeds → new plants grow.' },
+        { n: 20, q: 'It lays its eggs on land.', inline: true, options: ['Hornbill', 'Orang Utan', 'Leatherback Turtle'], answer: 2, explain: '"The female comes to the beach at night to lay her eggs in the sand."' }
+      ]
+    },
+    {
+      type: 'spell', title: 'Part 5 (Questions 21 – 25)', marks: 5,
+      instr: 'Spell the words correctly based on the clues given. Example: A person who teaches in a school. t e a c h e r',
+      questions: [
+        { n: 21, clue: 'A place where you can borrow and read books.', pattern: 'l _ _ _ _ _ _', answer: 'library' },
+        { n: 22, clue: 'The first meal of the day, eaten in the morning.', pattern: 'b _ _ _ _ _ _ _ _', answer: 'breakfast' },
+        { n: 23, clue: 'A doctor who treats sick animals.', pattern: 'v _ _', answer: 'vet' },
+        { n: 24, clue: 'The month that comes after June.', pattern: 'J _ _ _', answer: 'July' },
+        { n: 25, clue: 'The opposite of "dangerous".', pattern: 's _ _ _', answer: 'safe' }
+      ]
+    },
+    {
+      type: 'write', kind: 'note', title: 'Part 6 (Question 26)', marks: 10, minW: 30, maxW: 50, to: 'Daniel',
+      task: `<b>Question 26 (10 marks)</b><br>You cannot go to badminton practice tomorrow because you have an appointment with the dentist. Write a note to your friend, <b>Daniel</b>.<br>Say:
+        <ul><li>why you cannot go to badminton practice</li><li>when you will go back to practice</li><li>ask Daniel to tell Coach Azman</li></ul>Write between <b>30 to 50 words</b>.`,
+      points: [
+        { t: 'Why you cannot go (dentist appointment)', k: ['dentist', 'teeth', 'tooth', 'appointment'] },
+        { t: 'When you will go back to practice', k: ['next week', 'next', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'come back', 'go back', 'after'] },
+        { t: 'Ask Daniel to tell Coach Azman', k: ['coach', 'azman', 'tell'] }
+      ],
+      hints: ['Start: "Daniel,"', 'Say you cannot go to badminton practice tomorrow.', 'Give the reason: you have to see the dentist.', 'Say when you will come back (e.g. next Monday).', 'Ask him to please tell Coach Azman.', 'End with your name.'],
+      phrases: ['I am sorry, but I cannot ...', 'I have an appointment with the dentist.', 'I will be back for practice on ...', 'Could you please tell Coach Azman?', 'Thank you.'],
+      model: `Daniel,
+
+I am sorry, but I cannot go to badminton practice tomorrow. I have an appointment with the dentist because I have a toothache. I will come back for practice next Monday. Could you please tell Coach Azman about this? Thank you.
+
+Aisyah`
+    },
+    {
+      type: 'write', kind: 'email', title: 'Part 7 (Question 27)', marks: 15, minW: 60, maxW: 80, to: 'Farah',
+      task: `<b>Question 27 (15 marks)</b><br>Your cousin, <b>Farah</b>, wants to read more books but she always feels bored. You saw this poster in the school library. Write an email to Farah to give her some suggestions.
+        <div class="poster" style="margin-top:10px"><h3>📚 READING IS FUN!</h3><b>Tips to become a better reader</b>
+        <ul><li>Read for <b>20 minutes</b> every day</li><li>Choose books you <b>like</b> – comics, mysteries, animal stories</li>
+        <li>Visit the <b>library</b> every week</li><li>Join a <b>book club</b> and share stories with friends</li></ul></div>
+        Write your email between <b>60 to 80 words</b>.`,
+      points: [
+        { t: 'Read for 20 minutes every day', k: ['20 minutes', 'twenty minutes', 'every day', 'everyday'] },
+        { t: 'Choose books you like (comics / mysteries / animal stories)', k: ['comic', 'myster', 'animal stor', 'books you like', 'you like', 'favourite'] },
+        { t: 'Visit the library every week', k: ['library'] },
+        { t: 'Join a book club', k: ['club'] }
+      ],
+      hints: ['To: farah@gmail.com, From: (your name)@gmail.com', 'Greeting: "Dear Farah,"', 'Opening: How are you? I heard that you want to read more books.', 'Give the 4 tips from the poster. Use: Firstly, Secondly, Next, Finally / You should / You can.', 'Closing: I hope my suggestions will help you. Happy reading!', 'Sign off: "Your cousin," and your name.'],
+      phrases: ['I hope you are well.', 'Let me give you some suggestions.', 'Firstly, you should ...', 'You can also ...', 'Finally, ...', 'I hope my suggestions will help you.'],
+      model: `To: farah@gmail.com
+From: aisyah@gmail.com
+
+Dear Farah,
+
+How are you? I hope you are well. I heard that you want to read more books. Let me give you some suggestions. Firstly, you should read for 20 minutes every day. You can choose books that you like, such as comics or mystery stories. Next, you can visit the library every week. Finally, you can join a book club and share stories with your friends. I hope my suggestions will help you.
+
+Your cousin,
+Aisyah`
+    }
+  ]
+};
+</script>
+<script src="kuiz_english.js"></script>
+</body>
+</html>

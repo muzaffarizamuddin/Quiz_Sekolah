@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Year 4 – UASA Practice Paper B</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Back to quiz list</a>
+    <div class="page-header">
+        <h1>English Year 4 – UASA Practice Paper B</h1>
+        <p class="subtitle">Same format as the UASA 2024 paper: 7 parts, 50 marks, 1 hour 15 minutes. Answer ALL questions, then press <b>Check Answers</b> at the bottom.
+        <span class="malay" style="display:block">Jawab semua soalan. Tekan butang "Check Answers" di bawah selepas selesai.</span></p>
+        <table class="marks-table">
+            <tr><th>Part</th><th>Questions</th><th>Marks</th></tr>
+            <tr><td>1</td><td>1 – 5</td><td>5</td></tr><tr><td>2</td><td>6 – 9</td><td>4</td></tr>
+            <tr><td>3</td><td>10 – 14</td><td>5</td></tr><tr><td>4</td><td>15 – 20</td><td>6</td></tr>
+            <tr><td>5</td><td>21 – 25</td><td>5</td></tr><tr><td>6</td><td>26 (note)</td><td>10</td></tr>
+            <tr><td>7</td><td>27 (email)</td><td>15</td></tr><tr><th colspan="2">Total</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Check Answers</button>
+    <button class="reset-btn" id="resetBtn">Start Again</button>
+</div>
+
+<script>
+window.PAPER = {
+  theme: '#7c3aed', themeDark: '#5b21b6', themeSoft: '#f5f3ff',
+  parts: [
+    {
+      title: 'Part 1 (Questions 1 – 5)', marks: 5,
+      instr: 'For each question, choose the correct answer A, B or C.',
+      questions: [
+        { n: 1,
+          stim: `<table class="data"><tr><th colspan="2">MAK LONG'S CAFÉ – MENU</th></tr>
+            <tr><td>Nasi Lemak</td><td>RM4.50</td></tr><tr><td>Mee Goreng</td><td>RM5.00</td></tr><tr><td>Roti Canai</td><td>RM1.80</td></tr>
+            <tr><td>Teh Tarik</td><td>RM2.00</td></tr><tr><td>Orange Juice</td><td>RM3.50</td></tr></table>`,
+          q: 'Ahmad has only RM6.00. Which of these can he buy?',
+          options: ['Mee Goreng and Teh Tarik.', 'Roti Canai and Orange Juice.', 'Nasi Lemak and Orange Juice.'], answer: 1,
+          explain: 'RM1.80 + RM3.50 = RM5.30, which is less than RM6.00. (A = RM7.00, C = RM8.00)' },
+        { n: 2,
+          stim: `<div class="chat"><div class="bubble l"><b>Mum</b>Please buy a loaf of bread and a dozen eggs on your way home. Don't buy milk. We still have some in the fridge.</div>
+            <div class="bubble r"><b>Kumar</b>OK, Mum!</div></div>`,
+          q: 'Kumar does NOT need to buy _______.',
+          options: ['bread', 'eggs', 'milk'], answer: 2,
+          explain: '"Don\'t buy milk. We still have some in the fridge."' },
+        { n: 3,
+          stim: `<div class="poem">Danny likes to draw,<br>but not to play the drum.<br>Priya loves to dance,<br>but cooking isn't fun.<br>Kumar plays guitar,<br>but never likes to sew.<br>And I love everything,<br>wherever I may go!</div>`,
+          q: 'Based on the poem, who dislikes cooking?',
+          options: ['Danny.', 'Priya.', 'Kumar.'], answer: 1,
+          explain: '"Priya loves to dance, but cooking isn\'t fun."' },
+        { n: 4,
+          stim: `<table class="data"><tr><th colspan="2">EXPRESS BUS: Kuala Lumpur → Penang</th></tr>
+            <tr><th>Departure</th><th>Arrival</th></tr>
+            <tr><td>8.00 a.m.</td><td>12.30 p.m.</td></tr><tr><td>11.30 a.m.</td><td>4.00 p.m.</td></tr>
+            <tr><td>2.00 p.m.</td><td>6.30 p.m.</td></tr><tr><td>6.45 p.m.</td><td>11.15 p.m.</td></tr></table>`,
+          q: 'Farid arrives at the bus station at 12.00 noon. Which bus can he take?',
+          options: ['The 11.30 a.m. bus.', 'The 2.00 p.m. bus.', 'The 8.00 a.m. bus.'], answer: 1,
+          explain: 'The 8.00 a.m. and 11.30 a.m. buses have already left. The next bus is at 2.00 p.m.' },
+        { n: 5,
+          stim: `<table class="data"><tr><th colspan="5">WEATHER FORECAST THIS WEEK</th></tr>
+            <tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr>
+            <tr style="font-size:1.6em"><td>☀️</td><td>🌧️</td><td>⛅</td><td>☀️</td><td>⛈️</td></tr>
+            <tr><td>Sunny</td><td>Rainy</td><td>Cloudy</td><td>Sunny</td><td>Thunderstorm</td></tr></table>`,
+          q: 'Based on the forecast, _______.',
+          options: ['it will be sunny on Tuesday', 'Mei Ling should bring an umbrella on Tuesday and Friday', 'it is a good day to fly a kite on Friday'], answer: 1,
+          explain: 'It will rain on Tuesday and there is a thunderstorm on Friday, so she needs an umbrella. Do not fly a kite in a thunderstorm!' }
+      ]
+    },
+    {
+      title: 'Part 2 (Questions 6 – 9)', marks: 4,
+      instr: 'Read Hana\'s blog entry and choose the best answer A, B or C to fill in each blank.',
+      passage: `<p><b>Hana's Blog — My Pet Rabbit</b></p>
+        <p>I have <span class="gap">(0) a</span> rabbit named Snowy. She <span class="gap">(6) _______</span> soft white fur and long ears. I feed her carrots and cabbage <span class="gap">(7) _______</span> a day, in the morning and in the evening.</p>
+        <p>At night, Snowy sleeps <span class="gap">(8) _______</span> a small wooden box. She is the <span class="gap">(9) _______</span> pet in my house because she never makes any noise. I love her very much!</p>
+        <p class="src">(0) Example: <b>A. a</b> &nbsp; B. an &nbsp; C. the</p>`,
+      questions: [
+        { n: 6, q: 'Blank (6)', inline: true, options: ['have', 'has', 'having'], answer: 1, explain: '"She" → has.' },
+        { n: 7, q: 'Blank (7)', inline: true, options: ['once', 'twice', 'three'], answer: 1, explain: 'Morning and evening = two times = twice.' },
+        { n: 8, q: 'Blank (8)', inline: true, options: ['in', 'on', 'at'], answer: 0, explain: 'She sleeps INSIDE the box → in.' },
+        { n: 9, q: 'Blank (9)', inline: true, options: ['quiet', 'quieter', 'quietest'], answer: 2, explain: '"the ... pet in my house" (compared with ALL pets) → the quietest.' }
+      ]
+    },
+    {
+      title: 'Part 3 (Questions 10 – 14)', marks: 5,
+      instr: 'Read the article about road safety and choose the best answer A, B or C.',
+      passage: `<p><b>Be Safe on the Road!</b></p>
+        <p>Many children walk or cycle to school every day. The road can be dangerous, so it is important to follow some safety rules.</p>
+        <p>When you want to cross the road, always use the zebra crossing or the pedestrian bridge. Before crossing, stop, look right, look left and look right again. Only cross when there are no cars coming. Never run across the road.</p>
+        <p>If you cycle to school, always wear a helmet. A helmet protects your head if you fall. You should also wear bright clothes so that drivers can see you easily. Do not use your handphone while walking or cycling, because you will not notice the cars around you.</p>
+        <p>Remember, safety comes first. Follow these rules and you will reach school safely every day.</p>`,
+      questions: [
+        { n: 10, q: 'Why must children follow safety rules on the road?', options: ['The road can be dangerous.', 'They want to reach school late.', 'Cars are not allowed near schools.'], answer: 0, explain: '"The road can be dangerous, so it is important to follow some safety rules."' },
+        { n: 11, q: 'Where should you cross the road?', options: ['Anywhere that is near your school.', 'At the zebra crossing or the pedestrian bridge.', 'Between parked cars.'], answer: 1, explain: '"...always use the zebra crossing or the pedestrian bridge."' },
+        { n: 12, q: 'A cyclist should wear a helmet because _______.', options: ['it looks bright and nice', 'drivers like helmets', 'it protects the head if he falls'], answer: 2, explain: '"A helmet protects your head if you fall."' },
+        { n: 13, q: 'Why should children wear bright clothes?', options: ['So that drivers can see them easily.', 'So that they can run faster.', 'So that their friends can find them.'], answer: 0, explain: '"...wear bright clothes so that drivers can see you easily."' },
+        { n: 14, q: 'Based on the article, which of these is a SAFE thing to do?', options: ['Running across the road.', 'Looking right, left and right again before crossing.', 'Using a handphone while cycling.'], answer: 1, explain: 'The other two are things the article says NOT to do.' }
+      ]
+    },
+    {
+      title: 'Part 4 (Questions 15 – 20)', marks: 6,
+      instr: 'Read the texts about three festivals in Malaysia. Which festival (A, B or C) does each sentence describe?',
+      texts: [
+        { label: 'A', title: 'Hari Raya Aidilfitri', html: 'Muslims celebrate Hari Raya Aidilfitri after fasting for a month during Ramadan. On the morning of Hari Raya, families ask for forgiveness from their parents. They serve ketupat and rendang. Children receive green packets with money in them.' },
+        { label: 'B', title: 'Chinese New Year', html: 'Chinese New Year is the first day of the lunar calendar. Families have a big reunion dinner on the eve of the new year. Houses are decorated with red lanterns. Lion dances are performed, and children receive ang pow in red packets.' },
+        { label: 'C', title: 'Deepavali', html: 'Deepavali is the Festival of Lights celebrated by Hindus. People light small oil lamps called "vilakku" around their houses. They draw colourful patterns called "kolam" at the entrance of their homes using coloured rice. Murukku is a popular snack during this festival.' }
+      ],
+      questions: [
+        { n: 15, q: 'It is celebrated after a month of fasting.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 0, explain: '"...after fasting for a month during Ramadan."' },
+        { n: 16, q: 'People decorate their homes with oil lamps.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 2, explain: '"People light small oil lamps called vilakku..."' },
+        { n: 17, q: 'Families eat a special dinner on the night before the festival.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 1, explain: '"...a big reunion dinner on the eve of the new year."' },
+        { n: 18, q: 'Children receive money in green packets.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 0, explain: 'Green packets = Hari Raya. (Red packets = Chinese New Year.)' },
+        { n: 19, q: 'Coloured rice is used to make beautiful patterns.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 2, explain: '"...kolam... using coloured rice."' },
+        { n: 20, q: 'Lion dances are performed during this festival.', inline: true, options: ['Hari Raya', 'Chinese New Year', 'Deepavali'], answer: 1, explain: '"Lion dances are performed..."' }
+      ]
+    },
+    {
+      type: 'spell', title: 'Part 5 (Questions 21 – 25)', marks: 5,
+      instr: 'Spell the words correctly based on the clues given. Example: The place where we go to learn. s c h o o l',
+      questions: [
+        { n: 21, clue: 'A person who flies an aeroplane.', pattern: 'p _ _ _ _', answer: 'pilot' },
+        { n: 22, clue: 'The day after Saturday.', pattern: 'S _ _ _ _ _', answer: 'Sunday' },
+        { n: 23, clue: 'You use this tool to cut paper.', pattern: 's _ _ _ _ _ _ _', answer: 'scissors' },
+        { n: 24, clue: 'A very large grey animal with a long trunk.', pattern: 'e _ _ _ _ _ _ _', answer: 'elephant' },
+        { n: 25, clue: 'The opposite of "noisy".', pattern: 'q _ _ _ _', answer: 'quiet' }
+      ]
+    },
+    {
+      type: 'write', kind: 'note', title: 'Part 6 (Question 26)', marks: 10, minW: 30, maxW: 50, to: 'Mum',
+      task: `<b>Question 26 (10 marks)</b><br>Your mother is not at home. You are going to your friend <b>Mei Ling</b>'s house to do a group project. Write a note to your mother.<br>Inform your mother:
+        <ul><li>where you are going</li><li>why you are going there</li><li>what time you will be back</li></ul>Write between <b>30 to 50 words</b>.`,
+      points: [
+        { t: 'Where you are going (Mei Ling\'s house)', k: ['mei ling', 'house', 'home'] },
+        { t: 'Why (to do a group project)', k: ['project', 'homework', 'group'] },
+        { t: 'What time you will be back', k: ['p.m', 'pm', 'o\'clock', 'back at', 'home at', 'by ', 'before'] }
+      ],
+      hints: ['Start: "Mum,"', 'Say you are going to Mei Ling\'s house.', 'Say why: to do a group project (e.g. Science project).', 'Say what time you will be back (e.g. 5.00 p.m.).', 'Extra: who will send you / how you will go there.', 'End with your name.'],
+      phrases: ['I am going to ...', 'We have to finish our ... project.', 'Her mother will send me home.', 'I will be back at ...', 'Please don\'t worry.'],
+      model: `Mum,
+
+I am going to Mei Ling's house this afternoon. We have to finish our Science group project together. Her house is near the school. Her mother will send me home. I will be back at 5.00 p.m. Please don't worry.
+
+Aisyah`
+    },
+    {
+      type: 'write', kind: 'email', title: 'Part 7 (Question 27)', marks: 15, minW: 60, maxW: 80, to: 'Aiman',
+      task: `<b>Question 27 (15 marks)</b><br>You saw this poster about a charity carnival at your school. Write an email to your cousin, <b>Aiman</b>, to invite him to come with you.
+        <div class="poster" style="margin-top:10px"><h3>🎪 SCHOOL CHARITY CARNIVAL</h3><b>Fun for the whole family!</b>
+        <ul><li><b>Date:</b> Saturday, 15th November</li><li><b>Time:</b> 9.00 a.m. – 1.00 p.m.</li><li><b>Venue:</b> SK Taman Melati school field</li>
+        <li><b>Activities:</b> food stalls, games, colouring contest</li><li><b>Entrance:</b> FREE! Money from food stalls goes to the old folks' home</li></ul></div>
+        Write your email between <b>60 to 80 words</b>.`,
+      points: [
+        { t: 'Invite Aiman to the charity carnival', k: ['invite', 'carnival', 'come with', 'join'] },
+        { t: 'Date: Saturday, 15th November', k: ['15', 'november', 'saturday'] },
+        { t: 'Time: 9.00 a.m. – 1.00 p.m.', k: ['9.00', '9 a.m', '9am', 'nine', '1.00', '1 p.m'] },
+        { t: 'Venue: SK Taman Melati school field', k: ['field', 'taman melati', 'school'] },
+        { t: 'Activities (food stalls, games, colouring contest)', k: ['food', 'game', 'colouring', 'coloring'] },
+        { t: 'Entrance is free / money goes to charity', k: ['free', 'old folks', 'charity'] }
+      ],
+      hints: ['To: aiman@gmail.com, From: (your name)@gmail.com', 'Greeting: "Dear Aiman,"', 'Opening: How are you? I am writing to invite you to ...', 'Give the details: date, time, venue.', 'Say what you can do there and that entrance is free.', 'Closing: I hope you can come. Please reply soon.', 'Sign off: "Your cousin," and your name.'],
+      phrases: ['I am writing to invite you to ...', 'It will be held on ...', 'There will be ...', 'The entrance is free.', 'I hope you can join me.', 'Please reply soon.'],
+      model: `To: aiman@gmail.com
+From: aisyah@gmail.com
+
+Dear Aiman,
+
+How are you? I am writing to invite you to a charity carnival at my school. It will be held on Saturday, 15th November, from 9.00 a.m. to 1.00 p.m. at the SK Taman Melati school field. There will be food stalls, games and a colouring contest. The entrance is free and the money will go to an old folks' home. I hope you can join me.
+
+Your cousin,
+Aisyah`
+    }
+  ]
+};
+</script>
+<script src="kuiz_english.js"></script>
+</body>
+</html>
