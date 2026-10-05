@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 4 – Kertas Latihan PSA</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Bahasa Melayu Tahun 4 – Kertas Latihan PSA</h1>
+        <p class="subtitle">Format sama seperti Pentaksiran Sumatif Akhir (PSA) Bahasa Melayu Tahun 4: 4 bahagian, 50 markah, 1 jam 15 minit. Jawab semua soalan, kemudian tekan <b>Semak Jawapan</b> di bawah.</p>
+        <table class="marks-table">
+            <tr><th>Bahagian</th><th>Soalan</th><th>Markah</th></tr>
+            <tr><td>A – Tatabahasa &amp; Pemahaman</td><td>1 – 10</td><td>10</td></tr>
+            <tr><td>B – Pemahaman Petikan</td><td>Soalan 1</td><td>5</td></tr>
+            <tr><td>B – Pendapat</td><td>Soalan 2</td><td>5</td></tr>
+            <tr><td>C – Penulisan Perenggan</td><td>Soalan 3</td><td>10</td></tr>
+            <tr><td>D – Penulisan Karangan</td><td>Soalan 4</td><td>20</td></tr>
+            <tr><th colspan="2">Jumlah</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+    <div style="font-size:0.75em;color:#64748b;margin:20px 0">Kredit gambar: "Colonel Light Gardens Infant School Library Children Reading (GN08827)", Wikimedia Commons, CC0.</div>
+</div>
+
+<script>
+window.KERTAS = {
+  theme: '#0f766e', themeDark: '#115e59', themeSoft: '#f0fdfa',
+  sections: [
+    {
+      type: 'mcq', title: 'Bahagian A – Tatabahasa dan Pemahaman (Soalan 1 – 10)', marks: 10,
+      instr: 'Setiap soalan diikuti oleh empat pilihan jawapan, iaitu A, B, C dan D. Pilih jawapan yang paling tepat.',
+      questions: [
+        { n: 1, q: 'Ali dan keluarganya akan melancong ke ______________ pada cuti sekolah yang akan datang.',
+          options: ['Klinik Kesihatan Ampang', 'Pulau Langkawi', 'Pejabat Pos Ipoh', 'Mahkamah Tinggi Shah Alam'], answer: 1,
+          explain: 'Kita melancong (bercuti) ke tempat peranginan seperti Pulau Langkawi, bukan ke klinik atau pejabat.' },
+        { n: 2, q: 'Adik menangis dengan ______________ kerana patung kesayangannya hilang.',
+          options: ['gembira', 'kuat', 'riang', 'cantik'], answer: 1,
+          explain: 'Kata adjektif yang sesuai dengan "menangis" ialah "kuat". Gembira dan riang bertentangan dengan perasaan sedih.' },
+        { n: 3, q: 'Ibu membeli dua ______________ kain batik di pasar.',
+          options: ['ekor', 'biji', 'helai', 'batang'], answer: 2,
+          explain: 'Penjodoh bilangan untuk kain ialah "helai". (ekor = haiwan, biji = buah, batang = pen / pokok)' },
+        { n: 4, q: 'Kakak sedang ______________ pakaian di ampaian kerana cuaca panas.',
+          options: ['jemur', 'menjemur', 'dijemur', 'berjemur'], answer: 1,
+          explain: '"Kakak sedang ... pakaian" → kata kerja aktif berimbuhan meN-: menjemur.' },
+        { n: 5, q: 'Pilih ayat tanya yang sesuai bagi jawapan di bawah.<br><i>"Ayah pergi ke pejabat dengan menaiki bas."</i>',
+          options: ['Bilakah ayah pergi ke pejabat?', 'Bagaimanakah ayah pergi ke pejabat?', 'Siapakah yang pergi ke pejabat?', 'Mengapakah ayah pergi ke pejabat?'], answer: 1,
+          explain: 'Jawapan menerangkan CARA (menaiki bas), jadi soalannya "Bagaimanakah".' },
+        { n: 6, q: 'Pilih ayat yang betul.',
+          options: ['Kakak menerima surat dari sepupunya.', 'Kakak menerima surat daripada sepupunya.', 'Kakak menerima surat kepada sepupunya.', 'Kakak menerima surat ke sepupunya.'], answer: 1,
+          explain: '"Daripada" digunakan untuk orang. "Dari" digunakan untuk tempat dan masa.' },
+        { n: 7,
+          passageBefore: `<p><b>Baca petikan di bawah, kemudian jawab soalan 7 hingga 10.</b></p>
+            <p>Sarapan ialah makanan yang diambil pada waktu pagi. Sarapan merupakan waktu makan yang paling penting dalam sehari. Hal ini demikian kerana badan kita memerlukan tenaga selepas tidur sepanjang malam.</p>
+            <p>Murid yang bersarapan akan lebih cergas di dalam kelas. Mereka dapat menumpukan perhatian semasa guru mengajar. Sebaliknya, murid yang tidak bersarapan akan berasa lemah dan mengantuk.</p>
+            <p>Selain itu, kita perlu memilih makanan yang berkhasiat untuk sarapan, contohnya roti, telur, bijirin, susu dan buah-buahan. Kita hendaklah mengelakkan makanan yang terlalu manis dan berminyak.</p>
+            <p>Oleh itu, jangan sesekali mengabaikan sarapan. Biasakan diri bersarapan setiap pagi sebelum ke sekolah.</p>`,
+          q: 'Sarapan ialah makanan yang diambil pada waktu ______________.',
+          options: ['tengah hari', 'pagi', 'petang', 'malam'], answer: 1, explain: 'Ayat pertama petikan.' },
+        { n: 8, q: 'Mengapakah sarapan merupakan waktu makan yang paling penting?',
+          options: ['Kerana sarapan sangat sedap.', 'Kerana badan memerlukan tenaga selepas tidur sepanjang malam.', 'Supaya murid boleh bermain di kantin.', 'Supaya guru berasa gembira.'], answer: 1,
+          explain: '"Hal ini demikian kerana badan kita memerlukan tenaga selepas tidur sepanjang malam."' },
+        { n: 9, q: 'Apakah yang akan berlaku kepada murid yang tidak bersarapan?',
+          options: ['Mereka akan berasa lemah dan mengantuk.', 'Mereka akan lebih cergas di dalam kelas.', 'Mereka dapat menumpukan perhatian.', 'Mereka akan berasa kenyang.'], answer: 0,
+          explain: '"...murid yang tidak bersarapan akan berasa lemah dan mengantuk."' },
+        { n: 10, q: 'Perkataan <b>mengabaikan</b> dalam petikan bermaksud',
+          options: ['tidak mengendahkan', 'menyukai', 'menyediakan', 'mengutamakan'], answer: 0,
+          explain: 'Mengabaikan = tidak mengambil berat / tidak mengendahkan.' }
+      ]
+    },
+    {
+      type: 'pemahaman', title: 'Bahagian B – Soalan 1: Pemahaman Petikan', marks: 5,
+      instr: 'Baca petikan di bawah, kemudian jawab soalan-soalan yang berikutnya. Tulis jawapan dalam ayat yang lengkap.',
+      passage: `<p>Pesta Kaamatan disambut oleh masyarakat Kadazandusun di Sabah pada setiap bulan Mei. Pesta ini diadakan untuk meraikan hasil tuaian padi dan sebagai tanda kesyukuran.</p>
+        <p>Semasa pesta ini, masyarakat Kadazandusun memakai pakaian tradisional berwarna hitam yang dihiasi dengan sulaman benang emas. Mereka menari tarian Sumazau dengan iringan bunyi gong.</p>
+        <p>Salah satu acara yang paling dinanti-nantikan ialah pertandingan Unduk Ngadau, iaitu pertandingan ratu cantik. Pemenangnya dipilih kerana kecantikan dan sikapnya yang baik.</p>
+        <p>Juadah istimewa semasa Pesta Kaamatan ialah hinava, iaitu ikan mentah yang dicampur dengan air limau, bawang dan cili. Pesta ini dapat mengeratkan hubungan antara penduduk kampung.</p>`,
+      items: [
+        { kind: 'short', n: 1, q: 'Pesta Kaamatan disambut pada bulan ______________.', marks: 1, rubric: [['mei']],
+          model: 'Pesta Kaamatan disambut pada bulan Mei.' },
+        { kind: 'short', n: 2, q: 'Mengapakah Pesta Kaamatan diadakan?', marks: 2, rubric: [['tuai', 'padi'], ['syukur']],
+          model: 'Pesta Kaamatan diadakan untuk meraikan hasil tuaian padi dan sebagai tanda kesyukuran.' },
+        { kind: 'tick', n: 3, q: 'Tandakan ( ✓ ) pada pernyataan yang betul dan ( ✗ ) pada pernyataan yang salah tentang Pesta Kaamatan.', marks: 2,
+          rows: [{ t: 'Masyarakat Kadazandusun menari tarian Sumazau.', ok: true },
+                 { t: 'Hinava diperbuat daripada daging ayam.', ok: false },
+                 { t: 'Unduk Ngadau ialah pertandingan ratu cantik.', ok: true }] }
+      ]
+    },
+    {
+      type: 'tulis', subtype: 'pendapat', title: 'Bahagian B – Soalan 2: Pendapat', marks: 5, maxW: 30, need: 3,
+      task: `Baca dan fahami situasi di bawah. Kemudian, berikan pendapat kamu berdasarkan situasi tersebut. Panjang jawapan kamu hendaklah <b>tidak lebih daripada 30 patah perkataan</b>.
+        <div class="passage" style="margin-top:8px">Semasa waktu rehat, kamu ternampak seorang rakan sekelas membuang bungkusan makanan merata-rata di padang sekolah. Apakah tindakan kamu?</div>`,
+      points: [
+        { t: 'Menegur / menasihati rakan dengan baik', k: ['tegur', 'nasihat', 'beritahu dia', 'memberitahunya'] },
+        { t: 'Minta dia buang sampah ke dalam tong sampah', k: ['tong sampah', 'tong'] },
+        { t: 'Membantu mengutip sampah itu', k: ['kutip', 'pungut', 'ambil sampah', 'membantu'] },
+        { t: 'Melaporkan kepada guru jika dia masih berdegil', k: ['guru', 'cikgu', 'lapor'] },
+        { t: 'Memberitahu kesan buang sampah (kotor, penyakit)', k: ['kotor', 'penyakit', 'cantik', 'bersih'] }
+      ],
+      topicWords: ['sampah', 'rakan', 'kawan', 'tegur', 'nasihat', 'tong', 'kutip', 'guru', 'cikgu', 'bersih', 'kotor', 'padang', 'buang', 'penyakit', 'saya', 'dia'],
+      hints: ['Mula dengan: "Saya akan ..."', 'Tegur rakan dengan baik / nasihatinya.', 'Minta dia membuang sampah ke dalam tong sampah.', 'Bantu dia mengutip sampah itu.', 'Jika dia berdegil, laporkan kepada guru.', 'Ingat: TIDAK LEBIH daripada 30 patah perkataan!'],
+      model: 'Saya akan menegur rakan saya dengan baik. Saya akan menasihatinya supaya membuang sampah ke dalam tong sampah. Saya juga akan membantunya mengutip sampah itu supaya padang sekolah sentiasa bersih.'
+    },
+    {
+      type: 'tulis', subtype: 'perenggan', title: 'Bahagian C – Penulisan Perenggan (Soalan 3)', marks: 10, maxW: 50, need: 3,
+      task: `Gambar di bawah menunjukkan murid-murid sedang membaca. Tuliskan pendapat kamu mengenai <b>cara-cara untuk menggalakkan murid gemar membaca</b>.<br>
+        Jawapan hendaklah ditulis dalam <b>satu perenggan</b>. Panjang jawapan kamu hendaklah <b>tidak lebih daripada 50 patah perkataan</b>.`,
+      image: { src: 'images/k_membaca.jpg', cap: 'Murid-murid membaca di perpustakaan' },
+      points: [
+        { t: 'Mengadakan program NILAM / program membaca', k: ['nilam', 'program membaca', 'program'] },
+        { t: 'Menyediakan sudut bacaan di kelas', k: ['sudut bacaan', 'sudut'] },
+        { t: 'Ibu bapa membawa anak ke perpustakaan / kedai buku', k: ['perpustakaan', 'kedai buku', 'pusat sumber'] },
+        { t: 'Memberikan hadiah kepada murid yang rajin membaca', k: ['hadiah', 'ganjaran', 'pujian'] },
+        { t: 'Mengadakan pesta buku / pertandingan bercerita', k: ['pesta buku', 'pertandingan', 'bercerita'] }
+      ],
+      topicWords: ['baca', 'buku', 'perpustakaan', 'pusat sumber', 'sudut', 'nilam', 'hadiah', 'program', 'pesta', 'cerita', 'murid', 'guru', 'ibu bapa', 'sekolah', 'galak', 'minat', 'gemar'],
+      hints: ['Mula dengan: "Antara cara untuk menggalakkan murid gemar membaca ialah ..."', 'Isi 1: mengadakan program NILAM di sekolah.', 'Isi 2: menyediakan sudut bacaan yang ceria di kelas.', 'Isi 3: ibu bapa membawa anak ke perpustakaan.', 'Isi 4: memberi hadiah kepada murid yang rajin membaca.', 'Guna penanda: Selain itu, Seterusnya. SATU perenggan sahaja, maksimum 50 patah perkataan.'],
+      model: 'Antara cara untuk menggalakkan murid gemar membaca ialah mengadakan program NILAM di sekolah. Selain itu, guru boleh menyediakan sudut bacaan yang ceria di setiap kelas. Seterusnya, ibu bapa boleh membawa anak-anak ke perpustakaan pada hujung minggu. Guru juga boleh memberikan hadiah kepada murid yang rajin membaca.'
+    },
+    {
+      type: 'tulis', subtype: 'karangan', title: 'Bahagian D – Penulisan Karangan (Soalan 4)', marks: 20, minW: 50, maxW: 80, need: 4,
+      task: `Teliti bahan grafik di bawah. Kemudian, tulis sebuah karangan tidak berformat mengenai <b>cara-cara menjaga kesihatan diri</b>.<br>
+        Panjang karangan kamu hendaklah antara <b>50 hingga 80 patah perkataan</b>.`,
+      graphic: `<svg viewBox="0 0 520 260" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" font-size="14">
+        <g stroke="#94a3b8" stroke-width="2"><line x1="260" y1="130" x2="110" y2="50"/><line x1="260" y1="130" x2="410" y2="50"/><line x1="260" y1="130" x2="110" y2="210"/><line x1="260" y1="130" x2="410" y2="210"/></g>
+        <ellipse cx="260" cy="130" rx="95" ry="42" fill="#0f766e"/>
+        <text x="260" y="125" text-anchor="middle" fill="white" font-weight="bold">Cara Menjaga</text>
+        <text x="260" y="145" text-anchor="middle" fill="white" font-weight="bold">Kesihatan Diri</text>
+        <g font-weight="bold" fill="#0f172a" text-anchor="middle">
+          <rect x="30" y="25" width="160" height="50" rx="10" fill="#dcfce7" stroke="#22c55e"/><text x="110" y="47">🏃 bersenam</text><text x="110" y="65" font-weight="normal" font-size="12">selalu</text>
+          <rect x="330" y="25" width="160" height="50" rx="10" fill="#fef3c7" stroke="#f59e0b"/><text x="410" y="47">🥦 makan makanan</text><text x="410" y="65" font-weight="normal" font-size="12">berkhasiat</text>
+          <rect x="30" y="185" width="160" height="50" rx="10" fill="#e0e7ff" stroke="#6366f1"/><text x="110" y="207">😴 tidur yang</text><text x="110" y="225" font-weight="normal" font-size="12">cukup</text>
+          <rect x="330" y="185" width="160" height="50" rx="10" fill="#fce7f3" stroke="#ec4899"/><text x="410" y="207">🧼 menjaga</text><text x="410" y="225" font-weight="normal" font-size="12">kebersihan diri</text>
+        </g></svg>`,
+      points: [
+        { t: 'Bersenam selalu', k: ['senam', 'riadah', 'bersukan', 'berjoging'] },
+        { t: 'Makan makanan berkhasiat', k: ['khasiat', 'sayur', 'buah', 'makanan sihat'] },
+        { t: 'Tidur yang cukup', k: ['tidur'] },
+        { t: 'Menjaga kebersihan diri', k: ['kebersihan diri', 'mandi', 'gosok gigi', 'basuh tangan', 'cuci tangan', 'bersih'] }
+      ],
+      topicWords: ['sihat', 'kesihatan', 'senam', 'badan', 'cergas', 'makan', 'makanan', 'khasiat', 'sayur', 'buah', 'tidur', 'mandi', 'bersih', 'kebersihan', 'gigi', 'tangan', 'penyakit', 'kuman', 'harta', 'cara', 'minum', 'air', 'mengantuk', 'kuat', 'tenaga'],
+      hints: ['Pendahuluan: Kesihatan amat penting. Terdapat beberapa cara untuk menjaga kesihatan diri.', 'Pertama, bersenam (berapa kali seminggu? kesannya: badan cergas).', 'Selain itu, makan makanan berkhasiat seperti sayur-sayuran dan buah-buahan.', 'Seterusnya, tidur yang cukup supaya tidak mengantuk di sekolah.', 'Akhir sekali, menjaga kebersihan diri: mandi dua kali sehari.', 'Penutup: Kesimpulannya / Marilah kita... Kesihatan itu harta yang paling berharga.', 'Ingat: 50 hingga 80 patah perkataan sahaja!'],
+      model: `Kesihatan amat penting dalam kehidupan kita. Terdapat beberapa cara untuk menjaga kesihatan diri.
+
+Pertama, kita mesti bersenam sekurang-kurangnya tiga kali seminggu supaya badan cergas.
+
+Selain itu, kita hendaklah makan makanan yang berkhasiat seperti sayur-sayuran dan buah-buahan.
+
+Seterusnya, kita perlu tidur yang cukup supaya tidak mengantuk di sekolah. Akhir sekali, kita mesti menjaga kebersihan diri dengan mandi dua kali sehari.
+
+Kesimpulannya, marilah kita menjaga kesihatan kerana kesihatan itu harta yang paling berharga.`
+    }
+  ]
+};
+</script>
+<script src="kuiz_bm_psa.js"></script>
+</body>
+</html>
