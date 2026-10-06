@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sains Tahun 4 – Kertas Latihan PSA</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Sains Tahun 4 – Kertas Latihan (Format PSA)</h1>
+        <p class="subtitle">Format sama seperti Pentaksiran Sumatif Akhir Sains Tahun 4: Bahagian A (10 soalan objektif), Bahagian B (objektif pelbagai bentuk, 8 markah) dan Bahagian C (4 soalan subjektif, 32 markah). 1 jam 15 minit.</p>
+        <table class="marks-table">
+            <tr><th>Bahagian</th><th>Soalan</th><th>Markah</th></tr>
+            <tr><td>A</td><td>1 – 10</td><td>10</td></tr>
+            <tr><td>B</td><td>Soalan 1 – 2</td><td>8</td></tr>
+            <tr><td>C</td><td>Soalan 1 – 4</td><td>32</td></tr>
+            <tr><th colspan="2">Jumlah</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+</div>
+
+<script>
+window.KERTAS = {
+  theme: '#15803d', themeDark: '#14532d', themeSoft: '#f0fdf4',
+  sections: [
+    {
+      title: 'Bahagian A – Soalan Objektif (Soalan 1 – 10)',
+      instr: 'Setiap soalan diikuti oleh empat pilihan jawapan, iaitu A, B, C dan D. Pilih jawapan yang paling tepat.',
+      items: [
+        { n: 1, type: 'mcq', q: 'Organ manakah yang menyingkirkan <b>peluh</b> daripada badan?',
+          options: ['Ginjal', 'Kulit', 'Peparu', 'Usus besar'], answer: 1, explain: 'Kulit menyingkirkan peluh. Ginjal menyingkirkan air kencing.' },
+        { n: 2, type: 'mcq', q: 'Semasa <b>menghembus nafas</b>, dada ____________ dan peparu ____________.',
+          options: ['menaik, mengembang', 'menurun, mengempis', 'menaik, mengempis', 'menurun, mengembang'], answer: 1,
+          explain: 'Menghembus nafas: udara keluar, dada menurun dan peparu mengempis.' },
+        { n: 3, type: 'mcq', q: 'Haiwan manakah yang bernafas menggunakan <b>insang</b>?',
+          options: ['Katak dewasa', 'Ikan', 'Cacing tanah', 'Belalang'], answer: 1,
+          explain: 'Ikan bernafas melalui insang. Belalang guna spirakel, cacing guna kulit lembap.' },
+        { n: 4, type: 'mcq', q: 'Akar tumbuhan bergerak balas dengan tumbuh ke arah ____________.',
+          options: ['cahaya', 'air dan graviti', 'angin', 'bunyi'], answer: 1, explain: 'Akar tumbuh ke arah air dan graviti. Pucuk tumbuh ke arah cahaya.' },
+        { n: 5, type: 'mcq', q: 'Antara berikut, yang manakah <b>diperlukan</b> oleh tumbuhan untuk menjalankan fotosintesis?',
+          options: ['Oksigen dan kanji', 'Karbon dioksida, air, cahaya matahari dan klorofil', 'Oksigen dan air sahaja', 'Kanji dan klorofil'], answer: 1,
+          explain: 'Oksigen dan kanji ialah HASIL fotosintesis, bukan keperluan.' },
+        { n: 6, type: 'mcq', q: 'Objek manakah yang membenarkan <b>semua</b> cahaya melaluinya?',
+          options: ['Kadbod', 'Kertas minyak', 'Kaca jernih', 'Papan'], answer: 2, explain: 'Kaca jernih ialah objek lut sinar.' },
+        { n: 7, type: 'mcq', q: 'Bunyi dihasilkan oleh ____________.',
+          options: ['objek yang bergetar', 'objek yang pegun', 'cahaya matahari', 'udara yang panas'], answer: 0, explain: 'Bunyi dihasilkan oleh getaran objek.' },
+        { n: 8, type: 'mcq', q: 'Antara berikut, yang manakah contoh <b>bunyi yang memudaratkan</b>?',
+          options: ['Muzik yang perlahan', 'Kicauan burung', 'Bunyi jentera pembinaan yang kuat', 'Loceng sekolah'], answer: 2,
+          explain: 'Bunyi yang terlalu kuat boleh merosakkan pendengaran dan menyebabkan tekanan.' },
+        { n: 9, type: 'mcq', q: 'Antara berikut, yang manakah sumber tenaga yang <b>boleh diperbaharui</b>?',
+          options: ['Arang batu', 'Petroleum', 'Matahari', 'Gas asli'], answer: 2, explain: 'Tenaga suria tidak akan habis. Arang batu, petroleum dan gas asli akan habis.' },
+        { n: 10, type: 'mcq', q: 'Berapakah tempoh masa yang diambil oleh Bumi untuk <b>beredar mengelilingi Matahari</b> sekali?',
+          options: ['24 jam', '7 hari', '30 hari', '365 ¼ hari'], answer: 3, explain: 'Peredaran = 365 ¼ hari (setahun). Putaran pada paksi = 24 jam.' }
+      ]
+    },
+    {
+      title: 'Bahagian B – Objektif Pelbagai Bentuk (Soalan 1 – 2)',
+      instr: 'Jawab semua soalan.',
+      items: [
+        { n: 1, type: 'select', marks: 4, q: 'Padankan haiwan dengan organ pernafasannya.',
+          choices: ['Insang', 'Spirakel', 'Peparu dan kulit lembap', 'Peparu'],
+          rows: [{ t: '🐟 Ikan', ans: 0 }, { t: '🦗 Belalang', ans: 1 }, { t: '🐸 Katak', ans: 2 }, { t: '🐈 Kucing', ans: 3 }] },
+        { n: 2, type: 'select', marks: 4, q: 'Nyatakan bentuk tenaga yang dimiliki atau dihasilkan oleh objek berikut.',
+          choices: ['Tenaga suria', 'Tenaga kimia', 'Tenaga kinetik', 'Tenaga bunyi', 'Tenaga haba'],
+          rows: [{ t: '☀️ Matahari', ans: 0 }, { t: '🔋 Bateri', ans: 1 }, { t: '🚗 Kereta yang sedang bergerak', ans: 2 }, { t: '🎸 Gitar yang dipetik', ans: 3 }] }
+      ]
+    },
+    {
+      title: 'Bahagian C – Soalan Subjektif (Soalan 1 – 4)',
+      instr: 'Jawab semua soalan. Tulis jawapan dalam ayat yang ringkas dan tepat.',
+      items: [
+        { n: 1, type: 'group', q: 'Jadual menunjukkan tiga organ perkumuhan manusia.',
+          stim: `<table class="stim-table"><tr><th>Organ</th><th>Label</th></tr><tr><td>Kulit</td><td>P</td></tr><tr><td>Ginjal</td><td>Q</td></tr><tr><td>Peparu</td><td>R</td></tr></table>`,
+          sub: [
+            { type: 'short', marks: 2, q: 'Apakah maksud perkumuhan?',
+              rubric: [['singkir', 'nyingkir', 'buang', 'keluar'], ['bahan kumuh', 'kumuh', 'sisa', 'toksik']],
+              model: 'Perkumuhan ialah proses menyingkirkan bahan kumuh daripada badan.' },
+            { type: 'short', marks: 1, q: 'Namakan bahan kumuh yang disingkirkan oleh organ P (kulit).',
+              rubric: [['peluh']], model: 'Peluh' },
+            { type: 'short', marks: 1, q: 'Namakan bahan kumuh yang disingkirkan oleh organ Q (ginjal).',
+              rubric: [['air kencing', 'urin']], model: 'Air kencing' },
+            { type: 'short', marks: 2, q: 'Mengapakah kita perlu minum air yang cukup setiap hari?',
+              rubric: [['ganti', 'hilang', 'dehidrasi', 'kekurangan air'], ['peluh', 'air kencing', 'urin', 'sihat', 'ginjal', 'sembelit', 'penyakit']],
+              model: 'Untuk menggantikan air yang hilang melalui peluh dan air kencing, supaya badan sihat dan tidak mengalami dehidrasi.' },
+            { type: 'short', marks: 2, q: 'Apakah yang akan berlaku jika seseorang tidak dapat menyingkirkan bahan kumuh?',
+              rubric: [['terkumpul', 'berkumpul', 'toksik', 'racun'], ['sakit', 'penyakit', 'mati', 'keracunan']],
+              model: 'Bahan toksik akan terkumpul di dalam badan dan dia akan jatuh sakit.' }
+          ] },
+        { n: 2, type: 'group', q: 'Rajah menunjukkan Ali menggunakan sebatang kayu dan seketul batu kecil untuk mengangkat seketul batu besar.',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 460 170" width="460" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="14">
+            <line x1="10" y1="140" x2="450" y2="140" stroke="#64748b" stroke-width="2"/>
+            <ellipse cx="70" cy="112" rx="52" ry="28" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+            <line x1="90" y1="105" x2="420" y2="70" stroke="#92400e" stroke-width="8" stroke-linecap="round"/>
+            <ellipse cx="300" cy="122" rx="20" ry="18" fill="#a8a29e" stroke="#334155" stroke-width="2"/>
+            <line x1="420" y1="30" x2="420" y2="62" stroke="#dc2626" stroke-width="3"/><polygon points="420,66 413,54 427,54" fill="#dc2626"/>
+            <g font-weight="bold"><text x="430" y="40">X</text><text x="300" y="164">Y</text><text x="62" y="70">Z</text></g></svg></div>`,
+          sub: [
+            { type: 'select', marks: 3, q: 'Nyatakan bahagian tuas yang diwakili oleh X, Y dan Z.',
+              choices: ['Daya', 'Fulkrum', 'Beban'],
+              rows: [{ t: 'X (tempat Ali menekan)', ans: 0 }, { t: 'Y (batu kecil)', ans: 1 }, { t: 'Z (batu besar)', ans: 2 }] },
+            { type: 'short', marks: 1, q: 'Ali mendapati dia sukar mengangkat batu besar itu. Mengapa?',
+              rubric: [['jauh']], model: 'Kedudukan fulkrum (batu kecil) jauh dari beban (batu besar).' },
+            { type: 'short', marks: 2, q: 'Cadangkan apa yang perlu dilakukan oleh Ali untuk memudahkannya mengangkat batu besar itu.',
+              rubric: [['dekat', 'alih', 'gerak', 'anjak'], ['fulkrum', 'batu kecil']],
+              model: 'Ali perlu mendekatkan batu kecil (fulkrum) dengan batu besar (beban).' },
+            { type: 'short', marks: 2, q: 'Nyatakan kesimpulan daripada situasi ini.',
+              rubric: [['semakin dekat', 'semakin berkurang jarak', 'semakin kurang jarak', 'semakin pendek jarak'], ['semakin sedikit daya', 'semakin kurang daya', 'semakin berkurang daya', 'semakin kecil daya', 'semakin mudah']],
+              model: 'Semakin dekat beban dengan fulkrum, semakin sedikit daya yang diperlukan untuk mengangkat beban.' }
+          ] },
+        { n: 3, type: 'group', q: 'Rajah menunjukkan dua jenis pergerakan Bumi, P dan Q.',
+          stim: '<img src="images/matahari_bumi.png" alt="Matahari dan Bumi" style="max-width:100%;max-height:260px;display:block;margin:0 auto">',
+          sub: [
+            { type: 'short', marks: 1, q: 'Namakan pergerakan P.', rubric: [['peredaran', 'beredar', 'mengelilingi matahari']], model: 'Peredaran Bumi mengelilingi Matahari.' },
+            { type: 'short', marks: 1, q: 'Namakan pergerakan Q.', rubric: [['putaran', 'berputar']], model: 'Putaran Bumi pada paksinya.' },
+            { type: 'short', marks: 1, q: 'Nyatakan arah putaran Bumi.', rubric: [['barat ke timur', 'barat ke arah timur']], model: 'Dari barat ke timur.' },
+            { type: 'short', marks: 2, q: 'Nyatakan dua kesan putaran Bumi.', rubric: [['siang+malam'], ['bayang']],
+              model: 'Kejadian siang dan malam; perubahan panjang dan arah bayang-bayang.' },
+            { type: 'choose', q: 'Gariskan waktu yang berlaku di kawasan X dan Y.',
+              rows: [{ pre: 'Kawasan X :', opts: ['siang', 'malam'], ans: 0 }, { pre: 'Kawasan Y :', opts: ['siang', 'malam'], ans: 1 }] },
+            { type: 'short', marks: 1, q: 'Berapakah tempoh masa untuk Bumi membuat satu putaran lengkap pada paksinya?', rubric: [['24 jam', 'sehari', '1 hari', 'satu hari']], model: '24 jam' }
+          ] },
+        { n: 4, type: 'group', q: 'Rajah menunjukkan tiga aktiviti P, Q dan R yang dilakukan oleh Mei Ling untuk menghasilkan bunyi.',
+          stim: `<table class="stim-table" style="font-size:1.1em"><tr><th>P</th><th>Q</th><th>R</th></tr>
+            <tr style="font-size:2em"><td>🥁</td><td>🎺</td><td>🎸</td></tr><tr><td>Dram dipukul</td><td>Trompet dimainkan dengan mulut</td><td>Tali gitar dimainkan dengan jari</td></tr></table>`,
+          sub: [
+            { type: 'short', marks: 2, q: 'Nyatakan maksud bunyi.', rubric: [['getar'], ['dengar']], model: 'Bunyi ialah satu bentuk tenaga yang dihasilkan oleh getaran dan boleh didengar.' },
+            { type: 'select', marks: 3, q: 'Bagaimanakah bunyi dihasilkan dalam aktiviti P, Q dan R?',
+              choices: ['Mengetuk / memukul', 'Meniup', 'Memetik', 'Menggesek'],
+              rows: [{ t: 'Aktiviti P', ans: 0 }, { t: 'Aktiviti Q', ans: 1 }, { t: 'Aktiviti R', ans: 2 }] },
+            { type: 'short', marks: 1, q: 'Berikan satu contoh bunyi yang berfaedah dan kegunaannya.',
+              rubric: [['siren', 'loceng', 'muzik', 'penggera', 'hon', 'azan', 'wisel']],
+              model: 'Bunyi siren ambulans sebagai amaran supaya kenderaan lain memberi laluan.' },
+            { type: 'short', marks: 2, q: 'Rumah Kumar terletak berhampiran lebuh raya yang bising. Cadangkan <b>dua</b> cara untuk mengurangkan bunyi bising di rumahnya.',
+              rubric: [['pokok'], ['langsir', 'tutup tingkap', 'penyerap', 'dinding', 'tingkap', 'permaidani', 'kalis bunyi']],
+              model: 'Menanam pokok di sekeliling rumah; memasang langsir tebal atau menutup tingkap.' }
+          ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_kertas.js"></script>
+</body>
+</html>

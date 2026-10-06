@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Tahun 4 – Kertas Latihan UASA</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Matematik Tahun 4 – Kertas Latihan (Format UASA 2024)</h1>
+        <p class="subtitle">Format sama seperti Ujian Akhir Sesi Akademik Matematik Tahun 4: Bahagian A (13 soalan, 26 markah) dan Bahagian B (2 soalan bertema, 24 markah). 1 jam 15 minit. Tunjukkan pengiraan dalam ruang pengiraan, kemudian tekan <b>Semak Jawapan</b>.</p>
+        <table class="marks-table">
+            <tr><th>Bahagian</th><th>Soalan</th><th>Markah</th></tr>
+            <tr><td>A</td><td>1 – 13</td><td>26</td></tr>
+            <tr><td>B</td><td>Soalan 1 &amp; 2</td><td>24</td></tr>
+            <tr><th colspan="2">Jumlah</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+</div>
+
+<script>
+window.KERTAS = {
+  theme: '#b45309', themeDark: '#78350f', themeSoft: '#fffbeb',
+  sections: [
+    {
+      title: 'Bahagian A – Subjektif (Soalan 1 – 13)',
+      instr: 'Jawab semua soalan. Taip nombor sahaja dalam kotak jawapan (contoh: 50000 atau 15010.50).',
+      items: [
+        { n: 1, type: 'num', marks: 1, q: 'Bundarkan <b>47 520</b> kepada puluh ribu yang terdekat.',
+          fields: [{ ans: 50000 }], steps: 'Digit ribu ialah 7 (≥ 5), jadi tambah 1 pada digit puluh ribu.\n47 520 → 50 000' },
+        { n: 2, type: 'short', marks: 1, q: '18 450, 28 450, 38 450, 48 450, 58 450<br>Nyatakan pola nombor di atas.',
+          rubric: [['menaik+10 000', 'menaik+10000', 'menaik+sepuluh ribu', 'tambah+10 000', 'tambah+10000', 'tambah+sepuluh ribu']],
+          model: 'Tertib menaik sepuluh ribu-sepuluh ribu (tambah 10 000).' },
+        { n: 3, type: 'num', marks: 2, q: '<b>1 3/4</b> daripada 24 = ?',
+          fields: [{ ans: 42 }], steps: '1 3/4 = 7/4\n7/4 × 24 = 7 × 6\n= 42' },
+        { n: 4, type: 'num', marks: 2, q: '7.08 + 26.5 + 410.362 = ?',
+          fields: [{ ans: 443.942 }], steps: '7.08 + 26.5 = 33.58\n33.58 + 410.362 = 443.942' },
+        { n: 5, type: 'num', marks: 2, q: 'Kirakan peratusan: <b>18 kg daripada 60 kg</b> = ?',
+          fields: [{ suf: '%', ans: 30 }], steps: '18 ÷ 60 = 0.3\n0.3 × 100% = 30%' },
+        { n: 6, type: 'num', marks: 2, q: 'Berapakah nilai yang perlu ditolak dengan <b>RM12 450.80</b> supaya menjadi <b>RM30 000</b>?',
+          fields: [{ pre: 'RM', ans: 42450.8 }], steps: 'x − RM12 450.80 = RM30 000\nx = RM30 000 + RM12 450.80\nx = RM42 450.80' },
+        { n: 7, type: 'num', marks: 2, q: 'RM24 016.80 ÷ 8 × 5 = ?',
+          fields: [{ pre: 'RM', ans: 15010.5 }], steps: 'RM24 016.80 ÷ 8 = RM3 002.10\nRM3 002.10 × 5 = RM15 010.50' },
+        { n: 8, type: 'num', marks: 2, q: 'Berapakah beza antara <b>12 minggu 3 hari</b> dengan <b>5 minggu 6 hari</b>? Nyatakan jawapan dalam hari.',
+          fields: [{ suf: 'hari', ans: 46 }], steps: '12 minggu 3 hari = (12 × 7) + 3 = 87 hari\n5 minggu 6 hari = (5 × 7) + 6 = 41 hari\n87 − 41 = 46 hari' },
+        { n: 9, type: 'num', marks: 2, q: '18 450 m ÷ 5 = ?',
+          fields: [{ suf: 'km', ans: 3 }, { suf: 'm', ans: 690 }], steps: '18 450 m ÷ 5 = 3 690 m\n3 690 m = 3 km 690 m' },
+        { n: 10, type: 'num', marks: 2, q: '9 015 g − 3 kg 240 g + 2 kg 805 g = ?',
+          fields: [{ suf: 'kg', ans: 8 }, { suf: 'g', ans: 580 }], steps: '9 015 g − 3 240 g = 5 775 g\n5 775 g + 2 805 g = 8 580 g\n= 8 kg 580 g' },
+        { n: 11, type: 'num', marks: 3, q: 'Isi padu sebotol air sirap ialah <b>1 ℓ 750 mℓ</b>. Puan Lim menuang <b>4 botol</b> air sirap itu sama banyak ke dalam <b>14 biji gelas</b>. Berapakah isi padu, dalam mℓ, air sirap dalam setiap gelas?',
+          fields: [{ suf: 'mℓ', ans: 500 }], steps: '1 ℓ 750 mℓ = 1 750 mℓ\n1 750 mℓ × 4 = 7 000 mℓ\n7 000 mℓ ÷ 14 = 500 mℓ' },
+        { n: 12, type: 'num', marks: 2, q: 'Cari perimeter heksagon sekata di bawah.',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 200 180" width="200" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+            <polygon points="100,20 165,57 165,130 100,167 35,130 35,57" fill="#fde68a" stroke="#78350f" stroke-width="2"/>
+            <text x="140" y="32">7 cm</text></svg></div>`,
+          fields: [{ suf: 'cm', ans: 42 }], steps: 'Heksagon sekata ada 6 sisi yang sama panjang.\n6 × 7 cm = 42 cm' },
+        { n: 13, type: 'num', marks: 3, q: 'Harga <b>8 batang pensel</b> ialah <b>RM14.00</b>. Amin membeli <b>5 batang</b> pensel yang sama dan membayar dengan sekeping wang kertas <b>RM10</b>. Hitung wang baki yang diterima oleh Amin.',
+          fields: [{ pre: 'RM', ans: 1.25 }], steps: 'Harga sebatang: RM14.00 ÷ 8 = RM1.75\n5 batang: RM1.75 × 5 = RM8.75\nBaki: RM10.00 − RM8.75 = RM1.25' }
+      ]
+    },
+    {
+      title: 'Bahagian B – Subjektif Bertema (Soalan 1 – 2)',
+      instr: 'Jawab semua soalan.',
+      items: [
+        { n: 1, type: 'group', q: '<b>Tema: Pekerjaan.</b> Puan Rozita bekerja sebagai pemandu bas di Syarikat Bas Ekspres Mutiara.',
+          sub: [
+            { type: 'num', marks: 2, q: 'Puan Rozita telah bekerja di syarikat itu selama <b>46 bulan</b>. Nyatakan tempoh itu dalam tahun dan bulan.',
+              fields: [{ suf: 'tahun', ans: 3 }, { suf: 'bulan', ans: 10 }], steps: '46 ÷ 12 = 3 baki 10\n= 3 tahun 10 bulan' },
+            { type: 'num', marks: 3, q: 'Waktu bekerjanya ialah dari pukul <b>7:00 a.m.</b> hingga <b>4:00 p.m.</b> setiap hari. Berapakah jumlah masa, dalam hari dan jam, dia bekerja dalam <b>6 hari</b>?',
+              fields: [{ suf: 'hari', ans: 2 }, { suf: 'jam', ans: 6 }], steps: '7:00 a.m. = jam 0700, 4:00 p.m. = jam 1600\nSehari: 1600 − 0700 = 9 jam\n6 hari: 9 × 6 = 54 jam\n54 jam = 2 hari 6 jam' },
+            { type: 'num', marks: 3, q: 'Syarikat itu membawa <b>28 450</b> orang penumpang pada bulan Mei. Pada bulan Jun, bilangan penumpang ialah <b>6 875</b> orang kurang daripada bulan Mei. Berapakah jumlah penumpang dalam dua bulan itu?',
+              fields: [{ suf: 'orang', ans: 50025 }], steps: 'Jun: 28 450 − 6 875 = 21 575 orang\nJumlah: 28 450 + 21 575 = 50 025 orang' },
+            { type: 'num', marks: 4, q: 'Rajah menunjukkan tempat letak bas yang berbentuk segi empat tepat. Perimeter tempat letak bas itu ialah <b>130 m</b>. Hitung luas, dalam m², tempat letak bas itu.',
+              stim: `<div class="svg-wrap"><svg viewBox="0 0 320 140" width="320" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+                <rect x="30" y="20" width="260" height="90" fill="#e2e8f0" stroke="#334155" stroke-width="2"/><text x="160" y="72" text-anchor="middle" font-size="22">🚌 🚌 🚌</text>
+                <text x="160" y="130" text-anchor="middle">45 m</text><text x="296" y="70">?</text></svg></div>`,
+              fields: [{ suf: 'm²', ans: 900 }], steps: 'Lebar: 130 m − 45 m − 45 m = 40 m\n40 m ÷ 2 = 20 m\nLuas: 45 m × 20 m = 900 m²' }
+          ] },
+        { n: 2, type: 'group', q: '<b>Tema: Masyarakat.</b> Piktograf menunjukkan bilangan tin minuman yang dikumpul oleh empat kelas untuk program kitar semula.',
+          stim: `<table class="stim-table" style="font-size:1.2em"><tr><td>4 Bestari</td><td style="text-align:left">🥫🥫🥫🥫🥫</td></tr><tr><td>4 Cerdik</td><td style="text-align:left">🥫🥫🥫🥫🥫🥫🥫</td></tr>
+            <tr><td>4 Dinamik</td><td style="text-align:left">🥫🥫🥫</td></tr><tr><td>4 Gemilang</td><td style="text-align:left">🥫🥫🥫🥫🥫🥫</td></tr></table>
+            <p style="font-size:0.9em">🥫 mewakili 20 tin</p>`,
+          sub: [
+            { type: 'num', marks: 3, q: 'Hitung beza bilangan tin yang dikumpul oleh kelas 4 Cerdik dengan kelas 4 Dinamik.',
+              fields: [{ suf: 'tin', ans: 80 }], steps: '4 Cerdik: 7 × 20 = 140\n4 Dinamik: 3 × 20 = 60\nBeza: 140 − 60 = 80 tin' },
+            { type: 'num', marks: 3, q: '<b>25%</b> daripada jumlah tin yang dikumpul ialah tin berwarna merah. Hitung bilangan tin berwarna merah.',
+              fields: [{ suf: 'tin', ans: 105 }], steps: 'Jumlah ikon: 5 + 7 + 3 + 6 = 21\nJumlah tin: 21 × 20 = 420\n25/100 × 420 = 105 tin' },
+            { type: 'num', marks: 3, q: 'Rajah menunjukkan kotak kitar semula di dalam stor. Ali menambah <b>2 buah kotak hijau</b> lagi. Nyatakan nisbah bilangan kotak biru kepada bilangan kotak hijau sekarang.',
+              stim: '<div style="font-size:1.8em;letter-spacing:4px">🟦🟦🟦 🟩🟩🟩🟩🟩</div>',
+              fields: [{ ans: 3 }, { pre: ':', ans: 7 }], steps: 'Kotak biru = 3\nKotak hijau = 5 + 2 = 7\nNisbah biru : hijau = 3 : 7' },
+            { type: 'num', marks: 3, q: 'Jumlah jisim <b>5 beg</b> tin yang sama ialah <b>3 650 g</b>. Hitung jumlah jisim, dalam kg dan g, bagi <b>8 beg</b> tin itu.',
+              fields: [{ suf: 'kg', ans: 5 }, { suf: 'g', ans: 840 }], steps: 'Sebuah beg: 3 650 g ÷ 5 = 730 g\n8 beg: 730 g × 8 = 5 840 g\n= 5 kg 840 g' }
+          ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_kertas.js"></script>
+</body>
+</html>

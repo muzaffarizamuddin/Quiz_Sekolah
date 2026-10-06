@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Tahun 4 – Kertas Latihan PSA</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Matematik Tahun 4 – Kertas Latihan (Format PSA)</h1>
+        <p class="subtitle">Format sama seperti Pentaksiran Sumatif Akhir Matematik Tahun 4: Bahagian A (13 soalan, 26 markah) dan Bahagian B (2 soalan bertema, 24 markah). 1 jam 15 minit. Tunjukkan pengiraan dalam ruang pengiraan, kemudian tekan <b>Semak Jawapan</b>.</p>
+        <table class="marks-table">
+            <tr><th>Bahagian</th><th>Soalan</th><th>Markah</th></tr>
+            <tr><td>A</td><td>1 – 13</td><td>26</td></tr>
+            <tr><td>B</td><td>Soalan 1 &amp; 2</td><td>24</td></tr>
+            <tr><th colspan="2">Jumlah</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+</div>
+
+<script>
+window.KERTAS = {
+  theme: '#c2410c', themeDark: '#9a3412', themeSoft: '#fff7ed',
+  sections: [
+    {
+      title: 'Bahagian A – Subjektif (Soalan 1 – 13)',
+      instr: 'Jawab semua soalan. Taip nombor sahaja dalam kotak jawapan (contoh: 64000 atau 37.60).',
+      items: [
+        { n: 1, type: 'text', marks: 1, q: 'Tuliskan <b>48 305</b> dalam perkataan.',
+          ans: ['empat puluh lapan ribu tiga ratus lima'], steps: '48 305 = empat puluh lapan ribu tiga ratus lima' },
+        { n: 2, type: 'num', marks: 1, q: 'Bundarkan <b>63 548</b> kepada ribu yang terdekat.',
+          fields: [{ ans: 64000 }], steps: 'Digit ratus ialah 5 (≥ 5), jadi tambah 1 pada digit ribu.\n63 548 → 64 000' },
+        { n: 3, type: 'num', marks: 1, q: 'Lengkapkan garis nombor di bawah.',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 520 70" width="520" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+            <line x1="20" y1="25" x2="500" y2="25" stroke="#334155" stroke-width="2"/>
+            <g stroke="#334155" stroke-width="2"><line x1="50" y1="15" x2="50" y2="35"/><line x1="155" y1="15" x2="155" y2="35"/><line x1="260" y1="15" x2="260" y2="35"/><line x1="365" y1="15" x2="365" y2="35"/><line x1="470" y1="15" x2="470" y2="35"/></g>
+            <g text-anchor="middle"><text x="50" y="55">45 600</text><text x="155" y="55">45 700</text><text x="260" y="55" font-weight="bold" fill="#c2410c">?</text><text x="365" y="55">45 900</text><text x="470" y="55">46 000</text></g></svg></div>`,
+          fields: [{ ans: 45800 }], steps: 'Setiap langkah bertambah 100.\n45 700 + 100 = 45 800' },
+        { n: 4, type: 'num', marks: 1, q: 'Tukarkan <b>3/4</b> kepada peratus.',
+          fields: [{ suf: '%', ans: 75 }], steps: '3/4 × 100% = 75%' },
+        { n: 5, type: 'num', marks: 2, q: '<b>2 3/5</b> daripada 20 = ?',
+          fields: [{ ans: 52 }], steps: '2 3/5 = 13/5\n13/5 × 20 = 13 × 4\n= 52' },
+        { n: 6, type: 'num', marks: 2, q: '3.85 + 12.6 + 104.275 = ?',
+          fields: [{ ans: 120.725 }], steps: '3.85 + 12.6 = 16.45\n16.45 + 104.275 = 120.725' },
+        { n: 7, type: 'num', marks: 2, q: '5 ℓ 640 mℓ ÷ 4 = ?',
+          fields: [{ suf: 'ℓ', ans: 1 }, { suf: 'mℓ', ans: 410 }], steps: '5 ℓ 640 mℓ = 5 640 mℓ\n5 640 mℓ ÷ 4 = 1 410 mℓ\n= 1 ℓ 410 mℓ' },
+        { n: 8, type: 'num', marks: 2, q: 'Hitung isi padu kuboid di bawah.',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 300 170" width="300" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+            <polygon points="40,60 190,60 190,140 40,140" fill="#fed7aa" stroke="#9a3412" stroke-width="2"/>
+            <polygon points="40,60 90,25 240,25 190,60" fill="#ffedd5" stroke="#9a3412" stroke-width="2"/>
+            <polygon points="190,60 240,25 240,105 190,140" fill="#fdba74" stroke="#9a3412" stroke-width="2"/>
+            <text x="115" y="158" text-anchor="middle">6 cm</text><text x="235" y="135">4 cm</text><text x="12" y="105">3 cm</text></svg></div>`,
+          fields: [{ suf: 'cm³', ans: 72 }], steps: 'Isi padu = panjang × lebar × tinggi\n= 6 cm × 4 cm × 3 cm\n= 72 cm³' },
+        { n: 9, type: 'num', marks: 2, q: 'Aina mengambil masa <b>8 hari 4 jam</b> untuk menyiapkan 4 helai kain sulaman. Berapakah masa, dalam hari dan jam, untuk menyiapkan sehelai kain sulaman?',
+          fields: [{ suf: 'hari', ans: 2 }, { suf: 'jam', ans: 1 }], steps: '8 hari 4 jam = (8 × 24) + 4 = 196 jam\n196 jam ÷ 4 = 49 jam\n49 jam = 2 hari 1 jam' },
+        { n: 10, type: 'num', marks: 3, q: 'Jadual menunjukkan barang yang dibeli oleh Encik Faisal. Dia membayar dengan sekeping wang kertas <b>RM100</b>. Berapakah baki wangnya?',
+          stim: `<table class="stim-table"><tr><th>Barang</th><th>Bilangan</th><th>Harga seunit</th></tr>
+            <tr><td>Buku tulis</td><td>5</td><td>RM2.40</td></tr><tr><td>Pen</td><td>3</td><td>RM1.50</td></tr><tr><td>Beg sekolah</td><td>1</td><td>RM45.90</td></tr></table>`,
+          fields: [{ pre: 'RM', ans: 37.6 }], steps: 'Buku tulis: 5 × RM2.40 = RM12.00\nPen: 3 × RM1.50 = RM4.50\nBeg sekolah: RM45.90\nJumlah = RM12.00 + RM4.50 + RM45.90 = RM62.40\nBaki = RM100.00 − RM62.40 = RM37.60' },
+        { n: 11, type: 'num', marks: 3, q: 'Jag A mengandungi <b>3 ℓ 600 mℓ</b> air sirap. Isi padu air dalam jag B ialah <b>2 kali</b> isi padu air dalam jag A. Hitung jumlah isi padu air sirap dalam kedua-dua jag.',
+          fields: [{ suf: 'ℓ', ans: 10 }, { suf: 'mℓ', ans: 800 }], steps: 'Jag A = 3 ℓ 600 mℓ = 3 600 mℓ\nJag B = 2 × 3 600 mℓ = 7 200 mℓ\nJumlah = 3 600 + 7 200 = 10 800 mℓ\n= 10 ℓ 800 mℓ' },
+        { n: 12, type: 'num', marks: 3, q: 'Piktograf menunjukkan bilangan buku yang dijual di sebuah kedai dalam 4 hari. Berapakah jumlah buku yang dijual pada hari Selasa dan Khamis?',
+          stim: `<table class="stim-table" style="font-size:1.2em"><tr><td>Isnin</td><td style="text-align:left">📘📘📘📘</td></tr><tr><td>Selasa</td><td style="text-align:left">📘📘📘📘📘📘</td></tr>
+            <tr><td>Rabu</td><td style="text-align:left">📘📘📘</td></tr><tr><td>Khamis</td><td style="text-align:left">📘📘📘📘📘</td></tr></table>
+            <p style="font-size:0.9em">📘 mewakili 15 buah buku</p>`,
+          fields: [{ suf: 'buah buku', ans: 165 }], steps: 'Selasa = 6 ikon, Khamis = 5 ikon\n6 + 5 = 11 ikon\n11 × 15 = 165 buah buku' },
+        { n: 13, type: 'num', marks: 3, q: 'Encik Ismail hendak memagar kebun sayurnya yang berbentuk segi empat tepat seperti di bawah. Kos memasang pagar ialah <b>RM12.50 bagi setiap meter</b>. Berapakah jumlah kosnya?',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 300 150" width="300" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+            <rect x="40" y="20" width="220" height="100" fill="#dcfce7" stroke="#15803d" stroke-width="3" stroke-dasharray="8 4"/>
+            <text x="150" y="140" text-anchor="middle">15 m</text><text x="268" y="74">9 m</text><text x="150" y="74" text-anchor="middle">🥬 🥕 🌽</text></svg></div>`,
+          fields: [{ pre: 'RM', ans: 600 }], steps: 'Perimeter = 15 m + 9 m + 15 m + 9 m = 48 m\nKos = 48 × RM12.50 = RM600.00' }
+      ]
+    },
+    {
+      title: 'Bahagian B – Subjektif Bertema (Soalan 1 – 2)',
+      instr: 'Jawab semua soalan.',
+      items: [
+        { n: 1, type: 'group', q: '<b>Tema: Kesihatan.</b> Jadual menunjukkan buah-buahan yang digemari oleh murid Tahun 4 Bestari.',
+          stim: `<table class="stim-table"><tr><th>Jenis buah</th><th>Bilangan murid</th></tr><tr><td>Epal</td><td>9</td></tr><tr><td>Pisang</td><td>6</td></tr><tr><td>Oren</td><td>11</td></tr><tr><td>Betik</td><td>4</td></tr></table>`,
+          sub: [
+            { type: 'bar', marks: 4, q: 'Berdasarkan jadual, bina carta palang yang lengkap.', cats: ['Epal', 'Pisang', 'Oren', 'Betik'], vals: [9, 6, 11, 4], maxY: 12 },
+            { type: 'text', marks: 1, q: 'Apakah buah yang paling digemari oleh murid?', ans: ['oren', 'buah oren'], steps: 'Oren mempunyai bilangan murid paling tinggi (11).' },
+            { type: 'num', marks: 2, q: 'Berapakah beza bilangan murid yang gemar oren dengan betik?', fields: [{ suf: 'orang', ans: 7 }], steps: '11 − 4 = 7 orang' },
+            { type: 'num', marks: 2, q: 'Berapakah jumlah murid dalam kelas itu?', fields: [{ suf: 'orang', ans: 30 }], steps: '9 + 6 + 11 + 4 = 30 orang' },
+            { type: 'num', marks: 3, q: 'Setiap murid yang gemar epal diberi 3 biji epal seminggu. Berapakah jumlah epal yang diperlukan dalam 4 minggu?', fields: [{ suf: 'biji', ans: 108 }], steps: 'Seminggu: 9 × 3 = 27 biji\n4 minggu: 27 × 4 = 108 biji' }
+          ] },
+        { n: 2, type: 'group', q: '<b>Tema: Pekerjaan.</b> Gaji bulanan Puan Salmah ialah <b>RM5 000</b>. Jadual menunjukkan perbelanjaannya dalam sebulan.',
+          stim: `<table class="stim-table"><tr><th>Perbelanjaan</th><th>Jumlah</th></tr><tr><td>Sewa rumah</td><td>RM1 200</td></tr><tr><td>Makanan</td><td>RM900</td></tr><tr><td>Bil elektrik dan air</td><td>RM250</td></tr><tr><td>Pengangkutan</td><td>RM350</td></tr></table>`,
+          sub: [
+            { type: 'num', marks: 2, q: 'Berapakah jumlah perbelanjaan Puan Salmah dalam sebulan?', fields: [{ pre: 'RM', ans: 2700 }], steps: 'RM1 200 + RM900 + RM250 + RM350 = RM2 700' },
+            { type: 'num', marks: 2, q: 'Berapakah baki gajinya selepas perbelanjaan itu?', fields: [{ pre: 'RM', ans: 2300 }], steps: 'RM5 000 − RM2 700 = RM2 300' },
+            { type: 'num', marks: 2, q: 'Berapakah peratus gajinya yang digunakan untuk <b>sewa rumah</b>?', fields: [{ suf: '%', ans: 24 }], steps: 'RM1 200 / RM5 000 × 100% = 24%' },
+            { type: 'num', marks: 2, q: 'Berapakah peratus gajinya yang digunakan untuk <b>makanan</b>?', fields: [{ suf: '%', ans: 18 }], steps: 'RM900 / RM5 000 × 100% = 18%' },
+            { type: 'num', marks: 2, q: 'Puan Salmah menyimpan semua baki gajinya setiap bulan. Berapakah simpanannya dalam tempoh <b>1 tahun 3 bulan</b>?', fields: [{ pre: 'RM', ans: 34500 }], steps: '1 tahun 3 bulan = 12 + 3 = 15 bulan\nRM2 300 × 15 = RM34 500' },
+            { type: 'num', marks: 2, q: 'Sewa rumah naik sebanyak RM150 sebulan. Berapakah jumlah sewa rumah yang perlu dibayar dalam setahun?', fields: [{ pre: 'RM', ans: 16200 }], steps: 'Sewa baharu = RM1 200 + RM150 = RM1 350\nSetahun = RM1 350 × 12 = RM16 200' }
+          ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_kertas.js"></script>
+</body>
+</html>

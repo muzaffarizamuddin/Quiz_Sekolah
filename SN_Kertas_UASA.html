@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sains Tahun 4 – Kertas Latihan UASA</title>
+    <link rel="stylesheet" href="kuiz_english.css">
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="index.html">← Kembali ke senarai kuiz</a>
+    <div class="page-header">
+        <h1>Sains Tahun 4 – Kertas Latihan (Format UASA 2024)</h1>
+        <p class="subtitle">Format sama seperti Ujian Akhir Sesi Akademik Sains Tahun 4: Bahagian A (10 soalan objektif), Bahagian B (item objektif pilihan, 8 markah) dan Bahagian C (4 soalan subjektif, 32 markah). 1 jam 15 minit.</p>
+        <table class="marks-table">
+            <tr><th>Bahagian</th><th>Soalan</th><th>Markah</th></tr>
+            <tr><td>A</td><td>1 – 10</td><td>10</td></tr>
+            <tr><td>B</td><td>Soalan 1 – 2</td><td>8</td></tr>
+            <tr><td>C</td><td>Soalan 1 – 4</td><td>32</td></tr>
+            <tr><th colspan="2">Jumlah</th><th>50</th></tr>
+        </table>
+    </div>
+
+    <div id="scoreBanner" class="score-banner"></div>
+    <div id="paper"></div>
+
+    <button class="action-btn" id="submitBtn">Semak Jawapan</button>
+    <button class="reset-btn" id="resetBtn">Mula Semula</button>
+</div>
+
+<script>
+window.KERTAS = {
+  theme: '#0e7490', themeDark: '#155e75', themeSoft: '#ecfeff',
+  sections: [
+    {
+      title: 'Bahagian A – Soalan Objektif (Soalan 1 – 10)',
+      instr: 'Setiap soalan diikuti oleh empat pilihan jawapan, iaitu A, B, C dan D. Pilih jawapan yang paling tepat.',
+      items: [
+        { n: 1, type: 'mcq', q: 'Maklumat berikut adalah tentang satu proses hidup manusia.<div class="passage" style="margin:6px 0">Proses ini menyingkirkan sisa makanan yang tidak tercerna (tinja) melalui dubur.</div>Apakah proses hidup tersebut?',
+          options: ['Perpeluhan', 'Pernafasan', 'Perkumuhan', 'Penyahtinjaan'], answer: 3, explain: 'Penyahtinjaan = menyingkirkan tinja. Perkumuhan = menyingkirkan bahan kumuh (peluh, air kencing, karbon dioksida).' },
+        { n: 2, type: 'mcq', q: 'Ali menarik tangannya dengan cepat apabila tersentuh cerek yang panas. Apakah kepentingan Ali bergerak balas sebegitu?',
+          options: ['Untuk bermain dengan cerek', 'Untuk mengelakkan diri daripada tercedera', 'Supaya cerek menjadi sejuk', 'Untuk mendapatkan haba'], answer: 1, explain: 'Manusia bergerak balas terhadap rangsangan untuk melindungi diri daripada bahaya.' },
+        { n: 3, type: 'mcq', q: 'Bagaimanakah katak dewasa bernafas?',
+          options: ['Melalui insang', 'Melalui spirakel', 'Melalui peparu dan kulit lembap', 'Melalui kulit kering'], answer: 2, explain: 'Katak dewasa hidup di darat dan di air, jadi ia bernafas menggunakan peparu dan kulit lembap.' },
+        { n: 4, type: 'mcq', q: 'Apakah <b>hasil</b> fotosintesis?',
+          options: ['Oksigen dan kanji', 'Karbon dioksida dan kanji', 'Oksigen dan karbon dioksida', 'Karbon dioksida dan klorofil'], answer: 0, explain: 'Karbon dioksida + air → (cahaya matahari, klorofil) → kanji + oksigen.' },
+        { n: 5, type: 'mcq', q: 'Objek jenis apakah yang menghasilkan bayang-bayang yang <b>paling gelap dan jelas</b>?',
+          options: ['Objek legap', 'Objek lut sinar', 'Objek lut cahaya', 'Objek berkilat'], answer: 0, explain: 'Objek legap menghalang semua cahaya.' },
+        { n: 6, type: 'mcq', q: 'Sebatang pensel dimasukkan ke dalam segelas air. Pensel itu kelihatan <b>bengkok</b>. Sifat cahaya manakah yang menerangkan keadaan ini?',
+          options: ['Cahaya bergerak lurus', 'Cahaya boleh dipantulkan', 'Cahaya boleh dibiaskan apabila melalui dua medium yang berbeza', 'Cahaya tidak boleh menembusi air'], answer: 2,
+          explain: 'Cahaya bergerak dari air ke udara (dua medium berbeza) dan dibiaskan, jadi pensel kelihatan bengkok.' },
+        { n: 7, type: 'mcq', q: 'Bil elektrik keluarga Encik Rahim semakin tinggi. Pilih cara yang paling sesuai untuk mengurangkan bayaran bil elektrik dalam <b>jangka masa panjang</b>.',
+          options: ['Memasang panel solar di atas bumbung rumah', 'Membina empangan di tepi rumah', 'Membakar arang batu untuk menjana elektrik', 'Membuka semua lampu pada waktu siang'], answer: 0,
+          explain: 'Panel solar menggunakan tenaga suria yang percuma dan boleh diperbaharui.' },
+        { n: 8, type: 'mcq', q: 'Jadual menunjukkan bahan dan sumber asas bagi objek X, Y dan Z.<table class="stim-table" style="margin:6px 0"><tr><th></th><th>Objek X</th><th>Objek Y</th><th>Objek Z</th></tr><tr><td>Bahan</td><td>Kayu</td><td>Plastik</td><td>Bulu</td></tr><tr><td>Sumber asas</td><td>Tumbuhan</td><td>Petroleum</td><td>Haiwan</td></tr></table>Antara berikut, yang manakah betul bagi objek X, Y dan Z?',
+          options: ['X: Kerusi kayu, Y: Botol plastik, Z: Baju sejuk bulu', 'X: Pasu kaca, Y: Piala, Z: Kasut', 'X: Tayar kereta, Y: Khemah, Z: Cincin emas', 'X: Kotak buku, Y: Baju hujan, Z: Payung'], answer: 0,
+          explain: 'Kerusi kayu (tumbuhan), botol plastik (petroleum), baju sejuk bulu (haiwan).' },
+        { n: 9, type: 'mcq', q: 'Pemutar skru ialah contoh mesin ringkas jenis ____________.',
+          options: ['tuas', 'roda dan gandar', 'takal', 'baji'], answer: 1, explain: 'Pemegang = roda, batang = gandar.' },
+        { n: 10, type: 'mcq', q: 'Seorang penghantar barang sering sakit pinggang kerana selalu mengangkat kotak yang berat. Cadangkan cara untuk membantunya.',
+          options: ['Memakai topi keledar', 'Memakai kasut sukan', 'Menggunakan troli beroda untuk mengangkut kotak', 'Memakai sarung tangan'], answer: 2,
+          explain: 'Troli (roda dan gandar) memudahkan kerja dan mengurangkan daya yang diperlukan.' }
+      ]
+    },
+    {
+      title: 'Bahagian B – Item Objektif Pilihan (Soalan 1 – 2)',
+      instr: 'Jawab semua soalan.',
+      items: [
+        { n: 1, type: 'group', q: 'Proses pernafasan manusia.',
+          sub: [
+            { type: 'choose', q: 'Gariskan jawapan yang betul tentang proses pernafasan.',
+              rows: [{ pre: 'Menarik nafas: Dada', opts: ['menaik', 'menurun'], ans: 0 }, { pre: 'Menghembus nafas: Dada', opts: ['menaik', 'menurun'], ans: 1 }] },
+            { type: 'tick', marks: 2, q: 'Tandakan ( ✓ ) bagi pernyataan yang betul dan ( ✗ ) bagi pernyataan yang salah.',
+              rows: [{ t: 'Udara yang dihembus mengandungi lebih banyak karbon dioksida berbanding udara yang disedut.', ok: true },
+                     { t: 'Peparu mengempis semasa kita menarik nafas.', ok: false }] }
+          ] },
+        { n: 2, type: 'group', q: 'Pergerakan Bumi.',
+          sub: [
+            { type: 'choose', q: 'Gariskan arah pergerakan Bumi yang betul.',
+              rows: [{ pre: 'Putaran Bumi pada paksinya: dari', opts: ['barat ke timur', 'timur ke barat'], ans: 0 },
+                     { pre: 'Peredaran Bumi mengelilingi Matahari:', opts: ['ikut arah jam', 'lawan arah jam'], ans: 1 }] },
+            { type: 'choose', q: 'Gariskan jawapan yang betul tentang kesan putaran Bumi.',
+              rows: [{ pre: 'Kejadian', opts: ['siang dan malam', 'empat musim'], ans: 0 },
+                     { pre: 'Perubahan panjang dan arah', opts: ['bayang-bayang', 'pelangi'], ans: 0 }] }
+          ] }
+      ]
+    },
+    {
+      title: 'Bahagian C – Soalan Subjektif (Soalan 1 – 4)',
+      instr: 'Jawab semua soalan. Tulis jawapan dalam ayat yang ringkas dan tepat.',
+      items: [
+        { n: 1, type: 'group', q: 'Hana menjalankan penyiasatan dengan memasukkan empat bahan ke dalam sebekas air. Jadual menunjukkan keputusannya.',
+          stim: `<table class="stim-table"><tr><th>Bahan</th><th>Keadaan bahan</th></tr><tr><td>Gabus</td><td>Terapung</td></tr><tr><td>Paku besi</td><td>Tenggelam</td></tr><tr><td>Guli kaca</td><td>Tenggelam</td></tr><tr><td>Bola pingpong</td><td>Terapung</td></tr></table>`,
+          sub: [
+            { type: 'short', marks: 1, q: 'Nyatakan pemboleh ubah dimanipulasi.', rubric: [['jenis bahan', 'bahan']], model: 'Jenis bahan' },
+            { type: 'short', marks: 1, q: 'Nyatakan pemboleh ubah bergerak balas.', rubric: [['keadaan', 'terapung', 'tenggelam']], model: 'Keadaan bahan (terapung atau tenggelam)' },
+            { type: 'short', marks: 1, q: 'Apakah sifat bahan yang dikaji dalam penyiasatan ini?', rubric: [['terapung', 'apung']], model: 'Keupayaan bahan untuk terapung' },
+            { type: 'short', marks: 1, q: 'Ramalkan keadaan seketul batu jika dimasukkan ke dalam air.', rubric: [['tenggelam']], model: 'Batu akan tenggelam.' },
+            { type: 'select', marks: 2, q: 'Kelaskan bahan-bahan berikut dalam peta pokok: <b>Terapung</b> atau <b>Tenggelam</b>.',
+              choices: ['Terapung', 'Tenggelam'],
+              rows: [{ t: 'Gabus', ans: 0 }, { t: 'Paku besi', ans: 1 }, { t: 'Guli kaca', ans: 1 }, { t: 'Bola pingpong', ans: 0 }] },
+            { type: 'short', marks: 2, q: 'Cadangkan satu bahan yang sesuai untuk membuat pelampung keselamatan. Berikan sebab.',
+              rubric: [['gabus', 'plastik', 'polistirena', 'span', 'getah'], ['terapung', 'apung', 'ringan']],
+              model: 'Gabus, kerana gabus boleh terapung di atas air.' }
+          ] },
+        { n: 2, type: 'group', q: 'Rajah menunjukkan tiga ekor haiwan.',
+          stim: `<table class="stim-table" style="font-size:1.1em"><tr style="font-size:2em"><td>🐈</td><td>🐔</td><td>🐋</td></tr><tr><td>Kucing</td><td>Ayam</td><td>Ikan paus</td></tr></table>`,
+          sub: [
+            { type: 'select', marks: 3, q: 'Nyatakan cara pembiakan setiap haiwan.', choices: ['Beranak', 'Bertelur'],
+              rows: [{ t: 'Kucing', ans: 0 }, { t: 'Ayam', ans: 1 }, { t: 'Ikan paus', ans: 0 }] },
+            { type: 'short', marks: 1, q: 'Mengapakah haiwan perlu membiak?', rubric: [['pupus', 'kekal', 'berterusan', 'generasi', 'baka']],
+              model: 'Untuk memastikan spesies haiwan itu tidak pupus.' },
+            { type: 'short', marks: 2, q: 'Penyu bertelur di pantai. Bilangan penyu di Malaysia semakin berkurang. Nyatakan <b>dua</b> sebab.',
+              rubric: [['curi', 'ambil telur', 'makan telur', 'jual', 'dimakan'], ['cemar', 'sampah', 'plastik', 'pembangunan', 'jaring', 'bot']],
+              model: 'Telur penyu dicuri dan dijual; pantai dan laut tercemar oleh sampah plastik.' },
+            { type: 'short', marks: 2, q: 'Cadangkan <b>dua</b> cara untuk melindungi penyu.',
+              rubric: [['hukum', 'denda', 'undang', 'larang'], ['penetasan', 'tidak membeli', 'jangan beli', 'kempen', 'kesedaran', 'bersih', 'kutip sampah']],
+              model: 'Mengenakan denda kepada pencuri telur penyu; membina pusat penetasan penyu dan membersihkan pantai.' }
+          ] },
+        { n: 3, type: 'group', q: 'Amin menjalankan penyiasatan dengan dua pasu anak pokok yang sama jenis dan saiz. Pasu P disiram air setiap hari. Pasu Q tidak disiram. Kedua-dua pasu diletakkan di tempat yang sama. Keadaan anak pokok diperhatikan selepas 7 hari.',
+          stim: `<table class="stim-table"><tr><th>Pasu</th><th>Disiram air</th><th>Keadaan selepas 7 hari</th></tr><tr><td>P</td><td>Ya</td><td>Segar 🌱</td></tr><tr><td>Q</td><td>Tidak</td><td>Layu 🥀</td></tr></table>`,
+          sub: [
+            { type: 'short', marks: 1, q: 'Nyatakan pemboleh ubah dimanipulasi.', rubric: [['air', 'siram']], model: 'Kehadiran air (disiram atau tidak disiram)' },
+            { type: 'short', marks: 1, q: 'Nyatakan pemboleh ubah bergerak balas.', rubric: [['keadaan', 'layu', 'segar']], model: 'Keadaan anak pokok' },
+            { type: 'short', marks: 1, q: 'Nyatakan inferens: Mengapakah anak pokok Q layu?', rubric: [['air', 'tidak disiram']], model: 'Anak pokok Q tidak mendapat air.' },
+            { type: 'short', marks: 1, q: 'Ramalkan keadaan anak pokok Q jika ia tidak disiram selama 30 hari.', rubric: [['mati']], model: 'Anak pokok Q akan mati.' },
+            { type: 'short', marks: 2, q: 'Akar tumbuhan bergerak balas terhadap dua rangsangan. Nyatakan rangsangan itu.', rubric: [['air'], ['graviti']], model: 'Air dan graviti' },
+            { type: 'short', marks: 2, q: 'Mengapakah tumbuhan perlu bergerak balas terhadap rangsangan?',
+              rubric: [['air', 'cahaya', 'nutrien', 'keperluan', 'makanan'], ['hidup', 'membesar', 'fotosintesis', 'tumbuh', 'kukuh']],
+              model: 'Untuk mendapatkan keperluan asas seperti air dan cahaya matahari supaya tumbuhan dapat hidup dan membesar.' }
+          ] },
+        { n: 4, type: 'group', q: 'Rajah menunjukkan sebuah kren di tapak pembinaan yang digunakan untuk mengangkat bahan binaan.',
+          stim: `<div class="svg-wrap"><svg viewBox="0 0 320 200" width="320" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="13">
+            <line x1="10" y1="190" x2="310" y2="190" stroke="#64748b" stroke-width="2"/>
+            <rect x="60" y="30" width="14" height="160" fill="#f59e0b" stroke="#92400e"/>
+            <rect x="40" y="24" width="240" height="10" fill="#f59e0b" stroke="#92400e"/>
+            <circle cx="250" cy="44" r="10" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+            <line x1="250" y1="54" x2="250" y2="130" stroke="#334155" stroke-width="2"/>
+            <rect x="225" y="130" width="50" height="32" fill="#94a3b8" stroke="#334155"/><text x="250" y="151" text-anchor="middle" fill="white">beban</text>
+            <text x="266" y="40" font-size="12">takal</text></svg></div>`,
+          sub: [
+            { type: 'short', marks: 1, q: 'Namakan mesin ringkas yang terdapat pada kren itu.', rubric: [['takal']], model: 'Takal' },
+            { type: 'short', marks: 2, q: 'Nyatakan <b>dua</b> kegunaan kren itu.', rubric: [['angkat', 'berat'], ['tinggi', 'alih', 'pindah', 'mudah', 'cepat']],
+              model: 'Mengangkat beban yang berat; meletakkan beban di tempat yang tinggi.' },
+            { type: 'short', marks: 2, q: 'Namakan <b>dua</b> alatan lain yang menggunakan mesin ringkas yang sama.',
+              rubric: [['bendera'], ['perigi', 'telaga', 'timba', 'langsir', 'bidai', 'lif', 'ampaian']],
+              model: 'Tiang bendera; timba perigi (telaga).' },
+            { type: 'choose', q: 'Bandingkan jumlah daya yang diperlukan untuk mengangkat beban.',
+              rows: [{ pre: 'Sebelum menggunakan mesin: daya', opts: ['sedikit', 'banyak'], ans: 1 }, { pre: 'Semasa menggunakan mesin: daya', opts: ['sedikit', 'banyak'], ans: 0 }] },
+            { type: 'short', marks: 1, q: 'Nyatakan satu ciri mesin yang <b>lestari</b>.', rubric: [['cemar', 'jimat', 'tahan lama', 'selamat', 'kitar semula']],
+              model: 'Tidak mencemarkan alam sekitar.' }
+          ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="kuiz_kertas.js"></script>
+</body>
+</html>
